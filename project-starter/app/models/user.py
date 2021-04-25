@@ -54,8 +54,8 @@ class Portfolio(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
-  quantity = db.Column(db.Integer, nullable=False)
-  averagePrice = db.Column(db.Integer, nullable=False)
+  quantity = db.Column(db.Float, nullable=False)
+  averagePrice = db.Column(db.Float, nullable=False)
   owner = db.relationship('Coin')
 
 
@@ -64,3 +64,14 @@ class Coin(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(), nullable=False)
   ticker = db.Column(db.String(), nullable=False)
+
+class Trade(db.Model):
+  __tablename__ = 'trades'
+
+  id = db.Column(db.Integer, primary_key=True)
+  tradePrice = db.Column(db.Float, nullable=False)
+  tradeSize = db.Column(db.Float, nullable=False)
+  buyOrSell = db.Column(db.Boolean, nullable=False)
+  dateOfTrade = db.Column(db.DateTime, nullable=False)
+  userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
