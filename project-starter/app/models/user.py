@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  userCoins = db.relationship("Watchlist", backref="user")
 
 
   @property
@@ -31,3 +32,34 @@ class User(db.Model, UserMixin):
       "username": self.username,
       "email": self.email
     }
+
+class Watchlist(db.Model):
+  __tablename__ = 'watchlists'
+  __table_args__ = (
+    db.UniqueConstraint('userId', 'coinId', name="unique_coin"),
+    )
+
+  id = db.Column(db.Integer, primary_key=True)
+  userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  coinId = db.Column(db.Integer, nullable=False)
+  user = db.relationship("User", backref="userCoins")
+
+
+class Portfolio(db.Model):
+  __tablename__ = "portfolios"
+  __table_args__ = (
+    db.UniqueConstraint('userId', 'coinId',name='own_coin_once'),
+    )
+
+  id = db.Column(db.Integer, primary_key=True)
+  userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
+  quantity = db.Column(db.Integer, nullable=False)
+  owner = db.relationship('Coin')
+
+
+class Coin(db.Model):
+  __tablename__ = "coins"
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(), nullable=False)
+  ticker = db.Column(db.String(), nullable=False)
