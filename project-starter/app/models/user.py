@@ -55,6 +55,7 @@ class Portfolio(db.Model):
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
   quantity = db.Column(db.Integer, nullable=False)
+  averagePrice = db.Column(db.Integer, nullable=False)
   owner = db.relationship('Coin')
 
 
