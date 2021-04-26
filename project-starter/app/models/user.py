@@ -2,6 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -43,12 +44,13 @@ class Watchlist(db.Model):
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   coinId = db.Column(db.Integer, nullable=False)
   user = db.relationship("User", backref="userCoins")
+  coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
 
 
 class Portfolio(db.Model):
   __tablename__ = "portfolios"
   __table_args__ = (
-    db.UniqueConstraint('userId', 'coinId',name='own_coin_once'),
+      db.UniqueConstraint('userId', 'coinId', name='own_coin_once'),
     )
 
   id = db.Column(db.Integer, primary_key=True)
@@ -56,7 +58,6 @@ class Portfolio(db.Model):
   coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
   quantity = db.Column(db.Float, nullable=False)
   averagePrice = db.Column(db.Float, nullable=False)
-  owner = db.relationship('Coin')
 
 
 class Coin(db.Model):
@@ -75,3 +76,8 @@ class Trade(db.Model):
   dateOfTrade = db.Column(db.DateTime, nullable=False)
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
+
+
+
+
+# watchlists
