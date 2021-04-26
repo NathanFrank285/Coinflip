@@ -1,0 +1,31 @@
+.splash-body {
+    display: grid;
+    grid-template-rows: 200px 200px 500px ;
+    grid-template-areas:
+        'none' 
+        'title'
+        'forms';
+}
+
+.splash-title {
+    font-size: 70px;
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+}
+
+.splash-forms {
+    display: flex;
+    justify-content: center;
+    grid-area: forms;
+}
+
+.splash-login {
+    box-sizing: border-box;
+    margin: 15px;
+}
+
+.splash-signup {
+    box-sizing: border-box;
+    margin: 15px;
+}
