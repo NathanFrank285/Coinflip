@@ -18,19 +18,20 @@ export const getWatchListThunk = () => async (dispatch) => {
     console.log(watchlist)
     if (response.ok) {
 
-        dispatch(get_watchlist(watchlist))
+        return dispatch(get_watchlist(watchlist))
     }
 
 }
 
-const initialState = { watchlist: null }
+const initialState = {}
 
-const watchListReducer = (state, action) => {
+const watchListReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_WATCHLIST:
-            return { ...state, watchlist: action.payload }
+            return { ...state, ...action.payload }
         default:
             return state
     }
 
 }
+export default watchListReducer
