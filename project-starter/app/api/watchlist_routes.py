@@ -7,9 +7,10 @@ from app.models import db, Watchlist, Coin
 watchlist_routes = Blueprint('watchlist', __name__)
 
 
-@watchlist_routes.route('/')
+@watchlist_routes.route('')
 @login_required
 def index():
+
     id = current_user.id
     # user_watchlist = Watchlist.query.join(
     #     Coin).filter(Watchlist.userId == id).all()
@@ -46,6 +47,7 @@ def watchListPost(id):
     db.session.commit()
 
     return "Success"
+
 
 @watchlist_routes.route('/<id>', methods=['delete'])
 # @login_required

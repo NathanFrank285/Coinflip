@@ -35,8 +35,8 @@ app.register_blueprint(watchlist_routes, url_prefix='/api/watchlist')
 db.init_app(app)
 Migrate(app, db)
 
-# Application Security
 CORS(app)
+# Application Security
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.

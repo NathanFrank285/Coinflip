@@ -3,13 +3,14 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import Watchlist from "./components/Watchlist"
+
 import NavBar from "./components/NavBar";
 import Splash from "./components/Splash";
 import Portfolio from "./components/Portfolio";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-// import UsersList from "./components/UsersList";
-// import User from "./components/User";
+import WatchList from "./components/WatchList"
+import UsersList from "./components/UsersList";
+import User from "./components/User";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 
@@ -40,21 +41,21 @@ function App() {
           <NavBar />
           <Portfolio />
         </ProtectedRoute>
-        {/* <Route path="/login" exact={true}>
+        <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
-        </Route> */}
-        {/* <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
+        </Route>
+        <ProtectedRoute path="/users" exact={true} >
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
-        </ProtectedRoute> */}
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
