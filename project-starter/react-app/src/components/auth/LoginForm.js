@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import './LoginForm.css'
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -38,8 +39,11 @@ const LoginForm = () => {
         ))}
       </div>
       <div>
-        <label htmlFor="email">Email</label>
+        <div className='login-label'>
+          <label htmlFor="email">Email</label>
+        </div>
         <input
+          className='login-input'
           name="email"
           type="text"
           placeholder="Email"
@@ -48,15 +52,20 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <div className='login-label'>
+          <label htmlFor="password">Password</label>
+        </div>
         <input
+          className='login-input'
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <div className='btn-div'>
+          <button className='login-btn' type="submit">Login</button>
+        </div>
       </div>
     </form>
   );
