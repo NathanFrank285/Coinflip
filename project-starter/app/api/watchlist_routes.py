@@ -31,14 +31,33 @@ def index():
     }
 
 
-@watchlist_routes.route('/<int:id>', methods=['POST'])
+@watchlist_routes.route('/<id>', methods=['post'])
 @login_required
 def watchListPost(id):
     currentUserId = current_user.id
     coinId = id
 
-    newItem = Watchlist(currentUserId, coinId)
+    newItem = Watchlist()
+
+    newItem.userId = currentUserId
+    newItem.coinId = coinId
+
     db.session.add(newItem)
     db.session.commit()
 
-    return
+    return "Success"
+
+@watchlist_routes.route('/<id>', methods=['delete'])
+# @login_required
+def watchListDelete(id):
+    # currentUserId = current_user.id
+    currentUserId = 1
+    coinId = id
+
+    delete_item = Watchlist.query.filter(Watchlist.userId == currentUserId).filter(
+        Watchlist.coinId == coinId).first()
+
+    db.session.delete(delete_item)
+    db.session.commit()
+
+    return "crushed it"
