@@ -2,16 +2,30 @@
     display: grid;
     grid-template-rows: 200px 200px 500px ;
     grid-template-areas:
-        'none' 
+        'head' 
         'title'
         'forms';
 }
 
 .splash-title {
-    font-size: 70px;
+    font-size: 100px;
     grid-area: title;
     display: flex;
     justify-content: center;
+}
+
+.splash-logo {
+    
+    grid-area: head title;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    
+    box-sizing: border-box;
+    position: absolute;
+    margin-left: 38vw;
+    margin-top: 10vh;
+    
 }
 
 .splash-forms {
