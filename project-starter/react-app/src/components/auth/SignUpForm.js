@@ -41,43 +41,61 @@ const SignUpForm = () => {
   return (
     <form onSubmit={onSignUp}>
       <div>
-        <label>User Name</label>
+        <div className='login-label'>
+          <label>User Name</label>
+        </div>
         <input
+          className='login-input'
           type="text"
           name="username"
           onChange={updateUsername}
+          placeholder='User Name'
           value={username}
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        <div className='login-label'>
+          <label>Email</label>
+        </div>
         <input
+          className='login-input'
           type="text"
           name="email"
           onChange={updateEmail}
+          placeholder='Email'
           value={email}
         ></input>
       </div>
       <div>
-        <label>Password</label>
+        <div className='login-label'>
+          <label>Password</label>
+        </div>
         <input
+          className='login-input'
           type="password"
           name="password"
           onChange={updatePassword}
+          placeholder='Password'
           value={password}
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <div className='login-label'>
+          <label>Repeat Password</label>
+        </div>
         <input
+          className='login-input'
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
+          placeholder='Repeat Password'
           value={repeatPassword}
           required={true}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <div className='btn-div'>
+        <button className='login-btn' type="submit">Sign Up</button>
+      </div>
     </form>
   );
 };

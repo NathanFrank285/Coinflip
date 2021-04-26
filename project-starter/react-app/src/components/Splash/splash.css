@@ -2,7 +2,7 @@
     display: grid;
     grid-template-rows: 200px 200px 500px ;
     grid-template-areas:
-        'head' 
+        'head'
         'title'
         'forms';
 }
@@ -15,23 +15,24 @@
 }
 
 .splash-logo {
-    
+
     grid-area: head title;
     z-index: -1;
     display: flex;
     justify-content: center;
-    
+
     box-sizing: border-box;
     position: absolute;
     margin-left: 38vw;
     margin-top: 10vh;
-    
+
 }
 
 .splash-forms {
     display: flex;
     justify-content: center;
     grid-area: forms;
+    margin-top: 20px;
 }
 
 .splash-login {
@@ -42,4 +43,40 @@
 .splash-signup {
     box-sizing: border-box;
     margin: 15px;
+}
+
+.splash-demo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    box-sizing: border-box;
+    margin: 10px;
+    border: 2px solid #fdf6f6;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #a5e9e1;
+    background-image: url('../../images/DarkLogo.png');
+    height: 142px;
+}
+
+.demo-btn {
+    font-size: 28px;
+    box-sizing: border-box;
+    margin: 4px;
+    background-color: #388186;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 2px #1b1a17;
+}
+
+.demo-label {
+    font-size: 42px;
+    color: #1b1a17;
+    display: flex;
+    align-self: center;
+}
+
+.demo-btn:hover {
+    background-color: #fdf6f6;
 }
