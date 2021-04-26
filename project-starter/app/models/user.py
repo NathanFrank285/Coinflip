@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    userCoins = db.relationship("Watchlist", backref="user")
+    userCoins = db.relationship("Watchlist", back_populates='users')
 
     @property
     def password(self):
@@ -40,7 +40,7 @@ class Watchlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
-    user = db.relationship("User", backref="userCoins")
+    users = db.relationship("User", back_populates="userCoins")
 
 
 class Portfolio(db.Model):
@@ -69,7 +69,7 @@ class Trade(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tradePrice = db.Column(db.Float, nullable=False)
     tradeSize = db.Column(db.Float, nullable=False)
-    buyOrSell = db.Column(db.Boolean, nullable=False)
+    buyOrSell = db.Column(db.String(50), nullable=False)
     dateOfTrade = db.Column(db.DateTime, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)

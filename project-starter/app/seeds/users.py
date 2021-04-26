@@ -35,8 +35,11 @@ def seed_watchlist():
 
 
 def seed_trades():
-    demo = Trade(tradePrice=10000, tradeSize=5, buyOrSell=true, dateOfTrade='04-25-2021', userId=1, coinId=1)
+    demo = Trade(tradePrice=10000, tradeSize=5, buyOrSell='buy',
+                 dateOfTrade='04-25-2021', userId=1, coinId=1)
 
+    db.session.add(demo)
+    db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
