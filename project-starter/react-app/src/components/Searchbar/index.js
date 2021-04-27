@@ -13,7 +13,7 @@ const SearchBar = () => {
     const submit = (e) => {
       e.preventDefault();
       dispatch(getSearch(keyword));
-      history.push("/coinDetail")
+      history.push("/searchList")
     }
 
 
