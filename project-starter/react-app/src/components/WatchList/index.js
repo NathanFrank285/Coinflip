@@ -8,9 +8,11 @@ import './Watchlist.css'
 const WatchList = () => {
     const dispatch = useDispatch()
     const watchlist = useSelector(state => state?.watchlist?.watchlist)
+    console.log("LENGTH",watchlist?.length)
+    const state = useSelector(state => state)
     useEffect(() => {
-        dispatch(getWatchListThunk())
-    }, [])
+      dispatch(getWatchListThunk());
+    }, [watchlist?.length]);
 
 let coins = [];
 let content = watchlist?.map(item => {
