@@ -62,6 +62,13 @@ class Coin(db.Model):
     name = db.Column(db.String(), nullable=False)
     ticker = db.Column(db.String(), nullable=False)
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "ticker": self.ticker
+        }
+
 
 class Trade(db.Model):
     __tablename__ = 'trades'
