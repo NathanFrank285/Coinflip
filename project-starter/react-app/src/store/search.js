@@ -16,6 +16,7 @@ export const getSearch = (param) => async dispatch => {
   if (response.ok) {
     const list = await response.json();
     dispatch(load(list))
+    console.log(list, '===============')
     return list;
   }
 }
@@ -27,7 +28,7 @@ const searchReducer = (state = [], action) => {
     case LOAD:
       const newState = {}
       action.list.forEach((search) => {
-        newState[search.id] = search;
+        newState[search.name] = search;
       })
 
       return newState;

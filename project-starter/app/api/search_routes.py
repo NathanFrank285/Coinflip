@@ -6,9 +6,10 @@ from sqlalchemy import or_
 search_routes = Blueprint('search', __name__)
 
 
-@search_routes.route('/<str:coin>')
+@search_routes.route('/<coin>')
 @login_required
 def search(coin):
-    coinDetail = Coin.query.filter(or_(Coin.name == coin, Coin.ticker == coin))
 
-    return coinDetail
+    coins = Coin.query.filter(Coin.name.ilike(f"%{coin}%")).all()
+    print(coins)
+    return coins

@@ -1,8 +1,8 @@
 import { getSearch } from '../../store/search';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './search.css';
+// import './search.css';
 
 
 const SearchBar = () => {
@@ -26,12 +26,12 @@ const SearchBar = () => {
 
           <input
             value={keyword}
-            placeholder="Search By State"
+            placeholder="Search By Coin Name"
             onChange={(e) => setKeyword(e.target.value)}>
 
           </input>
 
-          <button onClick={(e) => submit(e)} type="submit">Find!</button>
+          <button onClick={(e) => submit(e)} type="submit">Search</button>
         </form>
       </div>
     )
