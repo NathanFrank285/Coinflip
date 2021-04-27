@@ -1,10 +1,12 @@
 import React from "react";
-
+import WatchList from '../WatchList'
 const Portfolio = () => {
     return (
         <div>
             <p>User Graph</p>
-            <p>Watchlist component</p>
+            <div>
+                <WatchList />
+            </div>
         </div>
     )
 }
