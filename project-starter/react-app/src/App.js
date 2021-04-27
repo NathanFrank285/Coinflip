@@ -9,6 +9,7 @@ import Splash from "./components/Splash";
 import Portfolio from "./components/Portfolio";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import WatchList from "./components/WatchList"
+import SearchList from "./components/SearchList"
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
 // import { authenticate } from "./services/auth";
@@ -40,6 +41,10 @@ function App() {
         <ProtectedRoute path='/portfolio'>
           <NavBar />
           <Portfolio />
+        </ProtectedRoute>
+        <ProtectedRoute path='/searchList'>
+          <NavBar />
+          <SearchList />
         </ProtectedRoute>
         {/* <Route path="/login" exact={true}>
           <LoginForm />

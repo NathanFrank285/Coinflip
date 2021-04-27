@@ -39,7 +39,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form className='splash-form' onSubmit={onSignUp}>
       <div>
         <div className='login-label'>
           <label>User Name</label>

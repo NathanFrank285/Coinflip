@@ -1,8 +1,8 @@
 const LOAD = 'search/LOAD';
 
-const load = list => ({
+const load = arr => ({
   type: LOAD,
-  list,
+  arr,
 });
 
 
@@ -15,8 +15,10 @@ export const getSearch = (param) => async dispatch => {
 
   if (response.ok) {
     const list = await response.json();
-    dispatch(load(list))
-    return list;
+    let coinArr = Object.values(list)
+    dispatch(load(coinArr))
+    // console.log(Object.values(coinArr), '===============')
+    return;
   }
 }
 
@@ -25,12 +27,13 @@ export const getSearch = (param) => async dispatch => {
 const searchReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD:
-      const newState = {}
-      action.list.forEach((search) => {
-        newState[search.id] = search;
-      })
+      // const newState = {}
+      // action.list.forEach((search) => {
+      //   newState[search.name] = search;
+      // })
 
-      return newState;
+      // return newState;
+      return { ...state, ...action.arr }
     default:
       return state;
   }
