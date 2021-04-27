@@ -14,7 +14,7 @@ def seed_users():
 
 
 def seed_coins():
-    bitcoin = Coin(name='Bitcoin', ticker='BTC-USD')
+    bitcoin = Coin(name='Bitcoin', ticker='bitcoin')
 
     db.session.add(bitcoin)
     db.session.commit()
