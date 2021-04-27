@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import watchlist from './watchlist'
 import search from './search'
+import coinDetail from './coinDetail'
 
 
 const rootReducer = combineReducers({
     session,
     watchlist,
-    search
+    search,
+    coinDetail,
 });
 
 let enhancer;
