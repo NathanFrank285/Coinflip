@@ -6,22 +6,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getWatchListThunk } from '../../store/watchlist'
 const WatchList = () => {
     const dispatch = useDispatch()
-    const watchlist = useSelector(state => state?.watchlist)
-    watchlist && console.log(watchlist)
+    const watchlist = useSelector(state => state?.watchlist?.watchlist)
     useEffect(() => {
-        const watchListData = dispatch(getWatchListThunk());
-
-        const response = fetch('')
-
-        // const coinArray = Object.keys(watchlist)
-        // console.log(coinArray)
+        dispatch(getWatchListThunk());
     }, [])
-    return (
-        <div>
-            <h1>hello</h1>
-            <WatchListItem /* ticker={ticker} *//>
 
-        </div>
-    )
+let coins = [];
+let content = watchlist?.map(item => {
+    // return Object.entries(item)
+    // console.log(item)
+    let key = Object.keys(item)
+    let values = Object.values(item)
+    coins.push([
+      key[0],
+      values[0].last_updated_at,
+      values[0].usd,
+      values[0].usd_24h_change,
+      values[0].usd_24h_vol,
+      values[0].usd_market_cap,
+    ]);
+
+})
+
+return (
+    <div>
+        <ul>
+        {coins?.map((coin)=>{
+            return (
+                <li  key={coin[0]}><WatchListItem coin={coin} /></li>
+            )
+        })}
+
+        </ul>
+    </div>
+)
 }
 export default WatchList

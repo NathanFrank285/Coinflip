@@ -1,7 +1,3 @@
-const CoinGecko = require('coingecko-api');
-const CoinGeckoClient = new CoinGecko();
-
-
 const GET_WATCHLIST = 'watchlist/GET_WATCHLIST'
 
 
@@ -18,9 +14,6 @@ export const getWatchListThunk = () => async (dispatch) => {
 
     const response = await fetch('/api/watchlist')
     const watchlist = await response.json()
-
-    console.log(watchlist)
-
     if (watchlist) {
         dispatch(get_watchlist(watchlist))
         return
