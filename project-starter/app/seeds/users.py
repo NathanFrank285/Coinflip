@@ -7,16 +7,29 @@ def seed_users():
 
     demo = User(username='Demo', email='demo@aa.io',
                 password='password')
-
     db.session.add(demo)
-
     db.session.commit()
 
 
 def seed_coins():
     bitcoin = Coin(name='Bitcoin', ticker='bitcoin')
+    ethereum = Coin(name='Ethereum', ticker='ethereum')
+    dogecoin = Coin(name='Dogecoin', ticker='dogecoin')
+    basicAttentionToken = Coin(
+        name='Basic Attention Token', ticker='basic-attention-token')
+    litecoin = Coin(name='Litecoin', ticker='litecoin')
+    cardano = Coin(name='Cardano', ticker='cardano')
+    polkadot = Coin(name='Polkadot', ticker='polkadot')
+    bitcoinCash = Coin(name='Bitcoin Cash', ticker='bitcoin-cash')
+    stellar = Coin(name='Stellar', ticker='stellar')
+    tether = Coin(name='Tether', ticker='tether')
+    monero = Coin(name='Monero', ticker='monero')
+    ripple = Coin(name='Ripple', ticker='ripple')
+    usdCoin = Coin(name='USD Coin', ticker='usd-coin')
 
-    db.session.add(bitcoin)
+    coins = [bitcoin, ethereum, dogecoin, basicAttentionToken, litecoin, cardano, polkadot, bitcoinCash, stellar, tether, monero, ripple, usdCoin]
+    for coin in coins:
+        db.session.add(coin)
     db.session.commit()
 
 
@@ -28,9 +41,16 @@ def seed_portfolio():
 
 
 def seed_watchlist():
-    demo = Watchlist(userId=1, coinId=1)
+    demo1 = Watchlist(userId=1, coinId=1)
+    demo2 = Watchlist(userId=1, coinId=2)
+    demo3 = Watchlist(userId=1, coinId=3)
+    demo4 = Watchlist(userId=1, coinId=4)
+    demo5 = Watchlist(userId=1, coinId=5)
+    demo6 = Watchlist(userId=1, coinId=6)
+    demo7 = Watchlist(userId=1, coinId=7)
 
-    db.session.add(demo)
+    demos = [demo1, demo2, demo3, demo4, demo5, demo6, demo7]
+    db.session.add_all(demos)
     db.session.commit()
 
 
