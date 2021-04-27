@@ -6,20 +6,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getWatchListThunk } from '../../store/watchlist'
 const WatchList = () => {
     const dispatch = useDispatch()
-    const watchlist = useSelector(state => state?.watchlist?.watchlist)
+    const watchlist = useSelector(state => state?.watchlist)
+    watchlist && console.log(watchlist)
     useEffect(() => {
         const watchListData = dispatch(getWatchListThunk());
 
         const response = fetch('')
 
         // const coinArray = Object.keys(watchlist)
-        console.log(watchlist)
         // console.log(coinArray)
-    }, [watchlist])
+    }, [])
     return (
         <div>
             <h1>hello</h1>
-            <WatchListItem />
+            <WatchListItem /* ticker={ticker} *//>
 
         </div>
     )
