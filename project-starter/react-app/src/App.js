@@ -9,6 +9,7 @@ import Splash from "./components/Splash";
 import Portfolio from "./components/Portfolio";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import WatchList from "./components/WatchList"
+import CoinDetail from "./components/CoinDetail"
 import SearchList from "./components/SearchList"
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
@@ -61,6 +62,10 @@ function App() {
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
+        <ProtectedRoute path='/coindetail/:name'>
+          <NavBar />
+          <CoinDetail />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

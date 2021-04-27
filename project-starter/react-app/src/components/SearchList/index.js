@@ -9,7 +9,7 @@ const SearchList = () => {
     const renderSearch = searchList.map(coin =>{
         // console.log("THIS!!!!:", coin)
         return (
-            <NavLink to={`/coinDetail/${coin.name}`}>
+            <NavLink to={`/coinDetail/${coin.ticker}`}>
                 {coin.name}
             </NavLink>
         )
