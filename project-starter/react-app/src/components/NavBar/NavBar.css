@@ -1,4 +1,13 @@
 .nav-container {
-    background-color: #388186;
-    margin-top: 0;
+    background-image: linear-gradient(#a5e9e1, #1b1a17);
+    height: 10vh;
+    box-sizing: border-box;
+    padding-top: 4vh;
+    padding: 20px;
+}
+
+.nav-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
 }

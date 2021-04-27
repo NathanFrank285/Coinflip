@@ -7,9 +7,9 @@ import './NavBar.css'
 const NavBar = () => {
   return (
     <nav className="nav-container">
-      <div>
+      <div className="nav-flex-container">
         <div>
-          <NavLink to="/portfolio" exact={true} activeClassName="active">
+          <NavLink to="/portfolio" className="nav-home" exact={true} activeClassName="active">
             Home
           </NavLink>
         </div>
@@ -17,7 +17,7 @@ const NavBar = () => {
           <SearchBar />
         </div>
         <div>
-          <NavLink to="/coinBrowser" exact={true} activeClassName="active">Coin Browser</NavLink>
+          <NavLink to="/coinBrowser" className="nav-link" exact={true} activeClassName="active">Coin Browser</NavLink>
         </div>
         <div>
           <LogoutButton />
