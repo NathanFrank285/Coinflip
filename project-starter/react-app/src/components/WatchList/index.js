@@ -4,11 +4,12 @@ import { Link } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getWatchListThunk } from '../../store/watchlist'
+import './Watchlist.css'
 const WatchList = () => {
     const dispatch = useDispatch()
     const watchlist = useSelector(state => state?.watchlist?.watchlist)
     useEffect(() => {
-        dispatch(getWatchListThunk());
+        dispatch(getWatchListThunk())
     }, [])
 
 let coins = [];
@@ -29,7 +30,7 @@ let content = watchlist?.map(item => {
 })
 
 return (
-    <div>
+    <div className="watchlistContainer">
         <ul>
         {coins?.map((coin)=>{
             return (

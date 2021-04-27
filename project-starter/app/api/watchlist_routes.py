@@ -20,7 +20,6 @@ def index():
         list.append(Coin.query.get(row.coinId))
     #* myCoins is an array of coins that user has on their watchlist
     myCoins = [coin.ticker for coin in list]
-    #todo loop through mycoins, perform the api call for each coin, structure into an object with each coin name as the key, send to thunk
     watchlist = []
     for coin in myCoins:
         data = cg.get_price(ids=f'{coin}', vs_currencies='usd', include_market_cap='true',

@@ -11,21 +11,23 @@ const WatchListItem = ({ coin }) => {
 };
 
     return (
-        <div className="watchlist-box">
-
-            <ul>
-                <li>{coin[0].capitalize()}</li>
-                <li>
-                    Current Price: {coin[2]}
-                </li>
-                <li>
-                    24 hour change {coin[3].toFixed(2)}%
-                </li>
-                <li>
-                    24 hour volume {coin[4]}
-                </li>
-            </ul>
-        </div>
-    )
+      <div className="watchlist-box">
+        <ul>
+          <li>{coin[0].capitalize()}</li>
+          <li>
+            Current Price:{" "}
+            {coin[2].toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </li>
+          <li>24 hour change {coin[3].toFixed(2)}%</li>
+          <li>
+            24 hour volume{" "}
+            {coin[4].toLocaleString("en-US", { maximumFractionDigits: 2 })}
+          </li>
+        </ul>
+      </div>
+    );
 }
 export default WatchListItem
