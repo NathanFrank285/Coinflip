@@ -76,7 +76,7 @@ const CoinDetail = () => {
                 })}</div>
                 <div>Total Supply: {formatCash(details?.market_data?.circulating_supply)}</div>
                 <div>Market Cap : {formatCash(details?.market_data?.market_cap.usd)}</div>
-                <div>24Hr Change: {details?.market_data?.price_change_24h.toFixed(2)}%</div>
+                <div>24Hr Change: {details?.market_data?.price_change_percentage_24h.toFixed(2)}%</div>
                 <div>Total Volume: {formatCash(details?.market_data?.total_volume.usd)}</div>
             </div>
             <div className='description'>
