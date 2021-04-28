@@ -32,22 +32,34 @@ def index():
 @login_required
 def watchListPost(ticker):
     currentUserId = current_user.id
-    coinId = Coin.query.filter(Coin.ticker == ticker).first()['id']
-    print(coinId)
-
+    coinId = Coin.query.filter(Coin.ticker == ticker).first().to_dict()['id']
     newItem = Watchlist()
 
     newItem.userId = currentUserId
     newItem.coinId = coinId
 
+
     db.session.add(newItem)
     db.session.commit()
 
-    return "Success"
+    user_watchlist = Watchlist.query.filter(
+        Watchlist.userId == currentUserId).all()
+    list = []
+    for row in user_watchlist:
+        list.append(Coin.query.get(row.coinId))
+    #* myCoins is an array of coins that user has on their watchlist
+    myCoins = [coin.ticker for coin in list]
+    watchlist = []
+    for coin in myCoins:
+        data = cg.get_price(ids=f'{coin}', vs_currencies='usd', include_market_cap='true',
+                            include_24hr_vol='true', include_24hr_change='true', include_last_updated_at='true')
+        watchlist.append(data)
+
+    return {"watchlist": watchlist}
 
 
 @watchlist_routes.route('/<ticker>', methods=['delete'])
-# @login_required
+@login_required
 def watchListDelete(ticker):
     currentUserId = current_user.id
     coinId = Coin.query.filter(

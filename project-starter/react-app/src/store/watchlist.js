@@ -1,5 +1,6 @@
 const GET_WATCHLIST = 'watchlist/GET_WATCHLIST'
 const DELETE_WATCHLIST_ITEM = 'watchlist/DELETE_WATCHLIST_ITEM'
+const ADD_WATCHLIST_ITEM = 'watchlist/ADD_WATCHLIST_ITEM'
 
 const getWatchlist = (watchlist) => {
     return {
@@ -14,22 +15,25 @@ const deleteWatchlistItem = (watchlist) => {
     };
 }
 
-export const addToWatchlist = (name, status) => async (dispatch) => {
-//   if (!status) {
-//     let coinDetails = await fetch(`/api/inWatchlist/${name}`, {
-//       method: "POST",
-//     });
-//     let res = await coinDetails.json();
-//     console.log(res);
-//     dispatch(getCoinDetail({ inWatchlist: !status }));
-//   } else {
-//     let coinDetails = await fetch(`/api/inWatchlist/${name}`, {
-//       method: "DELETE",
-//     });
-//     let res = await coinDetails.json();
-//     console.log(res);
-//     dispatch(getCoinDetail({ inWatchlist: !status }));
-//   }
+const addWatchlistItem = (watchlist) => {
+    return {
+        type: ADD_WATCHLIST_ITEM,
+        watchlist
+    }
+}
+
+export const addToWatchlist = (name) => async (dispatch) => {
+    let coinDetails = await fetch(`/api/watchlist/${name}`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      }
+    });
+    let watchlist = await coinDetails.json();
+    if (watchlist){
+        dispatch(addWatchlistItem(watchlist))
+        return
+    }
 };
 
 
@@ -63,6 +67,8 @@ export default function watchlist(state = initialState, action) {
         case GET_WATCHLIST:
             return { ...state, ...action.watchlist }
         case DELETE_WATCHLIST_ITEM:
+            return { ...state, ...action.watchlist }
+        case ADD_WATCHLIST_ITEM:
             return { ...state, ...action.watchlist }
 
 

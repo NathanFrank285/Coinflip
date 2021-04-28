@@ -42,10 +42,10 @@ const CoinDetail = () => {
 
     console.log("ws",watchlistStatus, "inwl", inWatchlist,"name", name);
 
-    const addToWatchlist = () => {
+    const addTolist = () => {
         console.log('I am a console fucking log')
-    //     dispatch(addToWatchlist(name));
-    //     // setWatchlistStatus(true)
+        dispatch(addToWatchlist(name));
+        setWatchlistStatus(true)
     }
 
     const removeFromWatchlist = () => {
@@ -76,7 +76,7 @@ const CoinDetail = () => {
             )}
 
             {inWatchlist == false && (
-              <button onClick={addToWatchlist} className="addToWatchList">
+              <button onClick={addTolist} className="addToWatchList">
                 Add to Watch List
               </button>
             )}
