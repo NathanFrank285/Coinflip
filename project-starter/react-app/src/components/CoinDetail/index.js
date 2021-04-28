@@ -14,6 +14,7 @@ const CoinDetail = () => {
     const { name } = useParams()
     const details = useSelector(state => state?.coinDetail?.coin)
     const chartData = useSelector(state => state?.coinDetail?.prices)
+    const badSearch = useSelector(state => state?.coinDetail?.search)
     useEffect(() => {
         let response = dispatch(getCoinDetailThunk(name))
         //todo figure out how to redirect when there is a bad search url
@@ -29,7 +30,6 @@ const CoinDetail = () => {
         if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
         if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
     };
-    const badSearch = useSelector(state => state?.coinDetail?.search)
 
     useEffect(() => {
         dispatch(getCoinDetailThunk(name))
@@ -38,6 +38,7 @@ const CoinDetail = () => {
     console.log(badSearch);
     if (badSearch === "bad search") {
         history.push('/portfolio')
+        history.go(0)
     }
 
     return (
