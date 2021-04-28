@@ -12,6 +12,7 @@ from .api.watchlist_routes import watchlist_routes
 from .api.coinDetail_routes import coinDetail_routes
 from .api.search_routes import search_routes
 from .api.coinBrowser_routes import coinBrowser_routes
+from .api.portfolio_routes import portfolio_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -38,6 +39,7 @@ app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(watchlist_routes, url_prefix='/api/watchlist')
 app.register_blueprint(coinDetail_routes, url_prefix='/api/coindetail')
 app.register_blueprint(coinBrowser_routes, url_prefix='/api/coinBrowser')
+app.register_blueprint(portfolio_routes, url_prefix='/api/portfolio')
 db.init_app(app)
 Migrate(app, db)
 

@@ -54,6 +54,7 @@ class Portfolio(db.Model):
     coinId = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable=False)
     quantity = db.Column(db.Float, nullable=False)
     averagePrice = db.Column(db.Float, nullable=False)
+    coinInfo = db.relationship("Coin", back_populates="portfolioInfo")
 
 
 class Coin(db.Model):
@@ -61,6 +62,7 @@ class Coin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
     ticker = db.Column(db.String(), nullable=False)
+    portfolioInfo = db.relationship("Portfolio", back_populates="coinInfo")
 
     def to_dict(self):
         return {
