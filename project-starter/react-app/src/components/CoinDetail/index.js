@@ -30,6 +30,7 @@ const CoinDetail = () => {
 
     useEffect(() => {
       dispatch(getCoinDetailThunk(name));
+      console.log(watchlistStatus)
     }, [watchlistStatus]);
 
 
