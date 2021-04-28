@@ -28,11 +28,12 @@ def index():
     return {"watchlist": watchlist}
 
 
-@watchlist_routes.route('/<id>', methods=['post'])
+@watchlist_routes.route('/<ticker>', methods=['post'])
 @login_required
-def watchListPost(id):
+def watchListPost(ticker):
     currentUserId = current_user.id
-    coinId = id
+    coinId = Coin.query.filter(Coin.ticker == ticker).first()['id']
+    print(coinId)
 
     newItem = Watchlist()
 
