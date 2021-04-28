@@ -1,0 +1,23 @@
+.searchlist-body {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 500px;
+    box-sizing: border-box;
+    margin-top: 40px;
+    margin-left: 25vw;
+}
+
+.searchlist-item {
+    box-sizing: border-box;
+    margin: 20px;
+    background-image: url('../../images/DarkLogo.png');
+    width: 200px;
+    height: 200px;
+}
+
+.searchlist-link {
+    text-decoration: none;
+    color: #fdf6f6;
+    font-size: 30px;
+}

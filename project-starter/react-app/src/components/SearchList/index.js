@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import  { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import './SearchList.css'
 
 
 const SearchList = () => {
@@ -9,14 +10,16 @@ const SearchList = () => {
     const renderSearch = searchList.map(coin =>{
         // console.log("THIS!!!!:", coin)
         return (
-            <NavLink to={`/coinDetail/${coin.ticker}`}>
-                {coin.name}
-            </NavLink>
+            <div className='searchlist-item' >
+                <NavLink className='searchlist-link' to={`/coinDetail/${coin.ticker}`}>
+                    {coin.name}
+                </NavLink>
+            </div>
         )
     })
 
     return (
-        <div>
+        <div className='searchlist-body'>
             {renderSearch}
         </div>
     )
