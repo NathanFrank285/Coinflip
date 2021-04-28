@@ -13,14 +13,17 @@ coinDetail_routes = Blueprint('coindetail', __name__)
 def index(ticker):
     coinExist = Coin.query.filter(Coin.ticker.ilike(f"%{ticker}%")).first()
 
-    history = cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=1)
+    def getHistory(ticker):
+      return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=1)
 
     try:
         inAPI = cg.get_coin_by_id(ticker)['name']
-    except:
+    except ValueError:
         return {'search': 'bad search'}
 
     if(not coinExist and inAPI):
+        print("------------ known coin loop")
+        history = getHistory(ticker)
         historic_prices = []
         for price in history['prices']:
             historic_prices.append({'price': price[1]})
@@ -33,6 +36,7 @@ def index(ticker):
         data = cg.get_coin_by_id(ticker)
         return {'coin': data, '24hr_prices': historic_prices}
     historic_prices = []
+    history = getHistory(ticker)
     for price in history['prices']:
         historic_prices.append({'price': price[1]})
     print(historic_prices)
