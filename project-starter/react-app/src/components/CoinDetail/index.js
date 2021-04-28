@@ -17,7 +17,7 @@ const CoinDetail = () => {
     const inWatchlist = useSelector(state => state?.coinDetail?.inWatchlist)
     const chartData = useSelector(state => state?.coinDetail?.prices)
     const badSearch = useSelector(state => state?.coinDetail?.search)
-    const [watchlistStatus, setWatchlistStatus] = useState(inWatchlist);
+    const [watchlistStatus, setWatchlistStatus] = useState("");
 
     const formatCash = (n) => {
         if (n < 1e3) return n;
@@ -39,17 +39,20 @@ const CoinDetail = () => {
     }
 
 
-    console.log(watchlistStatus);
+    console.log("ws",watchlistStatus, "inwl", inWatchlist,"name", name);
 
     const addToWatchlist = () => {
-        dispatch(addToWatchlist(details.id));
-        setWatchlistStatus(true)
+        console.log('I am a console fucking log')
+    //     dispatch(addToWatchlist(name));
+    //     // setWatchlistStatus(true)
     }
 
     const removeFromWatchlist = () => {
-        dispatch(deleteFromWatchlist(details.id));
+        dispatch(deleteFromWatchlist(name));
         setWatchlistStatus(false)
     };
+
+
     return (
       <div className="priceDetailContainer">
         <div className="header">
@@ -61,20 +64,22 @@ const CoinDetail = () => {
           <span>
             <img src={details?.image.small}></img>
           </span>
-          {watchlistStatus && !watchlistStatus ? (
-            <button onClick={addToWatchlist} className="addToWatchList">
-              Add to Watch List
-            </button>
-          ) : (
-            <button
-              onClick={removeFromWatchlist}
-              className="removeFromWatchList"
-            >
-              Remove From Watch List
-            </button>
-          )}
+          <div>
+            {inWatchlist == true && (
+              <button
+                onClick={removeFromWatchlist}
+                className="removeFromWatchList"
+              >
+                Remove From Watch List
+              </button>
+            )}
 
-          <div></div>
+            {inWatchlist == false && (
+              <button onClick={addToWatchlist} className="addToWatchList">
+                Add to Watch List
+              </button>
+            )}
+          </div>
         </div>
         <div className="graphDiv">
           <LineChart

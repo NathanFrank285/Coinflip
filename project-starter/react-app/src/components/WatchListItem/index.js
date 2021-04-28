@@ -22,7 +22,6 @@ const formatCash = (n) => {
 const removeFromWatchlist = (e) => {
 
 dispatch(deleteFromWatchlist(e.target.id));
-
 }
 
     return (
