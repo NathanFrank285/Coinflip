@@ -11,7 +11,7 @@
 .searchlist-item {
     box-sizing: border-box;
     margin: 20px;
-    background-image: url('../../images/DarkLogo.png');
+    /* background-image: url('../../images/DarkLogo.png'); */
     width: 200px;
     height: 200px;
 }
