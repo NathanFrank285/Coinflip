@@ -37,8 +37,8 @@ const CoinDetail = () => {
 
     console.log(badSearch);
     if (badSearch === "bad search") {
-        history.push('/portfolio')
         history.go(0)
+        history.push('/portfolio')
     }
 
     return (
