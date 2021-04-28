@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask_login import login_required
 from app.models import Coin, db
 from pycoingecko import CoinGeckoAPI
+from datetime import datetime, timedelta
 cg = CoinGeckoAPI()
 
 coinDetail_routes = Blueprint('coindetail', __name__)
@@ -10,22 +11,31 @@ coinDetail_routes = Blueprint('coindetail', __name__)
 @coinDetail_routes.route('/<ticker>')
 @login_required
 def index(ticker):
-  coinExist = Coin.query.filter(Coin.ticker.ilike(f"%{ticker}%")).first()
-  try:
-    inAPI = cg.get_coin_by_id(ticker)['name']
-  except:
-    return {'search': 'bad search'}
+    coinExist = Coin.query.filter(Coin.ticker.ilike(f"%{ticker}%")).first()
 
-  if(not coinExist and inAPI):
-    newCoin = Coin()
-    newCoin.ticker = ticker
-    newCoin.name = cg.get_coin_by_id(ticker)['name']
-    db.session.add(newCoin)
-    db.session.commit()
+    history = cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=1)
+
+    try:
+        inAPI = cg.get_coin_by_id(ticker)['name']
+    except:
+        return {'search': 'bad search'}
+
+    if(not coinExist and inAPI):
+        historic_prices = []
+        for price in history['prices']:
+            historic_prices.append({'price': price[1]})
+        print(historic_prices)
+        newCoin = Coin()
+        newCoin.ticker = ticker
+        newCoin.name = cg.get_coin_by_id(ticker)['name']
+        db.session.add(newCoin)
+        db.session.commit()
+        data = cg.get_coin_by_id(ticker)
+        return {'coin': data, '24hr_prices': historic_prices}
+    historic_prices = []
+    for price in history['prices']:
+        historic_prices.append({'price': price[1]})
+    print(historic_prices)
+
     data = cg.get_coin_by_id(ticker)
-    return {'coin': data}
-
-
-
-  data = cg.get_coin_by_id(ticker)
-  return {'coin': data}
+    return {'coin': data, 'prices': historic_prices}
