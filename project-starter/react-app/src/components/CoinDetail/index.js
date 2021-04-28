@@ -12,13 +12,17 @@ const CoinDetail = () => {
     const history = useHistory();
     const { name } = useParams()
     const details = useSelector(state => state?.coinDetail?.coin)
+    const badSearch = useSelector(state => state?.coinDetail?.search)
+
     useEffect(() => {
-        let response = dispatch(getCoinDetailThunk(name))
-        //todo figure out how to redirect when there is a bad search url
-        if (!response){
-            history.push('/portfolio')
-        }
+        dispatch(getCoinDetailThunk(name))
     }, [])
+
+    console.log(badSearch);
+    if (badSearch === "bad search") {
+      history.push('/portfolio')
+    }
+
     return (
         <div className="priceDetailContainer">
             <div className="header">
