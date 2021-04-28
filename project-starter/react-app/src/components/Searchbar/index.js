@@ -18,22 +18,26 @@ const SearchBar = () => {
 
 
     return (
-      <div>
         <form
           method="get"
           action="/search/"
           onSubmit={(e) => submit(e)}>
+            <div className='search-container'>
+              <div>
+                <input
+                  value={keyword}
+                  className='search-input'
+                  placeholder="Search by Name or Ticker"
+                  onChange={(e) => setKeyword(e.target.value)}>
 
-          <input
-            value={keyword}
-            placeholder="Search By Coin Name"
-            onChange={(e) => setKeyword(e.target.value)}>
-
-          </input>
-
-          <button onClick={(e) => submit(e)} type="submit">Search</button>
+                </input>
+              </div>
+              <div>
+                <button className='search-button' onClick={(e) => submit(e)} type="submit">Search</button>
+              </div>
+            </div>
         </form>
-      </div>
+      
     )
   }
 
