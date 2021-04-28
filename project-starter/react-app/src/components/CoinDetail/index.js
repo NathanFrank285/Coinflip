@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCoinDetailThunk } from '../../store/coinDetail'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
@@ -9,11 +9,15 @@ import './CoinDetail.css'
 
 const CoinDetail = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { name } = useParams()
     const details = useSelector(state => state?.coinDetail?.coin)
-    console.log(details)
     useEffect(() => {
-        dispatch(getCoinDetailThunk(name))
+        let response = dispatch(getCoinDetailThunk(name))
+        //todo figure out how to redirect when there is a bad search url
+        if (!response){
+            history.push('/portfolio')
+        }
     }, [])
     return (
         <div className="priceDetailContainer">

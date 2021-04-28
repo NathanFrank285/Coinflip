@@ -8,10 +8,13 @@ const getCoinDetail = (details) => {
 }
 
 export const getCoinDetailThunk = (name) => async (dispatch) => {
-    console.log('thunk')
     const data = await fetch(`/api/coindetail/${name}`)
     const details = await data.json()
-    console.log(details)
+
+    if (details.search === 'bad search'){
+        return false
+    }
+
     dispatch(getCoinDetail(details))
 }
 
