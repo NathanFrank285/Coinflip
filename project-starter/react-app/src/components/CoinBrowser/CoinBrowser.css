@@ -1,0 +1,14 @@
+.browser-link {
+    text-decoration: none;
+    font-size: 30px;
+    color: #1b1a17
+}
+
+.browser-link:hover {
+    text-decoration: underline;
+    font-size: 34px;
+}
+
+.browser-link:visited {
+    color: #1b1a17
+}
