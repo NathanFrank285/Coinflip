@@ -13,7 +13,6 @@ const CoinDetail = () => {
     const history = useHistory();
     const { name } = useParams()
     const details = useSelector(state => state?.coinDetail?.coin)
-<<<<<<< HEAD
     const chartData = useSelector(state => state?.coinDetail?.prices)
     useEffect(() => {
         let response = dispatch(getCoinDetailThunk(name))
@@ -30,7 +29,6 @@ const CoinDetail = () => {
         if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
         if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
     };
-=======
     const badSearch = useSelector(state => state?.coinDetail?.search)
 
     useEffect(() => {
@@ -39,9 +37,8 @@ const CoinDetail = () => {
 
     console.log(badSearch);
     if (badSearch === "bad search") {
-      history.push('/portfolio')
+        history.push('/portfolio')
     }
->>>>>>> 679228cca9148b6668175f422232fc2076d3b9b3
 
     return (
         <div className="priceDetailContainer">
