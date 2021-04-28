@@ -17,9 +17,7 @@ const CoinDetail = () => {
     const inWatchlist = useSelector(state => state?.coinDetail?.inWatchlist)
     const chartData = useSelector(state => state?.coinDetail?.prices)
     const badSearch = useSelector(state => state?.coinDetail?.search)
-    const [watchlistStatus, setWatchlistStatus] = useState(
-      useSelector((state) => state?.coinDetail?.inWatchlist)
-    );
+    const [watchlistStatus, setWatchlistStatus] = useState(inWatchlist);
 
     const formatCash = (n) => {
         if (n < 1e3) return n;
@@ -32,7 +30,7 @@ const CoinDetail = () => {
 
     useEffect(() => {
       dispatch(getCoinDetailThunk(name));
-    }, []);
+    }, [watchlistStatus]);
 
 
     if (badSearch === "bad search") {
@@ -40,18 +38,18 @@ const CoinDetail = () => {
         history.push('/portfolio')
     }
 
-    //*function to edit items on the watchlist
+
+    console.log(watchlistStatus);
 
     const addToWatchlist = () => {
-        dispatch(addToWatchlist(details.asset_platform_id));
+        dispatch(addToWatchlist(details.id));
         setWatchlistStatus(true)
     }
 
     const removeFromWatchlist = () => {
-        dispatch(deleteFromWatchlist(details.asset_platform_id));
+        dispatch(deleteFromWatchlist(details.id));
         setWatchlistStatus(false)
     };
-    console.log("status-------", watchlistStatus);
     return (
       <div className="priceDetailContainer">
         <div className="header">
@@ -63,7 +61,7 @@ const CoinDetail = () => {
           <span>
             <img src={details?.image.small}></img>
           </span>
-          {!watchlistStatus ? (
+          {watchlistStatus && !watchlistStatus ? (
             <button onClick={addToWatchlist} className="addToWatchList">
               Add to Watch List
             </button>

@@ -45,6 +45,7 @@ export const getWatchListThunk = () => async (dispatch) => {
 }
 
 export const deleteFromWatchlist = (ticker) => async (dispatch) => {
+    console.log('did I make it to the thunk', ticker);
     const response = await fetch(`/api/watchlist/${ticker}`, {
       method: "DELETE",
     });
