@@ -15,6 +15,7 @@ export const getSearch = (param) => async dispatch => {
 
   if (response.ok) {
     const list = await response.json();
+    console.log(list);
     let coinArr = Object.values(list)
     dispatch(load(coinArr))
     // console.log(Object.values(coinArr), '===============')
