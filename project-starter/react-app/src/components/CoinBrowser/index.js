@@ -26,9 +26,13 @@ export default function CoinBrowser() {
     const useStyles = makeStyles({
         table: {
             minWidth: 650,
+            maxWidth: 1200,
         },
     });
-
+    
+    String.prototype.capitalize = function () {
+      return this.charAt(0).toUpperCase() + this.slice(1);
+    };
     function createData(name, price, change, volume, marketCap) {
         return { name, price, change, volume, marketCap };
     }
@@ -59,31 +63,56 @@ export default function CoinBrowser() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Change</TableCell>
-            <TableCell align="right">Volume</TableCell>
-            <TableCell align="right">Market Cap</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows?.map((row) => (
-            <TableRow key={row?.name}>
-              <TableCell component="th" scope="row">
-                <NavLink className='browser-link' to={`/coinDetail/${row.name}`}>{row.name}</NavLink>
-              </TableCell>
-              <TableCell align="right">{'$'+row?.price.toFixed(2)}</TableCell>
-              <TableCell align="right">{'%'+row?.change.toFixed(2)}</TableCell>
-              <TableCell align="right">{formatCash(row?.volume)}</TableCell>
-              <TableCell align="right">{formatCash(row?.marketCap)}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className="coinBrowser-body">
+      <div className="table-container">
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell className="browser-head">Name</TableCell>
+                <TableCell className="browser-head" align="right">
+                  Price
+                </TableCell>
+                <TableCell className="browser-head" align="right">
+                  Change
+                </TableCell>
+                <TableCell className="browser-head" align="right">
+                  Volume
+                </TableCell>
+                <TableCell className="browser-head" align="right">
+                  Market Cap
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows?.map((row) => (
+                <TableRow key={row?.name}>
+                  <TableCell component="th" scope="row">
+                    <NavLink
+                      className="browser-link"
+                      to={`/coinDetail/${row.name}`}
+                    >
+                      {row.name}
+                    </NavLink>
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {"$" + row?.price.toFixed(2)}
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {"%" + row?.change.toFixed(2)}
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {formatCash(row?.volume)}
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {formatCash(row?.marketCap)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </div>
   );
 }

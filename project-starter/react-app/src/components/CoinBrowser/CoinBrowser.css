@@ -1,3 +1,18 @@
+.coinBrowser-body {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-top: 40px;
+}
+
+.table-container {
+    max-width: fit-content;  
+}
+
+.browser-head {
+    font-size: 35px !important;
+}
+
 .browser-link {
     text-decoration: none;
     font-size: 30px;
@@ -6,9 +21,14 @@
 
 .browser-link:hover {
     text-decoration: underline;
-    font-size: 34px;
+    font-size: 32px;
 }
 
 .browser-link:visited {
     color: #1b1a17
 }
+
+.browser-data {
+    font-size: 20px !important;
+}
+
