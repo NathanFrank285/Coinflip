@@ -12,7 +12,7 @@ const SearchList = () => {
         return (
             <div className='searchlist-item'  >
                 <NavLink className='searchlist-link' to={`/coinDetail/${coin.ticker}`}>
-                    <img src={coin.image}></img>
+                    <img className='search-image' src={coin.image}></img>
                     <div>{coin.name}</div>
                     <div>{coin.price}</div>
                     <div>{coin.priceChange}</div>
