@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import WatchList from "./components/WatchList"
 import CoinDetail from "./components/CoinDetail"
 import SearchList from "./components/SearchList"
+import CoinBrowser from "./components/CoinBrowser"
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
 // import { authenticate } from "./services/auth";
@@ -39,13 +40,17 @@ function App() {
         <Route path="/" exact={true}>
           <Splash />
         </Route>
-        <ProtectedRoute path='/portfolio'>
+        <ProtectedRoute path="/portfolio">
           <NavBar />
           <Portfolio />
         </ProtectedRoute>
-        <ProtectedRoute path='/searchList'>
+        <ProtectedRoute path="/searchList">
           <NavBar />
           <SearchList />
+        </ProtectedRoute>
+        <ProtectedRoute path="/coinBrowser">
+          <NavBar />
+          <CoinBrowser />
         </ProtectedRoute>
         {/* <Route path="/login" exact={true}>
           <LoginForm />
@@ -62,7 +67,7 @@ function App() {
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
-        <ProtectedRoute path='/coindetail/:name'>
+        <ProtectedRoute path="/coindetail/:name">
           <NavBar />
           <CoinDetail />
         </ProtectedRoute>

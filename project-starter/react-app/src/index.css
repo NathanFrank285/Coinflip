@@ -1,5 +1,7 @@
-/* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;600&display=swap');/* TODO Add site wide styles */
+
 body {
     background-color: #1b1a17;
-    color: #fdf6f6
+    color: #fdf6f6;
+    font-family: 'Barlow', sans-serif;
 }
