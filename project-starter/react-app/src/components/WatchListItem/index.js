@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, } from 'react'
 import { useDispatch } from 'react-redux'
-import {deleteWatchlistItem} from '../../store/watchlist'
+import {deleteFromWatchlist} from '../../store/watchlist'
 
 
 
@@ -21,8 +21,7 @@ const formatCash = (n) => {
 
 const removeFromWatchlist = (e) => {
 
-dispatch(deleteWatchlistItem(e.target.id));
-
+dispatch(deleteFromWatchlist(e.target.id));
 }
 
     return (
