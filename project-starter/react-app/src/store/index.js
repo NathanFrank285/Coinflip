@@ -5,6 +5,7 @@ import watchlist from './watchlist'
 import search from './search'
 import coinDetail from './coinDetail'
 import coinBrowser from './coinBrowser'
+import portfolio from './portfolio'
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     watchlist,
     search,
     coinDetail,
-    coinBrowser
+    coinBrowser,
+    portfolio
 });
 
 let enhancer;
