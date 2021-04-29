@@ -5,9 +5,9 @@ const Portfolio = () => {
     return (
         <div>
             <div>
-                <PortfolioGraph />
             </div>
             <div>
+                <PortfolioGraph />
                 <WatchList />
             </div>
         </div>
