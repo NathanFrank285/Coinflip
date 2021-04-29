@@ -43,11 +43,7 @@ const CoinDetail = () => {
     history.push('/portfolio')
   }
 
-
-  console.log("ws", watchlistStatus, "inwl", inWatchlist, "name", name);
-
   const addTolist = () => {
-    console.log('I am a console fucking log')
     dispatch(addToWatchlist(name));
     setWatchlistStatus(true)
   }
@@ -70,6 +66,7 @@ const CoinDetail = () => {
       setGraphStatus(chartData300)
     }
   }
+
 
   return (
     <div className="priceDetailContainer">
@@ -115,7 +112,7 @@ const CoinDetail = () => {
           <button onClick={() => (graphStatusSetter('24'))}>24Hr</button>
           <button onClick={() => (graphStatusSetter('7'))}>7 Days</button>
           <button onClick={() => (graphStatusSetter('30'))}>30 days</button>
-          <button onClick={() => graphStatusSetter('300')}>300 days</button>
+          <button onClick={() => (graphStatusSetter('300'))}>300 days</button>
         </div>
       </div>
       <div className="maketDetail">
