@@ -58,3 +58,9 @@ def getPortfolio():
   #     historic_prices300.append({'price': price[1]})
 
   return {'Portfolio': portfolio, 'PortfolioTotalUsd': portfolioSum}
+
+
+@portfolio_routes.route('/<ticker>')
+@login_required
+def addToPortfolio(ticker):
+  return {}
