@@ -26,7 +26,11 @@ import "./PortfolioGraph.css";
 export default function PortfolioGraph() {
   const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
   const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioTotalUsd)
-
+  // const chartData24Hr = useSelector(state => state?.coinDetail?.prices24hr)
+  // const chartData30 = useSelector(state => state?.coinDetail?.prices30)
+  // const chartData300 = useSelector(state => state?.coinDetail?.prices300)
+  // const chartData7days = useSelector(state => state?.coinDetail?.prices7days)
+  // const [graphStatus, setGraphStatus] = useState(chartData24Hr);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,10 +54,21 @@ export default function PortfolioGraph() {
     return { name, price, balance, performance, allocation, ticker };
   }
 
-  const capitalize = (s) => {
-    if (typeof s !== "string") return "";
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  };
+  // const graphStatusSetter = (time) => {
+  //   if (time === '24') {
+  //     setGraphStatus(chartData24Hr)
+  //   }
+  //   if (time === '7') {
+  //     setGraphStatus(chartData7days)
+  //   }
+  //   if (time === '30') {
+  //     setGraphStatus(chartData30)
+  //   }
+  //   if (time === '300') {
+  //     setGraphStatus(chartData300)
+  //   }
+  // }
+
   const formatCash = (n) => {
     if (n < 1e3) return n;
     if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
@@ -143,5 +158,28 @@ export default function PortfolioGraph() {
     table = <div></div>;
   }
 
-  return <>{table}</>;
+  return(
+        <div>
+          {/* <div className="graphDiv">
+            <LineChart
+            width={730}
+            height={400}
+            data={graphStatus}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <YAxis domain={["auto", "auto"]} />
+              <Tooltip />
+              <Legend />
+              <Line type="linear" dataKey="price" stroke="#8884d8" />
+            </LineChart>
+            <div>
+              <button onClick={() => (graphStatusSetter('24'))}>24Hr</button>
+              <button onClick={() => (graphStatusSetter('7'))}>7 Days</button>
+              <button onClick={() => (graphStatusSetter('30'))}>30 days</button>
+              <button onClick={() => (graphStatusSetter('300'))}>300 days</button>
+            </div>
+          </div> */}
+          {table}
+        </div>
+       )
 }
