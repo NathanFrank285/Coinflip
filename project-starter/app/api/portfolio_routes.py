@@ -28,3 +28,9 @@ def getPortfolio():
     portfolioSum = portfolioSum + (row.quantity*data[f"{row.coinInfo.ticker}"]['usd'])
 
   return {'Portfolio': portfolio, 'PortfolioTotalUsd': portfolioSum}
+
+
+@portfolio_routes.route('/<ticker>')
+@login_required
+def addToPortfolio(ticker):
+  return {}
