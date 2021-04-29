@@ -38,7 +38,7 @@ export default function PortfolioGraph() {
         minWidth: 650,
         maxWidth: 1200,
     },
-});
+  });
 
 const classes = useStyles()
 
@@ -46,8 +46,8 @@ String.prototype.capitalize = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-function createData(name, price, dailychange, performance, volume, ticker) {
-    return { name, price, dailychange, performance, volume, ticker};
+function createData(name, price, balance, performance, allocation, ticker) {
+    return { name, price, balance, performance, allocation, ticker};
 }
 
 const capitalize = (s) => {
@@ -74,8 +74,8 @@ if(portfolio){
       return createData(
         coin.Name,
         coin.coinData.usd,
-        coin.coinData.usd_24h_change,
-        coin.coinData.usd_24h_vol,
+        (coin.Quantity * coin.coinData.usd),
+        ((coin.coinData.usd/coin.AveragePrice)-1),
         coin.coinData.usd_market_cap,
         coin.Ticker,
       );
@@ -118,7 +118,7 @@ if(rows){
                   Price
                 </TableCell>
                 <TableCell className="browser-head" align="right">
-                  24hr Change
+                  Balance
                 </TableCell>
                 <TableCell className="browser-head" align="right">
                   Performance
@@ -140,16 +140,22 @@ if(rows){
                     </NavLink>
                   </TableCell>
                   <TableCell align="right" className="browser-data">
-                    {"$" + row.price.toFixed(2)}
+                    {row.price.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
                   </TableCell>
                   <TableCell align="right" className="browser-data">
-                    {"%" + row.dailychange.toFixed(2)}
+                    {row.balance.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
                   </TableCell>
                   <TableCell align="right" className="browser-data">
-                    {formatCash(row?.volume)}
+                    {row?.performance + "%"}
                   </TableCell>
                   <TableCell align="right" className="browser-data">
-                    {formatCash(row?.marketCap)}
+                    {formatCash(row?.allocation)}
                   </TableCell>
                 </TableRow>
               ))}
