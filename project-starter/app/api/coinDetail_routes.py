@@ -24,7 +24,7 @@ def index(ticker):
         return False
 
     def getHistory(ticker):
-      return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=1)
+        return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=1)
 
     try:
         inAPI = cg.get_coin_by_id(ticker)['name']
@@ -32,10 +32,12 @@ def index(ticker):
         return {'search': 'bad search'}
 
     if(not coinExist and inAPI):
+
         history = getHistory(ticker)
         historic_prices = []
         for price in history['prices']:
             historic_prices.append({'price': price[1]})
+
         newCoin = Coin()
         newCoin.ticker = ticker
         newCoin.name = cg.get_coin_by_id(ticker)['name']
