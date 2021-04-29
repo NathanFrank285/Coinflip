@@ -68,44 +68,18 @@ let table;
 if(portfolio){
   let portVals = Object.values(portfolio)
   rows = portVals?.map(coin => {
-    console.log(coin, "LLLLLLLLLLLLLLLLLLLLLLL")
-    console.log(coin.coinData.usd, "CCCCCCCCCCCCCCCCCCCCCCCCC")
-      // const name = Object.keys(coin)
       return createData(
         coin.Name,
         coin.coinData.usd,
         (coin.Quantity * coin.coinData.usd),
-        ((coin.coinData.usd/coin.AveragePrice)-1),
+        ((coin.coinData.usd/coin.AveragePrice)-1)*100,
         coin.coinData.usd_market_cap,
         coin.Ticker,
       );
   })
-  console.log(rows, "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
 }
 
-
-// if(portfolio){
-
-
-  // const tickers = Object.keys(portfolio)
-  // console.log(crows, "TTTTTTTTTTTTTTTTT")
-  // for(let coin of tickers){
-    // console.log(portfolio[`${coin}`]["Name"], "here is the coin!!")
-  //   return
-    // createData(
-    //   // portfolio[`${coin}`]["Name"],
-    //   // portfolio.coin[`coinData`].usd,
-    //   // portfolio.coin[`coinData`].usd_24h_change,
-    //   // (portfolio.coin[`coinData`].usd),
-    //   // portfolio.coin[`coinData`].usd_24h_vol
-    // );
-  // }
-// }
-
-
-// usd: 54816, usd_24h_change: 0.2844488253537837, usd_24h_vol: 46893571860.279526, usd_market_cap: 1024712665930.4342}
 if(rows){
-  console.log(rows[0].change, "---------------------------------")
   table = (
     <div className="portfolio-body">
       <div className="table-container">
@@ -152,7 +126,7 @@ if(rows){
                     })}
                   </TableCell>
                   <TableCell align="right" className="browser-data">
-                    {row?.performance + "%"}
+                    {row?.performance.toFixed(2) + "%"}
                   </TableCell>
                   <TableCell align="right" className="browser-data">
                     {formatCash(row?.allocation)}
