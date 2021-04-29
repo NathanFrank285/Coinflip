@@ -6,7 +6,7 @@ import { getCoinDetailThunk } from "../../store/coinDetail";
 import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 import './CoinDetail.css'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 const CoinDetail = () => {
@@ -23,6 +23,7 @@ const CoinDetail = () => {
   const [watchlistStatus, setWatchlistStatus] = useState("");
   const [graphStatus, setGraphStatus] = useState(chartData24Hr);
 
+
   const formatCash = (n) => {
     if (n < 1e3) return n;
     if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
@@ -36,6 +37,7 @@ const CoinDetail = () => {
     dispatch(getCoinDetailThunk(name));
     console.log(watchlistStatus)
   }, [watchlistStatus]);
+
 
 
   if (badSearch === "bad search") {
@@ -97,17 +99,22 @@ const CoinDetail = () => {
         </div>
       </div>
       <div className="graphDiv">
-        <LineChart
-          width={730}
+        <ResponsiveContainer
+          width='100%'
           height={400}
-          data={graphStatus}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
-          <YAxis domain={["auto", "auto"]} />
-          <Tooltip />
-          <Legend />
-          <Line type="linear" dataKey="price" stroke="#8884d8" />
-        </LineChart>
+          <LineChart
+
+            data={graphStatus ? graphStatus : chartData24Hr}
+            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          >
+            <YAxis domain={["auto", "auto"]} />
+            <XAxis type='category' dataKey='date' domain={['auto', 'auto']} />
+            <Tooltip />
+
+            <Line type="linear" dot={false} dataKey="price" stroke="#8884d8" />
+          </LineChart>
+        </ResponsiveContainer>
         <div>
           <button onClick={() => (graphStatusSetter('24'))}>24Hr</button>
           <button onClick={() => (graphStatusSetter('7'))}>7 Days</button>

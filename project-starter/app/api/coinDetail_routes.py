@@ -4,6 +4,8 @@ from app.models import Coin, db, Watchlist
 from pycoingecko import CoinGeckoAPI
 from datetime import datetime, timedelta
 from sqlalchemy import and_
+from datetime import datetime
+import math
 cg = CoinGeckoAPI()
 
 coinDetail_routes = Blueprint('coindetail', __name__)
@@ -50,9 +52,15 @@ def index(ticker):
         historic_prices7 = []
         historic_prices30 = []
         historic_prices300 = []
+        print(history24hr)
 
+        # dates = {'date': datetime.fromtimestamp(history24hr[0][0] / 1000)}
         for price in history24hr['prices']:
+            time = price[0] / 1000
             historic_prices24.append({'price': price[1]})
+            historic_prices24.append(
+                {'date': datetime.fromtimestamp(price[0] / 1000)})
+            # historic_prices24.append(dates)
         for price in history7['prices']:
             historic_prices7.append({'price': price[1]})
         for price in history30['prices']:
@@ -77,14 +85,35 @@ def index(ticker):
     history7 = getHistory7(ticker)
     history30 = getHistory30(ticker)
     history300 = getHistory300(ticker)
+    middle24 = math.floor(len(history24hr['prices'])/2)
+    print('middle indy', middle24)
+    print('length', len(history24hr))
+
+    # dates = {'date': datetime.fromtimestamp(
+    #     history24hr['prices'][0][0] / 1000)}, {'date': datetime.fromtimestamp(
+    #         history24hr['prices'][middle24][0] / 1000)}, {
+    #             'date': datetime.fromtimestamp(
+    #                 history24hr['prices'][-1][0] / 1000)
+    # }
+    # for date in dates:
+    #     historic_prices24.append(date)
     for price in history24hr['prices']:
-        historic_prices24.append({'price': price[1]})
+        historic_prices24.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
+            price[0] / 1000).strftime('%x')})
+        # historic_prices24.append(
+        #     {'date':  datetime.fromtimestamp(price[0] / 1000)})
     for price in history7['prices']:
-        historic_prices7.append({'price': price[1]})
+        # historic_prices7.append({'price': price[1]})
+        historic_prices7.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
+            price[0] / 1000).strftime('%x')})
     for price in history30['prices']:
-        historic_prices30.append({'price': price[1]})
+        # historic_prices30.append({'price': price[1]})
+        historic_prices30.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
+            price[0] / 1000).strftime('%x')})
     for price in history300['prices']:
-        historic_prices300.append({'price': price[1]})
+        # historic_prices300.append({'price': price[1]})
+        historic_prices300.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
+            price[0] / 1000).strftime('%x')})
 
     data = cg.get_coin_by_id(ticker)
     inWatchlist = inUsersWatchlist(id, coinExist.id)
