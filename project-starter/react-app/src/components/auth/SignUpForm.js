@@ -42,7 +42,7 @@ const SignUpForm = () => {
     <form className='splash-form' onSubmit={onSignUp}>
       <div>
         <div className='login-label'>
-          <label>User Name</label>
+          {/* <label>User Name</label> */}
         </div>
         <input
           className='login-input'
@@ -55,7 +55,7 @@ const SignUpForm = () => {
       </div>
       <div>
         <div className='login-label'>
-          <label>Email</label>
+          {/* <label>Email</label> */}
         </div>
         <input
           className='login-input'
@@ -68,7 +68,7 @@ const SignUpForm = () => {
       </div>
       <div>
         <div className='login-label'>
-          <label>Password</label>
+          {/* <label>Password</label> */}
         </div>
         <input
           className='login-input'
@@ -81,7 +81,7 @@ const SignUpForm = () => {
       </div>
       <div>
         <div className='login-label'>
-          <label>Repeat Password</label>
+          {/* <label>Repeat Password</label> */}
         </div>
         <input
           className='login-input'

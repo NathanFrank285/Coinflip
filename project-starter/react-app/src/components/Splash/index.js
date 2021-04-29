@@ -16,21 +16,31 @@ const Splash = () => {
   }
 
   return (
-    <div className='splash-body'>
-
-        <img className='splash-logo' src={DarkLogo} alt='logo' />
-
-        <div className='splash-title'> Welcome to Coinflip </div>
-        <div className='splash-forms'>
-            <div className='splash-login'>
-              <div> <LoginForm /> </div>
-              <div className='splash-demo'>
-                <div className='demo-label'>Demo User Login</div>
-                <button className="demo-btn" onClick={loginDemoUser}>Demo</button>
-              </div>
-            </div>
-            <div className='splash-signup'> <SignUpForm /> </div>
+    <div className="splash-body">
+      <img className="splash-logo" src={DarkLogo} alt="logo" />
+      <img className="splash-logo-2" src={DarkLogo} alt="logo" />
+      <div className="splash-title-container">
+        <div className="splash-title"> Welcome to Coinflip </div>
+        <div className="splash-subtitle">A CryptoTracker</div>
+      </div>
+      <div className="splash-forms">
+        <div className="splash-login">
+          <div>
+            {" "}
+            <LoginForm />{" "}
+          </div>
+          <div className="splash-demo">
+            <div className="demo-label">Demo User Login</div>
+            <button className="demo-btn" onClick={loginDemoUser}>
+              Demo
+            </button>
+          </div>
         </div>
+        <div className="splash-signup">
+          {" "}
+          <SignUpForm />{" "}
+        </div>
+      </div>
     </div>
   );
 };
