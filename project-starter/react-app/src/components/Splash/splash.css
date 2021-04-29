@@ -1,10 +1,17 @@
+body{
+    background-color: #1b1a17 !important;
+    background-image: none;
+}
 .splash-body {
     display: grid;
-    grid-template-rows: 200px 200px 500px ;
+    grid-template-rows: 225px 225px 550px;
     grid-template-areas:
         'head'
         'title'
         'forms';
+    background-color: #1b1a17;
+    height: 105%;
+    width: 105%;
 }
 
 .splash-title-container {
@@ -31,7 +38,7 @@
 .splash-logo {
 
     grid-area: head title;
-    z-index: -1;
+    /* z-index: -1; */
     box-sizing: border-box;
     position: absolute;
     margin-left: 3vw;
@@ -41,7 +48,7 @@
 .splash-logo-2 {
 
     grid-area: head title;
-    z-index: -1;
+    /* z-index: -1; */
     box-sizing: border-box;
     position: absolute;
     margin-left: 77vw;

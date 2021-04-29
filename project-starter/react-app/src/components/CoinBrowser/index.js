@@ -24,11 +24,13 @@ export default function CoinBrowser() {
     }, [])
 
     const useStyles = makeStyles({
-        table: {
-            minWidth: 650,
-            maxWidth: 1200,
-        },
+      table: {
+        minWidth: 650,
+        maxWidth: 1200,
+        backgroundColor: "#a5e9e1",
+      },
     });
+
     const classes = useStyles();
     // String.prototype.capitalize = function () {
     //   return this.charAt(0).toUpperCase() + this.slice(1);

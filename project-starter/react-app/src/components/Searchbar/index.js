@@ -14,6 +14,7 @@ const SearchBar = () => {
       e.preventDefault();
       dispatch(getSearch(keyword));
       history.push("/searchList")
+      setKeyword("")
     }
 
 

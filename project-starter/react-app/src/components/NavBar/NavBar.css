@@ -1,9 +1,13 @@
 .nav-container {
-    background-color: #a5e9e1;
-    height: 12vh;
+    background-color: #fdf6f6;
+    height: 120px;
     box-sizing: border-box;
     padding: 5px;
     border-radius: 2px;
+    
+    /* position: fixed;
+    top: 0px; */
+    min-width: 100%;
     /* background-image:linear-gradient(#a5e9e1, #1b1a17); */
 }
 
@@ -20,6 +24,7 @@
     width: 100px;
     box-sizing: border-box;
     margin: 15px;  
+    flex-shrink: 1;
 }
 
 
