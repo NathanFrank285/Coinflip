@@ -7,24 +7,45 @@
         'forms';
 }
 
-.splash-title {
-    font-size: 100px;
-    grid-area: title;
+.splash-title-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    grid-area: title;
 }
 
+.splash-title {
+    font-size: 100px;
+    /* grid-area: title; */
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.splash-subtitle {
+    /* grid-area: title; */
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+}
 .splash-logo {
 
     grid-area: head title;
     z-index: -1;
-    display: flex;
-    justify-content: center;
-
     box-sizing: border-box;
     position: absolute;
-    margin-left: 38vw;
-    margin-top: 10vh;
+    margin-left: 3vw;
+    margin-top: 3vh;
+
+}
+.splash-logo-2 {
+
+    grid-area: head title;
+    z-index: -1;
+    box-sizing: border-box;
+    position: absolute;
+    margin-left: 77vw;
+    margin-top: 3vh;
 
 }
 
@@ -57,7 +78,7 @@
     border-radius: 4px;
     background-color: #a5e9e1;
     background-image: url('../../images/DarkLogo.png');
-    height: 142px;
+    height: 122px;
 }
 
 .demo-btn {
@@ -72,6 +93,7 @@
 
 .demo-label {
     font-size: 42px;
+    font-weight: 600;
     color: #1b1a17;
     display: flex;
     align-self: center;
