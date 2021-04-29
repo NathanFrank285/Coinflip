@@ -45,6 +45,7 @@ const classes = useStyles()
 String.prototype.capitalize = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
+
 function createData(name, price, dailychange, performance, volume) {
     return { name, price, dailychange, performance, volume};
 }
@@ -61,85 +62,112 @@ const formatCash = (n) => {
   if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
 };
 
-// const rows = portfolio?.map(coin => {
-//     const name = Object.keys(coin)
-    // return createData(
-    //   name,
-    //   coin[`${name[0]}`].usd,
-    //   coin[`${name[0]}`].usd_24h_change,
-    //   coin[`${name[0]}`].usd_24h_vol,
-    //   coin[`${name[0]}`].usd_market_cap
-    // );
-// })
+let rows;
+let table;
+
 if(portfolio){
-  const tickers = Object.keys(portfolio)
-  console.log(tickers, "TTTTTTTTTTTTTTTTT")
-  for(let coin of tickers){
-    console.log(coin, "here is the coin!!")
-    return createData(
-      portfolio[`${coin}`]["Name"],
-      // portfolio.coin[`coinData`].usd,
-      // portfolio.coin[`coinData`].usd_24h_change,
-      // (portfolio.coin[`coinData`].usd),
-      // portfolio.coin[`coinData`].usd_24h_vol
-    );
-  }
+  let portVals = Object.values(portfolio)
+  rows = portVals?.map(coin => {
+    console.log(coin, "LLLLLLLLLLLLLLLLLLLLLLL")
+    console.log(coin.coinData.usd, "CCCCCCCCCCCCCCCCCCCCCCCCC")
+      // const name = Object.keys(coin)
+      return createData(
+        coin.Name,
+        coin.coinData.usd,
+        coin.coinData.usd_24h_change,
+        coin.coinData.usd_24h_vol,
+        coin.coinData.usd_market_cap
+      );
+  })
+  console.log(rows, "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
 }
 
-let rows;
+
+// if(portfolio){
+
+
+  // const tickers = Object.keys(portfolio)
+  // console.log(crows, "TTTTTTTTTTTTTTTTT")
+  // for(let coin of tickers){
+    // console.log(portfolio[`${coin}`]["Name"], "here is the coin!!")
+  //   return
+    // createData(
+    //   // portfolio[`${coin}`]["Name"],
+    //   // portfolio.coin[`coinData`].usd,
+    //   // portfolio.coin[`coinData`].usd_24h_change,
+    //   // (portfolio.coin[`coinData`].usd),
+    //   // portfolio.coin[`coinData`].usd_24h_vol
+    // );
+  // }
+// }
+
+
 // usd: 54816, usd_24h_change: 0.2844488253537837, usd_24h_vol: 46893571860.279526, usd_market_cap: 1024712665930.4342}
+if(rows){
+  console.log(rows[0].change, "---------------------------------")
+  table = (
+    <div className="portfolio-body">
+      <div className="table-container">
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell className="browser-head">Name</TableCell>
+                <TableCell className="browser-head" align="right">
+                  Price
+                </TableCell>
+                <TableCell className="browser-head" align="right">
+                  24hr Change
+                </TableCell>
+                <TableCell className="browser-head" align="right">
+                  Performance
+                </TableCell>
+                <TableCell className="browser-head" align="right">
+                  Volume
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows?.map((row) => (
+                <TableRow key={row?.name}>
+                  <TableCell component="th" scope="row">
+                    <NavLink
+                      className="browser-link"
+                      to={`/coinDetail/${row.name}`}
+                    >
+                      {row.name}
+                    </NavLink>
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {"$" + row.price.toFixed(2)}
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {"%" + row.dailychange.toFixed(2)}
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {formatCash(row?.volume)}
+                  </TableCell>
+                  <TableCell align="right" className="browser-data">
+                    {formatCash(row?.marketCap)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </div>
+  )
+} else {
+  table = (
+    <div></div>
+  )
+}
+
 
 return (
-<div className="portfolio-body">
-  <div className="table-container">
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell className="browser-head">Name</TableCell>
-            <TableCell className="browser-head" align="right">
-              Price
-            </TableCell>
-            <TableCell className="browser-head" align="right">
-              24hr Change
-            </TableCell>
-            <TableCell className="browser-head" align="right">
-              Performance
-            </TableCell>
-            <TableCell className="browser-head" align="right">
-              Volume
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows?.map((row) => (
-            <TableRow key={row?.name}>
-              <TableCell component="th" scope="row">
-                <NavLink
-                  className="browser-link"
-                  to={`/coinDetail/${row.name}`}
-                >
-                  {row.name}
-                </NavLink>
-              </TableCell>
-              <TableCell align="right" className="browser-data">
-                {"$" + row?.price.toFixed(2)}
-              </TableCell>
-              <TableCell align="right" className="browser-data">
-                {"%" + row?.change.toFixed(2)}
-              </TableCell>
-              <TableCell align="right" className="browser-data">
-                {formatCash(row?.volume)}
-              </TableCell>
-              <TableCell align="right" className="browser-data">
-                {formatCash(row?.marketCap)}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </div>
-</div>
+  <>
+    {table}
+  </>
 );
 }
