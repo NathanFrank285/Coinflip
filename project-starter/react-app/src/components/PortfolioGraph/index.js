@@ -24,8 +24,8 @@ import "./PortfolioGraph.css";
 
 
 export default function PortfolioGraph() {
-  const portfolio = useSelector(state => state?.portfolio?.Portfolio)
-
+  const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
+  const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioTotalUsd)
 
   const dispatch = useDispatch();
 
@@ -35,120 +35,113 @@ export default function PortfolioGraph() {
 
   const useStyles = makeStyles({
     table: {
-        minWidth: 650,
-        maxWidth: 1200,
+      minWidth: 650,
+      maxWidth: 1200,
     },
   });
 
-const classes = useStyles()
+  const classes = useStyles();
 
-String.prototype.capitalize = function () {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
+  String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  };
 
-function createData(name, price, balance, performance, allocation, ticker) {
-    return { name, price, balance, performance, allocation, ticker};
-}
+  function createData(name, price, balance, performance, allocation, ticker) {
+    return { name, price, balance, performance, allocation, ticker };
+  }
 
-const capitalize = (s) => {
-  if (typeof s !== "string") return "";
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
-const formatCash = (n) => {
-  if (n < 1e3) return n;
-  if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
-  if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
-  if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
-  if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
-};
+  const capitalize = (s) => {
+    if (typeof s !== "string") return "";
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
+  const formatCash = (n) => {
+    if (n < 1e3) return n;
+    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
+    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+    if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
+    if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
+  };
 
-let rows;
-let table;
+  let rows;
+  let table;
 
-if(portfolio){
-  let portVals = Object.values(portfolio)
-  rows = portVals?.map(coin => {
+  if (portfolio) {
+    let portVals = Object.values(portfolio);
+    rows = portVals?.map((coin) => {
       return createData(
         coin.Name,
         coin.coinData.usd,
-        (coin.Quantity * coin.coinData.usd),
-        ((coin.coinData.usd/coin.AveragePrice)-1)*100,
-        coin.Quantity,
-        coin.Ticker,
+        coin.Quantity * coin.coinData.usd,
+        (coin.coinData.usd / coin.AveragePrice - 1) * 100,
+        (((coin.Quantity * coin.coinData.usd)/totalPortfolio)*100),
+        coin.Ticker
       );
-  })
-}
+    });
+  }
 
-if(rows){
-  table = (
-    <div className="portfolio-body">
-      <div className="table-container">
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell className="browser-head">Name</TableCell>
-                <TableCell className="browser-head" align="right">
-                  Price
-                </TableCell>
-                <TableCell className="browser-head" align="right">
-                  Balance
-                </TableCell>
-                <TableCell className="browser-head" align="right">
-                  Performance
-                </TableCell>
-                <TableCell className="browser-head" align="right">
-                  Allocation
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows?.map((row) => (
-                <TableRow key={row?.name}>
-                  <TableCell component="th" scope="row">
-                    <NavLink
-                      className="browser-link"
-                      to={`/coinDetail/${row.ticker}`}
-                    >
-                      {row.name}
-                    </NavLink>
+  if (rows) {
+    table = (
+      <div className="portfolio-body">
+        <div className="table-container">
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell className="browser-head">Name</TableCell>
+                  <TableCell className="browser-head" align="right">
+                    Price
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {row.price.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                    })}
+                  <TableCell className="browser-head" align="right">
+                    Balance
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {row.balance.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                    })}
+                  <TableCell className="browser-head" align="right">
+                    Performance
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {row?.performance.toFixed(2) + "%"}
-                  </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {formatCash(row?.allocation)}
+                  <TableCell className="browser-head" align="right">
+                    Allocation
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {rows?.map((row) => (
+                  <TableRow key={row?.name}>
+                    <TableCell component="th" scope="row">
+                      <NavLink
+                        className="browser-link"
+                        to={`/coinDetail/${row.ticker}`}
+                      >
+                        {row.name}
+                      </NavLink>
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {row.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {row.balance.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {row?.performance.toFixed(2) + "%"}
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {formatCash(row?.allocation.toFixed(2)) + "%"}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
-    </div>
-  )
-} else {
-  table = (
-    <div></div>
-  )
-}
+    );
+  } else {
+    table = <div></div>;
+  }
 
-
-return (
-  <>
-    {table}
-  </>
-);
+  return <>{table}</>;
 }
