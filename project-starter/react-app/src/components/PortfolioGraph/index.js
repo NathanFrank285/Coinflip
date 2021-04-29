@@ -73,7 +73,7 @@ if(portfolio){
         coin.coinData.usd,
         (coin.Quantity * coin.coinData.usd),
         ((coin.coinData.usd/coin.AveragePrice)-1)*100,
-        coin.coinData.usd_market_cap,
+        coin.Quantity,
         coin.Ticker,
       );
   })
@@ -98,7 +98,7 @@ if(rows){
                   Performance
                 </TableCell>
                 <TableCell className="browser-head" align="right">
-                  Volume
+                  Allocation
                 </TableCell>
               </TableRow>
             </TableHead>
