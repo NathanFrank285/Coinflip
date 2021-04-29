@@ -29,18 +29,16 @@ export default function CoinBrowser() {
             maxWidth: 1200,
         },
     });
+    const classes = useStyles();
+    // String.prototype.capitalize = function () {
+    //   return this.charAt(0).toUpperCase() + this.slice(1);
+    // };
+    
 
-    String.prototype.capitalize = function () {
-      return this.charAt(0).toUpperCase() + this.slice(1);
-    };
-    function createData(name, price, change, volume, marketCap) {
-        return { name, price, change, volume, marketCap };
-    }
-
-    const capitalize = (s) => {
-      if (typeof s !== "string") return "";
-      return s.charAt(0).toUpperCase() + s.slice(1);
-    };
+    // const capitalize = (s) => {
+    //   if (typeof s !== "string") return "";
+    //   return s.charAt(0).toUpperCase() + s.slice(1);
+    // };
     const formatCash = (n) => {
       if (n < 1e3) return n;
       if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
@@ -49,6 +47,12 @@ export default function CoinBrowser() {
       if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
     };
 
+
+    function createData(name, price, change, volume, marketCap) {
+            return { name, price, change, volume, marketCap };
+        }
+
+        
     const rows = coinBrowser?.map(coin => {
         const name = Object.keys(coin)
         return createData(
@@ -60,8 +64,8 @@ export default function CoinBrowser() {
         );
     })
     // usd: 54816, usd_24h_change: 0.2844488253537837, usd_24h_vol: 46893571860.279526, usd_market_cap: 1024712665930.4342}
-  const classes = useStyles();
-  console.log("rows!!!!!!!!", rows)
+  
+  
   return (
     <div className="coinBrowser-body">
       <div className="table-container">
