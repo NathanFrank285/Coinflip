@@ -15,16 +15,25 @@ def index(ticker):
     coinExist = Coin.query.filter(Coin.ticker.ilike(f"%{ticker}%")).first()
     id = current_user.id
 
-
     def inUsersWatchlist(userId, coinId):
-      output = Watchlist.query.filter(and_(Watchlist.userId == userId, Watchlist.coinId == coinId)).first() is not None
-      if (output):
-        return True
-      else:
-        return False
+        output = Watchlist.query.filter(
+            and_(Watchlist.userId == userId, Watchlist.coinId == coinId)).first() is not None
+        if (output):
+            return True
+        else:
+            return False
 
-    def getHistory(ticker):
+    def getHistory24(ticker):
         return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=1)
+
+    def getHistory7(ticker):
+        return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=7)
+
+    def getHistory30(ticker):
+        return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=30)
+
+    def getHistory300(ticker):
+        return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=300)
 
     try:
         inAPI = cg.get_coin_by_id(ticker)['name']
@@ -33,10 +42,23 @@ def index(ticker):
 
     if(not coinExist and inAPI):
 
-        history = getHistory(ticker)
-        historic_prices = []
-        for price in history['prices']:
-            historic_prices.append({'price': price[1]})
+        history24hr = getHistory24(ticker)
+        history7 = getHistory7(ticker)
+        history30 = getHistory30(ticker)
+        history300 = getHistory300(ticker)
+        historic_prices24 = []
+        historic_prices7 = []
+        historic_prices30 = []
+        historic_prices300 = []
+
+        for price in history24hr['prices']:
+            historic_prices24.append({'price': price[1]})
+        for price in history7['prices']:
+            historic_prices7.append({'price': price[1]})
+        for price in history30['prices']:
+            historic_prices30.append({'price': price[1]})
+        for price in history300['prices']:
+            historic_prices300.append({'price': price[1]})
 
         newCoin = Coin()
         newCoin.ticker = ticker
@@ -45,13 +67,26 @@ def index(ticker):
         db.session.commit()
         data = cg.get_coin_by_id(ticker)
         inWatchlist = False
-        return {'coin': data, 'prices': historic_prices, 'inWatchlist': inWatchlist}
-    historic_prices = []
-    history = getHistory(ticker)
-    for price in history['prices']:
-        historic_prices.append({'price': price[1]})
+        return {'coin': data, 'prices24HR': historic_prices24, 'prices7days': historic_prices7, 'prices30': historic_prices30, 'prices300': historic_prices300, 'inWatchlist': inWatchlist}
+
+    historic_prices24 = []
+    historic_prices7 = []
+    historic_prices30 = []
+    historic_prices300 = []
+    history24hr = getHistory24(ticker)
+    history7 = getHistory7(ticker)
+    history30 = getHistory30(ticker)
+    history300 = getHistory300(ticker)
+    for price in history24hr['prices']:
+        historic_prices24.append({'price': price[1]})
+    for price in history7['prices']:
+        historic_prices7.append({'price': price[1]})
+    for price in history30['prices']:
+        historic_prices30.append({'price': price[1]})
+    for price in history300['prices']:
+        historic_prices300.append({'price': price[1]})
 
     data = cg.get_coin_by_id(ticker)
     inWatchlist = inUsersWatchlist(id, coinExist.id)
     # return {'coin': data, 'prices': historic_prices}
-    return {'coin': data, 'prices': historic_prices, 'inWatchlist': inWatchlist}
+    return {'coin': data, 'prices24hr': historic_prices24, 'prices7days': historic_prices7, 'prices30': historic_prices30, 'prices300': historic_prices300, 'inWatchlist': inWatchlist}
