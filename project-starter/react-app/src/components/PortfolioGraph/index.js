@@ -46,8 +46,8 @@ String.prototype.capitalize = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-function createData(name, price, dailychange, performance, volume) {
-    return { name, price, dailychange, performance, volume};
+function createData(name, price, dailychange, performance, volume, ticker) {
+    return { name, price, dailychange, performance, volume, ticker};
 }
 
 const capitalize = (s) => {
@@ -76,7 +76,8 @@ if(portfolio){
         coin.coinData.usd,
         coin.coinData.usd_24h_change,
         coin.coinData.usd_24h_vol,
-        coin.coinData.usd_market_cap
+        coin.coinData.usd_market_cap,
+        coin.Ticker,
       );
   })
   console.log(rows, "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
@@ -133,7 +134,7 @@ if(rows){
                   <TableCell component="th" scope="row">
                     <NavLink
                       className="browser-link"
-                      to={`/coinDetail/${row.name}`}
+                      to={`/coinDetail/${row.ticker}`}
                     >
                       {row.name}
                     </NavLink>
