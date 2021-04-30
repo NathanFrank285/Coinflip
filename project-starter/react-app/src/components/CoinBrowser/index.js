@@ -25,12 +25,21 @@ export default function CoinBrowser() {
 
     const useStyles = makeStyles({
       table: {
-        minWidth: 650,
+        minWidth: 600,
         maxWidth: 1200,
-        backgroundColor: "#a5e9e1",
+        backgroundColor: "#e1fcf9",
+        fontFamily: 'inherit'
       },
+      header: {
+        fontFamily: 'inherit',
+        fontSize: 45,
+        fontWeight: 600,
+      },
+      dataName: {
+        fontFamily: 'inherit',
+      }
     });
-
+    console.log('does this work.....? fuck it.')
     const classes = useStyles();
     
     String.prototype.capitalize = function () {
@@ -71,17 +80,17 @@ export default function CoinBrowser() {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell className="browser-head">Name</TableCell>
-                <TableCell className="browser-head" align="right">
+                <TableCell className={classes.header}>Name</TableCell>
+                <TableCell className={classes.header} align="right">
                   Price
                 </TableCell>
-                <TableCell className="browser-head" align="right">
+                <TableCell className={classes.header} align="right">
                   Change
                 </TableCell>
-                <TableCell className="browser-head" align="right">
+                <TableCell className={classes.header} align="right">
                   Volume
                 </TableCell>
-                <TableCell className="browser-head" align="right">
+                <TableCell className={classes.header} align="right">
                   Market Cap
                 </TableCell>
               </TableRow>
