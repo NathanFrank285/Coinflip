@@ -1,5 +1,5 @@
 body {
-     
+
 }
 
 .coinBrowser-body {
@@ -12,8 +12,9 @@ body {
 }
 
 .table-container {
-    max-width: fit-content; 
-    opacity: 1; 
+    max-width: fit-content;
+    opacity: 1;
+    height: 800px;
 }
 
 .browser-head {
@@ -38,4 +39,3 @@ body {
 .browser-data {
     font-size: 20px !important;
 }
-
