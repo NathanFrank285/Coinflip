@@ -49,10 +49,6 @@ export default function CoinBrowser() {
     };
 
 
-    function createData(name, price, change, volume, marketCap) {
-            return { name, price, change, volume, marketCap };
-        }
-
         
     const rows = coinBrowser?.map(coin => {
         const name = Object.keys(coin)
