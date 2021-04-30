@@ -31,7 +31,7 @@ let content = watchlist?.map(item => {
 
 return (
     <div className="watchlistContainer">
-        <ul>
+        <ul className="watchlistUlContainer">
         {coins?.map((coin)=>{
             return (
                 <li className="watchlist-Li"  key={coin[0]}><WatchListItem coin={coin} /></li>

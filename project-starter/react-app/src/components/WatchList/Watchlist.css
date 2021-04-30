@@ -1,6 +1,8 @@
 .watchlistContainer{
-  border: 1px solid white;
+  border: 3px solid white;
   min-width: auto;
+  margin-left: 10px;
+  border-radius: 4px;
   /* position: absolute; */
   /* right: 0px; */
 }
@@ -8,4 +10,10 @@
   list-style: none;
   position: relative;
   right: 45px;
+}
+
+.watchlistUlContainer{
+  display: flex;
+  flex-direction: column;
+
 }

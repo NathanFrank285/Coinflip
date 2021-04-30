@@ -1,4 +1,21 @@
 .deleteFromWatchlist{
   position: relative;
-  left: 30px;
+  left: 38px;
+  box-sizing: border-box;
+  margin: 4px 0px;
+}
+
+.watchlistLi{
+  list-style: none;
+  flex-wrap: nowrap;
+  font-size: .75em;
+  box-sizing: border-box;
+  margin: 4px 0px;
+}
+.watchlist-box{
+border-bottom: 1px solid white;
+box-sizing: border-box;
+margin: 4px;
+margin-left: 50px;
+width: 200px;
 }
