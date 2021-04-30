@@ -7,6 +7,7 @@ import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 import './CoinDetail.css'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { addToPortfolio } from '../../store/portfolio'
 
 
 const CoinDetail = () => {
@@ -20,8 +21,10 @@ const CoinDetail = () => {
   const chartData300 = useSelector(state => state?.coinDetail?.prices300)
   const chartData7days = useSelector(state => state?.coinDetail?.prices7days)
   const badSearch = useSelector(state => state?.coinDetail?.search)
+  const [portfolioClicked, setPortfolioClicked] = useState('')
   const [watchlistStatus, setWatchlistStatus] = useState("");
   const [graphStatus, setGraphStatus] = useState(chartData24Hr);
+  const [quantity, setQuantity] = useState(0)
 
 
   const formatCash = (n) => {
@@ -68,6 +71,15 @@ const CoinDetail = () => {
       setGraphStatus(chartData300)
     }
   }
+  const addToPortfolioSubmit = (e) => {
+    e.preventDefault()
+    const data = {
+      coinId: details.id,
+      quantity: quantity,
+      averagePrice: details?.market_data?.current_price?.usd
+    }
+    dispatch(addToPortfolio(data))
+  }
 
 
   return (
@@ -105,48 +117,56 @@ const CoinDetail = () => {
       <div className="graph-div">
         <div className='detail-graph'>
           <ResponsiveContainer
-              width='100%'
-              height={400}
+            width='100%'
+            height={400}
+          >
+            <LineChart
+
+              data={graphStatus ? graphStatus : chartData24Hr}
+              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
             >
-              <LineChart
+              <YAxis domain={["auto", "auto"]} />
+              <XAxis type='category' dataKey='date' domain={['auto', 'auto']} />
+              <Tooltip />
 
-                data={graphStatus ? graphStatus : chartData24Hr}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-              >
-                <YAxis domain={["auto", "auto"]} />
-                <XAxis type='category' dataKey='date' domain={['auto', 'auto']} />
-                <Tooltip />
+              <Line type="linear" dot={false} dataKey="price" stroke="#8884d8" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        {portfolioClicked ? <form onSubmit={addToPortfolioSubmit}>
 
-                <Line type="linear" dot={false} dataKey="price" stroke="#8884d8" />
-              </LineChart>
-            </ResponsiveContainer>
-        </div>
-        <div className="graph-buttons-container">
-          <button
-            className="graph-buttons"
-            onClick={() => graphStatusSetter("24")}
-          >
-            24Hr
-          </button>
-          <button
-            className="graph-buttons"
-            onClick={() => graphStatusSetter("7")}
-          >
-            7 Days
-          </button>
-          <button
-            className="graph-buttons"
-            onClick={() => graphStatusSetter("30")}
-          >
-            30 days
-          </button>
-          <button
-            className="graph-buttons"
-            onClick={() => graphStatusSetter("300")}
-          >
-            300 days
-          </button>
-        </div>
+          <label for='quantity'>Quantity in coins</label>
+          <input onChange={(e) => setQuantity(e.target.value)} name='quantity' type='number'></input>
+          <button type='submit'>Add to Portfolio</button>
+        </form> :
+          <div className="graph-buttons-container">
+            <button
+              className="graph-buttons"
+              onClick={() => graphStatusSetter("24")}
+            >
+              24Hr
+        </button>
+            <button
+              className="graph-buttons"
+              onClick={() => graphStatusSetter("7")}
+            >
+              7 Days
+        </button>
+            <button
+              className="graph-buttons"
+              onClick={() => graphStatusSetter("30")}
+            >
+              30 days
+        </button>
+            <button
+              className="graph-buttons"
+              onClick={() => graphStatusSetter("300")}
+            >
+              300 days
+        </button>
+            <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
+          </div>
+        }
       </div>
       <div className="market-detail">
         <div>
