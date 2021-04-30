@@ -98,7 +98,10 @@ const CoinDetail = () => {
         {!inPortfolio && !portfolio[`${name}`] ?
           <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
           :
-          <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+          <>
+            <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add More to Portfolio </button>
+            <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+          </>
         }
 
       </>
