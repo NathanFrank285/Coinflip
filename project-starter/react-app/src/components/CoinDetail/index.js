@@ -164,7 +164,7 @@ const CoinDetail = () => {
         {portfolioClicked ? <form onSubmit={addToPortfolioSubmit}>
 
           <label for='quantity'>Quantity in coins</label>
-          <input onChange={(e) => setQuantity(e.target.value)} name='quantity' type='number'></input>
+          <input onChange={(e) => setQuantity(e.target.value)} name='quantity' type='number' step='0.0000000001'></input>
           <button type='submit'>Add to Portfolio</button>
         </form> :
           <div className="graph-buttons-container">
