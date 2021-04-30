@@ -90,7 +90,7 @@ const CoinDetail = () => {
   }
   useEffect(() => {
     dispatch(getPortfolioThunk());
-  }, [removeFromPortfolio]);
+  }, [portfolio?.length]);
   let portfolioButtonStuff;
   if (portfolio) {
     portfolioButtonStuff = (
