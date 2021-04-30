@@ -91,6 +91,23 @@ const CoinDetail = () => {
   useEffect(() => {
     dispatch(getPortfolioThunk());
   }, [removeFromPortfolio]);
+  let portfolioButtonStuff;
+  if (portfolio) {
+    portfolioButtonStuff = (
+      <>
+        {!inPortfolio && !portfolio[`${name}`] ?
+          <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
+          :
+          <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+        }
+
+      </>
+
+    )
+  }
+  else {
+    portfolioButtonStuff = <div></div>
+  }
 
 
   return (
@@ -175,11 +192,7 @@ const CoinDetail = () => {
             >
               300 days
         </button>
-            {!inPortfolio && !portfolio[`${name}`] ?
-              <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
-              :
-              <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
-            }
+            {portfolioButtonStuff}
           </div>
         }
       </div>
