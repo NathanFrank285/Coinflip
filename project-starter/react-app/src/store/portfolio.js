@@ -14,6 +14,21 @@ export const getPortfolioThunk = () => async (dispatch) => {
     return;
   }
 };
+export const addToPortfolio = (data) => async (dispatch) => {
+  const response = await fetch(`/api/portfolio/${data.coinId}`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  console.log(response)
+
+
+}
+export const removeFromPortfolioThunk = (name) => async (dispatch) => {
+  const response = await fetch(`/api/portfolio/delete/${name}`)
+}
 const initialState = {};
 export default function portfolio(state = initialState, action) {
   switch (action.type) {

@@ -56,6 +56,15 @@ class Portfolio(db.Model):
     averagePrice = db.Column(db.Float, nullable=False)
     coinInfo = db.relationship("Coin", back_populates="portfolioInfo")
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "userId": self.userId,
+            "coinId": self.coinId,
+            "quantity": self.quantity,
+            "averagePrice": self.averagePrice
+        }
+
 
 class Coin(db.Model):
     __tablename__ = "coins"
