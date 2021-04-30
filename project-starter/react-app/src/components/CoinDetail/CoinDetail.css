@@ -1,12 +1,139 @@
+.price-detail-container {
+    box-sizing: border-box;
+    margin-top: 15px;
+    display: grid;
+    grid-template-rows: 200px 400px 210px 1fr;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-areas: 
+        'left header right'
+        'left graph right'
+        'left detail right'
+        'left description right'
+}
+
+
+
 .header{
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    box-sizing: border-box;
+    padding: 20px;
+    grid-area: header;
+    display: grid;
+    grid-template-columns:  20% 20% 15% 25%;
+    grid-template-areas: ' side name image button';
 }
-.graphDiv{
-    border: 1px solid white;
+.header-info-container {
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
 }
-.marketDetail{
-    border: 1px solid white;
+/* .header-info-container div {
+    flex-basis: auto;
+} */
+.detail-coin-name {
+    font-size: 40px;
+    font-weight: 600;
+    flex-shrink: 2;
+    
 }
-.description{
+.detail-coin-symbol {
+    font-size: 30px;
+    font-weight: 300;
+    box-sizing: border-box;
+    flex-shrink: 1;
+}
+.detail-coin-image-container {
+    grid-area: image;
+}
+.detail-coin-image {
+    height: 120px;
+}
+.detail-button-container {
+    grid-area: button;
+    box-sizing: border-box;
+    position: relative;
+    top: 80px;
+}
+.detail-watchlist-button {
+    font-size: 20px;
+    background-color: #a5e9e1;
+    color: #1b1a17;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 4px;
+    box-shadow: 2px 2px 0px 0px #1b1a17; 
+}
+.detail-watchlist-button:hover {
+    box-shadow: 2px 2px 0px 0px white;
+    font-size: 22px;
+}
+
+
+
+.graph-div{
     border: 1px solid white;
+    grid-area: graph;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-areas:
+        'graph buttons';
+}
+.detail-graph {
+    grid-area: graph;
+    box-sizing: border-box;
+    margin-left: 50px;
+    width: 600px;
+    height: 350px;
+}
+.graph-buttons-container {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 20px;
+    margin-top: 100px;
+}
+.graph-buttons {
+    font-size: 20px;
+    background-color: #a5e9e1;
+    color: #1b1a17;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 8px;
+    padding: 4px;
+    box-shadow: 2px 2px 0px 0px #1b1a17;
+}
+.graph-buttons:hover {
+    box-shadow: 2px 2px 0px 0px white;
+    font-size: 22px;
+}
+
+
+.market-detail{
+    /* border: 1px solid white; */
+    grid-area: detail;
+    font-size: 30px;
+    /* box-sizing: border-box;
+    padding: 8px;
+    padding-left: 300px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.description {
+    border: 1px solid white;
+    border-radius: 4px;
+    grid-area: description;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 8px;
+}
+.description a {
+    color: inherit;
+    font-family: inherit;
+    font-weight: 600;
+    text-decoration: none;
 }

@@ -71,58 +71,84 @@ const CoinDetail = () => {
 
 
   return (
-    <div className="priceDetailContainer">
+    <div className="price-detail-container">
       <div className="header">
-        <span>
-          <h1>{details?.name}</h1>
-
-          <h2>{details?.symbol.toUpperCase()}</h2>
-        </span>
-        <span>
-          <img src={details?.image.small}></img>
-        </span>
-        <div>
+        <div className='header-info-container'>
+          <div className="detail-coin-name">{details?.name}</div>
+          <div className="detail-coin-symbol">
+            {details?.symbol.toUpperCase()}
+          </div>
+        </div>
+        <div className="detail-coin-image-container">
+          <img className="detail-coin-image" src={details?.image.small} />
+        </div>
+        <div className="detail-button-container">
           {inWatchlist == true && (
             <button
               onClick={removeFromWatchlist}
-              className="removeFromWatchList"
+              className="removeFromWatchList detail-watchlist-button"
             >
               Remove From Watch List
             </button>
           )}
 
           {inWatchlist == false && (
-            <button onClick={addTolist} className="addToWatchList">
+            <button
+              onClick={addTolist}
+              className="addToWatchList detail-watchlist-button"
+            >
               Add to Watch List
             </button>
           )}
         </div>
       </div>
-      <div className="graphDiv">
-        <ResponsiveContainer
-          width='100%'
-          height={400}
-        >
-          <LineChart
+      <div className="graph-div">
+        <div className='detail-graph'>
+          <ResponsiveContainer
+              width='100%'
+              height={400}
+            >
+              <LineChart
 
-            data={graphStatus ? graphStatus : chartData24Hr}
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                data={graphStatus ? graphStatus : chartData24Hr}
+                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              >
+                <YAxis domain={["auto", "auto"]} />
+                <XAxis type='category' dataKey='date' domain={['auto', 'auto']} />
+                <Tooltip />
+
+                <Line type="linear" dot={false} dataKey="price" stroke="#8884d8" />
+              </LineChart>
+            </ResponsiveContainer>
+        </div>
+        <div className="graph-buttons-container">
+          <button
+            className="graph-buttons"
+            onClick={() => graphStatusSetter("24")}
           >
-            <YAxis domain={["auto", "auto"]} />
-            <XAxis type='category' dataKey='date' domain={['auto', 'auto']} />
-            <Tooltip />
-
-            <Line type="linear" dot={false} dataKey="price" stroke="#8884d8" />
-          </LineChart>
-        </ResponsiveContainer>
-        <div>
-          <button onClick={() => (graphStatusSetter('24'))}>24Hr</button>
-          <button onClick={() => (graphStatusSetter('7'))}>7 Days</button>
-          <button onClick={() => (graphStatusSetter('30'))}>30 days</button>
-          <button onClick={() => (graphStatusSetter('300'))}>300 days</button>
+            24Hr
+          </button>
+          <button
+            className="graph-buttons"
+            onClick={() => graphStatusSetter("7")}
+          >
+            7 Days
+          </button>
+          <button
+            className="graph-buttons"
+            onClick={() => graphStatusSetter("30")}
+          >
+            30 days
+          </button>
+          <button
+            className="graph-buttons"
+            onClick={() => graphStatusSetter("300")}
+          >
+            300 days
+          </button>
         </div>
       </div>
-      <div className="maketDetail">
+      <div className="market-detail">
         <div>
           Current Price:{" "}
           {details?.market_data?.current_price.usd.toLocaleString("en-US", {
@@ -139,7 +165,7 @@ const CoinDetail = () => {
         <div>
           24Hr Change:{" "}
           {details?.market_data?.price_change_percentage_24h.toFixed(2)}%
-          </div>
+        </div>
         <div>
           Total Volume: {formatCash(details?.market_data?.total_volume.usd)}
         </div>

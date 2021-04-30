@@ -1,12 +1,19 @@
+body {
+     
+}
+
 .coinBrowser-body {
     display: flex;
     justify-content: center;
     box-sizing: border-box;
     margin-top: 40px;
+    background-image: url('../../images/YellowLogo.png');
+
 }
 
 .table-container {
-    max-width: fit-content;  
+    max-width: fit-content; 
+    opacity: 1; 
 }
 
 .browser-head {
