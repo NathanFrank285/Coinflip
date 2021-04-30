@@ -103,3 +103,18 @@ def addToPortfolio(ticker):
         db.session.add(new_portfolio_item)
         db.session.commit()
         return {}
+
+
+@portfolio_routes.route('/delete/<ticker>')
+@login_required
+def delete_portfolio(ticker):
+    id = current_user.id
+    coinId = Coin.query.filter(Coin.ticker == ticker).first().to_dict()['id']
+    portfolioEntry = Portfolio.query.filter(
+        and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first()
+    db.session.delete(portfolioEntry)
+    db.session.commit()
+    return {}
+
+    # db.session.delete(coin)
+    # db.session.commit()

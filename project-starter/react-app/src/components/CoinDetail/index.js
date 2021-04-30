@@ -7,7 +7,7 @@ import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 import './CoinDetail.css'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { addToPortfolio } from '../../store/portfolio'
+import { addToPortfolio, getPortfolioThunk, removeFromPortfolioThunk } from '../../store/portfolio'
 
 
 const CoinDetail = () => {
@@ -15,6 +15,8 @@ const CoinDetail = () => {
   const history = useHistory();
   const { name } = useParams()
   const details = useSelector(state => state?.coinDetail?.coin)
+  const portfolio = useSelector(state => state?.portfolio?.Portfolio)
+
   const inWatchlist = useSelector(state => state?.coinDetail?.inWatchlist)
   const chartData24Hr = useSelector(state => state?.coinDetail?.prices24hr)
   const chartData30 = useSelector(state => state?.coinDetail?.prices30)
@@ -25,6 +27,7 @@ const CoinDetail = () => {
   const [watchlistStatus, setWatchlistStatus] = useState("");
   const [graphStatus, setGraphStatus] = useState(chartData24Hr);
   const [quantity, setQuantity] = useState(0)
+  const [inPortfolio, setInPortfolio] = useState('')
 
 
   const formatCash = (n) => {
@@ -40,7 +43,6 @@ const CoinDetail = () => {
     dispatch(getCoinDetailThunk(name));
     console.log(watchlistStatus)
   }, [watchlistStatus]);
-
 
 
   if (badSearch === "bad search") {
@@ -78,8 +80,17 @@ const CoinDetail = () => {
       quantity: quantity,
       averagePrice: details?.market_data?.current_price?.usd
     }
+    setInPortfolio(true)
+    setPortfolioClicked(false)
     dispatch(addToPortfolio(data))
   }
+  const removeFromPortfolio = (e) => {
+    dispatch(removeFromPortfolioThunk(name))
+    setInPortfolio(false)
+  }
+  useEffect(() => {
+    dispatch(getPortfolioThunk());
+  }, [removeFromPortfolio]);
 
 
   return (
@@ -164,7 +175,11 @@ const CoinDetail = () => {
             >
               300 days
         </button>
-            <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
+            {!inPortfolio && !portfolio[`${name}`] ?
+              <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
+              :
+              <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+            }
           </div>
         }
       </div>

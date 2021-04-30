@@ -26,6 +26,9 @@ export const addToPortfolio = (data) => async (dispatch) => {
 
 
 }
+export const removeFromPortfolioThunk = (name) => async (dispatch) => {
+  const response = await fetch(`/api/portfolio/delete/${name}`)
+}
 const initialState = {};
 export default function portfolio(state = initialState, action) {
   switch (action.type) {
