@@ -6,7 +6,7 @@ import { getCoinDetailThunk } from "../../store/coinDetail";
 import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 import './CoinDetail.css'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 const CoinDetail = () => {
@@ -23,6 +23,7 @@ const CoinDetail = () => {
   const [watchlistStatus, setWatchlistStatus] = useState("");
   const [graphStatus, setGraphStatus] = useState(chartData24Hr);
 
+
   const formatCash = (n) => {
     if (n < 1e3) return n;
     if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
@@ -38,16 +39,13 @@ const CoinDetail = () => {
   }, [watchlistStatus]);
 
 
+
   if (badSearch === "bad search") {
     history.go(0)
     history.push('/portfolio')
   }
 
-
-  console.log("ws", watchlistStatus, "inwl", inWatchlist, "name", name);
-
   const addTolist = () => {
-    console.log('I am a console fucking log')
     dispatch(addToWatchlist(name));
     setWatchlistStatus(true)
   }
@@ -70,6 +68,7 @@ const CoinDetail = () => {
       setGraphStatus(chartData300)
     }
   }
+
 
   return (
     <div className="price-detail-container">
@@ -104,18 +103,23 @@ const CoinDetail = () => {
         </div>
       </div>
       <div className="graph-div">
-        <div className="detail-graph">
-          <LineChart
-            width={600}
-            height={350}
-            data={graphStatus}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <YAxis domain={["auto", "auto"]} />
-            <Tooltip />
-            <Legend />
-            <Line type="linear" dataKey="price" stroke="#8884d8" />
-          </LineChart>
+        <div className='detail-graph'>
+          <ResponsiveContainer
+              width='100%'
+              height={400}
+            >
+              <LineChart
+
+                data={graphStatus ? graphStatus : chartData24Hr}
+                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              >
+                <YAxis domain={["auto", "auto"]} />
+                <XAxis type='category' dataKey='date' domain={['auto', 'auto']} />
+                <Tooltip />
+
+                <Line type="linear" dot={false} dataKey="price" stroke="#8884d8" />
+              </LineChart>
+            </ResponsiveContainer>
         </div>
         <div className="graph-buttons-container">
           <button

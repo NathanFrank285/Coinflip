@@ -105,7 +105,7 @@ export default function CoinBrowser() {
                     {"$" + row?.price.toFixed(2)}
                   </TableCell>
                   <TableCell align="right" className="browser-data">
-                    {"%" + row?.change.toFixed(2)}
+                    {row?.change.toFixed(2) + "%"}
                   </TableCell>
                   <TableCell align="right" className="browser-data">
                     {formatCash(row?.volume)}

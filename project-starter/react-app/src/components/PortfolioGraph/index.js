@@ -24,9 +24,13 @@ import "./PortfolioGraph.css";
 
 
 export default function PortfolioGraph() {
-  const portfolio = useSelector(state => state?.portfolio?.Portfolio)
-
-
+  const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
+  const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioTotalUsd)
+  // const chartData24Hr = useSelector(state => state?.coinDetail?.prices24hr)
+  // const chartData30 = useSelector(state => state?.coinDetail?.prices30)
+  // const chartData300 = useSelector(state => state?.coinDetail?.prices300)
+  // const chartData7days = useSelector(state => state?.coinDetail?.prices7days)
+  // const [graphStatus, setGraphStatus] = useState(chartData24Hr);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,139 +39,147 @@ export default function PortfolioGraph() {
 
   const useStyles = makeStyles({
     table: {
-        minWidth: 650,
-        maxWidth: 1200,
+      minWidth: 650,
+      maxWidth: 1200,
     },
-});
+  });
 
-const classes = useStyles()
+  const classes = useStyles();
 
-String.prototype.capitalize = function () {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
+  String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  };
 
-function createData(name, price, dailychange, performance, volume) {
-    return { name, price, dailychange, performance, volume};
-}
+  function createData(name, price, balance, performance, allocation, ticker) {
+    return { name, price, balance, performance, allocation, ticker };
+  }
 
-const capitalize = (s) => {
-  if (typeof s !== "string") return "";
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
-const formatCash = (n) => {
-  if (n < 1e3) return n;
-  if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
-  if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
-  if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
-  if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
-};
+  // const graphStatusSetter = (time) => {
+  //   if (time === '24') {
+  //     setGraphStatus(chartData24Hr)
+  //   }
+  //   if (time === '7') {
+  //     setGraphStatus(chartData7days)
+  //   }
+  //   if (time === '30') {
+  //     setGraphStatus(chartData30)
+  //   }
+  //   if (time === '300') {
+  //     setGraphStatus(chartData300)
+  //   }
+  // }
 
-let rows;
-let table;
+  const formatCash = (n) => {
+    if (n < 1e3) return n;
+    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
+    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+    if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
+    if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
+  };
 
-if(portfolio){
-  let portVals = Object.values(portfolio)
-  rows = portVals?.map(coin => {
-    console.log(coin, "LLLLLLLLLLLLLLLLLLLLLLL")
-    console.log(coin.coinData.usd, "CCCCCCCCCCCCCCCCCCCCCCCCC")
-      // const name = Object.keys(coin)
+  let rows;
+  let table;
+
+  if (portfolio) {
+    let portVals = Object.values(portfolio);
+    rows = portVals?.map((coin) => {
       return createData(
         coin.Name,
         coin.coinData.usd,
-        coin.coinData.usd_24h_change,
-        coin.coinData.usd_24h_vol,
-        coin.coinData.usd_market_cap
+        coin.Quantity * coin.coinData.usd,
+        (coin.coinData.usd / coin.AveragePrice - 1) * 100,
+        (((coin.Quantity * coin.coinData.usd)/totalPortfolio)*100),
+        coin.Ticker
       );
-  })
-  console.log(rows, "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
-}
+    });
+  }
 
-
-// if(portfolio){
-
-
-  // const tickers = Object.keys(portfolio)
-  // console.log(crows, "TTTTTTTTTTTTTTTTT")
-  // for(let coin of tickers){
-    // console.log(portfolio[`${coin}`]["Name"], "here is the coin!!")
-  //   return
-    // createData(
-    //   // portfolio[`${coin}`]["Name"],
-    //   // portfolio.coin[`coinData`].usd,
-    //   // portfolio.coin[`coinData`].usd_24h_change,
-    //   // (portfolio.coin[`coinData`].usd),
-    //   // portfolio.coin[`coinData`].usd_24h_vol
-    // );
-  // }
-// }
-
-
-// usd: 54816, usd_24h_change: 0.2844488253537837, usd_24h_vol: 46893571860.279526, usd_market_cap: 1024712665930.4342}
-if(rows){
-  console.log(rows[0].change, "---------------------------------")
-  table = (
-    <div className="portfolio-body">
-      <div className="table-container">
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell className="browser-head">Name</TableCell>
-                <TableCell className="browser-head" align="right">
-                  Price
-                </TableCell>
-                <TableCell className="browser-head" align="right">
-                  24hr Change
-                </TableCell>
-                <TableCell className="browser-head" align="right">
-                  Performance
-                </TableCell>
-                <TableCell className="browser-head" align="right">
-                  Volume
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows?.map((row) => (
-                <TableRow key={row?.name}>
-                  <TableCell component="th" scope="row">
-                    <NavLink
-                      className="browser-link"
-                      to={`/coinDetail/${row.name}`}
-                    >
-                      {row.name}
-                    </NavLink>
+  if (rows) {
+    table = (
+      <div className="portfolio-body">
+        <div className="table-container">
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell className="browser-head">Name</TableCell>
+                  <TableCell className="browser-head" align="right">
+                    Price
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {"$" + row.price.toFixed(2)}
+                  <TableCell className="browser-head" align="right">
+                    Balance
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {"%" + row.dailychange.toFixed(2)}
+                  <TableCell className="browser-head" align="right">
+                    Performance
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {formatCash(row?.volume)}
-                  </TableCell>
-                  <TableCell align="right" className="browser-data">
-                    {formatCash(row?.marketCap)}
+                  <TableCell className="browser-head" align="right">
+                    Allocation
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {rows?.map((row) => (
+                  <TableRow key={row?.name}>
+                    <TableCell component="th" scope="row">
+                      <NavLink
+                        className="browser-link"
+                        to={`/coinDetail/${row.ticker}`}
+                      >
+                        {row.name}
+                      </NavLink>
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {row.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {row.balance.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {row?.performance.toFixed(2) + "%"}
+                    </TableCell>
+                    <TableCell align="right" className="browser-data">
+                      {formatCash(row?.allocation.toFixed(2)) + "%"}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
-    </div>
-  )
-} else {
-  table = (
-    <div></div>
-  )
-}
+    );
+  } else {
+    table = <div></div>;
+  }
 
-
-return (
-  <>
-    {table}
-  </>
-);
+  return(
+        <div>
+          {/* <div className="graphDiv">
+            <LineChart
+            width={730}
+            height={400}
+            data={graphStatus}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <YAxis domain={["auto", "auto"]} />
+              <Tooltip />
+              <Legend />
+              <Line type="linear" dataKey="price" stroke="#8884d8" />
+            </LineChart>
+            <div>
+              <button onClick={() => (graphStatusSetter('24'))}>24Hr</button>
+              <button onClick={() => (graphStatusSetter('7'))}>7 Days</button>
+              <button onClick={() => (graphStatusSetter('30'))}>30 days</button>
+              <button onClick={() => (graphStatusSetter('300'))}>300 days</button>
+            </div>
+          </div> */}
+          {table}
+        </div>
+       )
 }
