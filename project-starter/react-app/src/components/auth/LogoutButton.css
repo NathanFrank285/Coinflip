@@ -1,4 +1,4 @@
-.logout-button {
+/* .logout-button {
     font-size: 3.5vh;
     background-color: #282846;
     color: #fdf6f6;
@@ -6,8 +6,6 @@
     border-radius: 8px;
     box-sizing: border-box;
     padding: 4px;
-    /* margin: 14px; */
-    /* margin-top: 25px; */
     box-shadow: 2px 2px 0px 0px #1b1a17;
     height: 5vh;
     width: 8vw;
@@ -16,4 +14,14 @@
 .logout-button:hover {
     box-shadow: 2px 2px 0px 2px #1b1a17;
 
+} */
+
+.logout-image {
+    height: 10vh;
+    width: 8vw;
+}
+
+.logout-image:hover {
+    height: 11vh;
+    width: 9vw;
 }
