@@ -25,7 +25,7 @@ const CoinDetail = () => {
   const badSearch = useSelector(state => state?.coinDetail?.search)
   const [portfolioClicked, setPortfolioClicked] = useState('')
   const [watchlistStatus, setWatchlistStatus] = useState("");
-  const [graphStatus, setGraphStatus] = useState(chartData24Hr);
+  const [graphStatus, setGraphStatus] = useState('');
   const [quantity, setQuantity] = useState(0)
   const [inPortfolio, setInPortfolio] = useState('')
 
