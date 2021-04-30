@@ -8,7 +8,6 @@ import './Watchlist.css'
 const WatchList = () => {
     const dispatch = useDispatch()
     const watchlist = useSelector(state => state?.watchlist?.watchlist)
-    const state = useSelector(state => state)
     useEffect(() => {
       dispatch(getWatchListThunk());
     }, [watchlist?.length]);
@@ -35,7 +34,7 @@ return (
         <ul>
         {coins?.map((coin)=>{
             return (
-                <li  key={coin[0]}><WatchListItem coin={coin} /></li>
+                <li className="watchlist-Li"  key={coin[0]}><WatchListItem coin={coin} /></li>
             )
         })}
 

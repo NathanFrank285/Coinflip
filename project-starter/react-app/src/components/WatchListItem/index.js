@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, } from 'react'
 import { useDispatch } from 'react-redux'
 import {deleteFromWatchlist} from '../../store/watchlist'
-
+import './WatchListItem.css'
 
 
 const WatchListItem = ({ coin }) => {
@@ -41,7 +41,7 @@ dispatch(deleteFromWatchlist(e.target.id));
             {formatCash(coin[4])}
           </li>
         </ul>
-        <button id={coin[0]} onClick={removeFromWatchlist}>delete</button>
+        <button className='deleteFromWatchlist' id={coin[0]} onClick={removeFromWatchlist}>delete</button>
       </div>
     );
 }
