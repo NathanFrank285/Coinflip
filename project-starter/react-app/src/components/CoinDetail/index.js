@@ -98,7 +98,10 @@ const CoinDetail = () => {
         {!inPortfolio && !portfolio[`${name}`] ?
           <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
           :
-          <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+          <>
+            <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add More to Portfolio </button>
+            <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+          </>
         }
 
       </>
@@ -164,7 +167,7 @@ const CoinDetail = () => {
         {portfolioClicked ? <form onSubmit={addToPortfolioSubmit}>
 
           <label for='quantity'>Quantity in coins</label>
-          <input onChange={(e) => setQuantity(e.target.value)} name='quantity' type='number'></input>
+          <input onChange={(e) => setQuantity(e.target.value)} name='quantity' type='number' step='0.0000000001'></input>
           <button type='submit'>Add to Portfolio</button>
         </form> :
           <div className="graph-buttons-container">

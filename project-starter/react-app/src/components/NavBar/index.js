@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import SearchBar from '../Searchbar'
-import DarkLogo from "../../images/DarkLogo.png";
+import YellowLogo from "../../images/YellowLogo.png";
 import './NavBar.css'
 
 const NavBar = () => {
@@ -11,7 +11,7 @@ const NavBar = () => {
       <div className="nav-flex-container">
         <div className='nav-logo-container'>
           <NavLink to="/portfolio" className="nav-home" exact={true} activeClassName="active">
-            <img className='nav-logo' src={DarkLogo} alt='logo' />
+            <img className='nav-logo' src={YellowLogo} alt='logo' />
           </NavLink>
         </div>
         <div>

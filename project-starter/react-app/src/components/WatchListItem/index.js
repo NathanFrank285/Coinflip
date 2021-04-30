@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, } from 'react'
 import { useDispatch } from 'react-redux'
 import {deleteFromWatchlist} from '../../store/watchlist'
-
+import './WatchListItem.css'
 
 
 const WatchListItem = ({ coin }) => {
@@ -27,21 +27,30 @@ dispatch(deleteFromWatchlist(e.target.id));
     return (
       <div className="watchlist-box">
         <ul>
-          <li>{`${coin[0].capitalize()}: ${coin[2].toLocaleString("en-US", {
+          <li className="watchlistLi">{`${coin[0].capitalize()}: ${coin[2].toLocaleString(
+            "en-US",
+            {
               style: "currency",
               currency: "USD",
-            })}`}</li>
-          <li>
+            }
+          )}`}</li>
+          <li className="watchlistLi">
             Market Cap:{" $"}
             {formatCash(coin[5])}
           </li>
-          <li>24 hour change: {coin[3].toFixed(2)}%</li>
-          <li>
+          <li className="watchlistLi">24 hour change: {coin[3].toFixed(2)}%</li>
+          <li className="watchlistLi">
             24 hour volume:{" $"}
             {formatCash(coin[4])}
           </li>
         </ul>
-        <button id={coin[0]} onClick={removeFromWatchlist}>delete</button>
+        <button
+          className="deleteFromWatchlist"
+          id={coin[0]}
+          onClick={removeFromWatchlist}
+        >
+          Delete
+        </button>
       </div>
     );
 }

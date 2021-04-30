@@ -25,20 +25,30 @@ export default function CoinBrowser() {
 
     const useStyles = makeStyles({
       table: {
-        minWidth: 600,
-        maxWidth: 1200,
-        maxHeight: 700,
+        minWidth: 'auto',
+        maxWidth: 'auto',
         backgroundColor: "#e1fcf9",
         fontFamily: 'inherit'
       },
       header: {
         fontFamily: 'inherit',
-        fontSize: 45,
+        fontSize: 30,
         fontWeight: 600,
       },
       dataName: {
         fontFamily: 'inherit',
-      }
+        fontSize: 26,
+      },
+      dataPoints: {
+        fontFamily: 'inherit',
+        fontSize: 22,
+      },
+      positive: {
+        color: "green",
+      },
+      negative: {
+        color: "red",
+      },
     });
     console.log('does this work.....? fuck it.')
     const classes = useStyles();
@@ -101,22 +111,37 @@ export default function CoinBrowser() {
                 <TableRow key={row?.name}>
                   <TableCell component="th" scope="row">
                     <NavLink
-                      className="browser-link"
+                      className={"browser-link"}
                       to={`/coinDetail/${row.ticker}`}
                     >
                       {row.name}
                     </NavLink>
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
+                  <TableCell align="right" className={classes.dataPoints}>
                     {"$" + row?.price.toFixed(2)}
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
+                  {row?.change > 0 ? (
+                    <TableCell
+                      align="right"
+                      className={`${classes.dataPoints} ${classes.positive}`}
+                    >
+                      {"+" + row?.change.toFixed(2) + "%"}
+                    </TableCell>
+                  ) : (
+                    <TableCell
+                      align="right"
+                      className={`${classes.dataPoints} ${classes.negative}`}
+                    >
+                      {row?.change.toFixed(2) + "%"}
+                    </TableCell>
+                  )}
+                  {/* <TableCell align="right" className="browser-data">
                     {row?.change.toFixed(2) + "%"}
-                  </TableCell>
-                  <TableCell align="right" className="browser-data">
+                  </TableCell> */}
+                  <TableCell align="right" className={classes.dataPoints}>
                     {formatCash(row?.volume)}
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
+                  <TableCell align="right" className={classes.dataPoints}>
                     {formatCash(row?.marketCap)}
                   </TableCell>
                 </TableRow>
