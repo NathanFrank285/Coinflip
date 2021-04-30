@@ -39,6 +39,10 @@ export default function CoinBrowser() {
         fontFamily: 'inherit',
         fontSize: 26,
       },
+      dataPoints: {
+        fontFamily: 'inherit',
+        fontSize: 22,
+      },
       positive: {
         color: "green",
       },
@@ -113,24 +117,31 @@ export default function CoinBrowser() {
                       {row.name}
                     </NavLink>
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
+                  <TableCell align="right" className={classes.dataPoints}>
                     {"$" + row?.price.toFixed(2)}
                   </TableCell>
-                  {row?.change > 0 ?
-                  <TableCell align="right" className={`browser-data ${classes.positive}`}>
-                    {'+' + row?.change.toFixed(2) + '%'}
-                  </TableCell>:
-                  <TableCell align="right" className={`browser-data ${classes.negative}`}>
-                    {row?.change.toFixed(2) + "%"}
-                  </TableCell>
-                }
+                  {row?.change > 0 ? (
+                    <TableCell
+                      align="right"
+                      className={`${classes.dataPoints} ${classes.positive}`}
+                    >
+                      {"+" + row?.change.toFixed(2) + "%"}
+                    </TableCell>
+                  ) : (
+                    <TableCell
+                      align="right"
+                      className={`${classes.dataPoints} ${classes.negative}`}
+                    >
+                      {row?.change.toFixed(2) + "%"}
+                    </TableCell>
+                  )}
                   {/* <TableCell align="right" className="browser-data">
                     {row?.change.toFixed(2) + "%"}
                   </TableCell> */}
-                  <TableCell align="right" className="browser-data">
+                  <TableCell align="right" className={classes.dataPoints}>
                     {formatCash(row?.volume)}
                   </TableCell>
-                  <TableCell align="right" className="browser-data">
+                  <TableCell align="right" className={classes.dataPoints}>
                     {formatCash(row?.marketCap)}
                   </TableCell>
                 </TableRow>
