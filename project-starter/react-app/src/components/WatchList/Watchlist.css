@@ -1,6 +1,6 @@
 .watchlistContainer{
   border: 1px solid white;
-  width: 33%;
-  position: absolute;
-  right: 0px;
+  width: 100%;
+  /* position: absolute; */
+  /* right: 0px; */
 }
