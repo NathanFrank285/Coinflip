@@ -12,8 +12,7 @@ body {
 }
 
 .table-container {
-    max-width: fit-content; 
-    opacity: 1; 
+    max-width: 50vw; 
 }
 
 .browser-head {
@@ -22,13 +21,14 @@ body {
 
 .browser-link {
     text-decoration: none;
-    font-size: 30px;
-    color: #1b1a17
+    font-size: 26px;
+    color: #1b1a17;
+    font-family: inherit;
 }
 
 .browser-link:hover {
     text-decoration: underline;
-    font-size: 32px;
+    font-size: 28px;
 }
 
 .browser-link:visited {
