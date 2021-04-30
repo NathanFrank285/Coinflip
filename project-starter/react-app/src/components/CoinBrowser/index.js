@@ -32,15 +32,14 @@ export default function CoinBrowser() {
     });
 
     const classes = useStyles();
-    // String.prototype.capitalize = function () {
-    //   return this.charAt(0).toUpperCase() + this.slice(1);
-    // };
     
+    String.prototype.capitalize = function () {
+      return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+    function createData(name, price, change, volume, marketCap, ticker) {
+        return { name, price, change, volume, marketCap,ticker };
+    }
 
-    // const capitalize = (s) => {
-    //   if (typeof s !== "string") return "";
-    //   return s.charAt(0).toUpperCase() + s.slice(1);
-    // };
     const formatCash = (n) => {
       if (n < 1e3) return n;
       if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
@@ -58,11 +57,12 @@ export default function CoinBrowser() {
     const rows = coinBrowser?.map(coin => {
         const name = Object.keys(coin)
         return createData(
-          name,
+          coin[`${name}`].Name,
           coin[`${name[0]}`].usd,
           coin[`${name[0]}`].usd_24h_change,
           coin[`${name[0]}`].usd_24h_vol,
-          coin[`${name[0]}`].usd_market_cap
+          coin[`${name[0]}`].usd_market_cap,
+          name
         );
     })
     // usd: 54816, usd_24h_change: 0.2844488253537837, usd_24h_vol: 46893571860.279526, usd_market_cap: 1024712665930.4342}
@@ -96,7 +96,7 @@ export default function CoinBrowser() {
                   <TableCell component="th" scope="row">
                     <NavLink
                       className="browser-link"
-                      to={`/coinDetail/${row.name}`}
+                      to={`/coinDetail/${row.ticker}`}
                     >
                       {row.name}
                     </NavLink>
