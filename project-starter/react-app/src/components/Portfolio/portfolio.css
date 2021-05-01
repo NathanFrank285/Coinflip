@@ -21,10 +21,15 @@
 
 .watch-div {
   grid-column: 2;
-  height: 80%;
+  height: 90%;
   overflow-y: auto;
+  margin-top: 5%;
 }
 
 ::-webkit-scrollbar {
   width: 0px
+  }
+
+  h1 {
+    grid-column: 2;
   }

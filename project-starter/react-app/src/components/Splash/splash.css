@@ -1,7 +1,7 @@
-body{
+/* body{
     background-color: #1b1a17 !important;
     background-image: none;
-}
+} */
 .splash-body {
     display: grid;
     grid-template-rows: 225px 225px 550px;
