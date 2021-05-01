@@ -1,7 +1,9 @@
 .port-page {
   display: grid;
-  grid-template-rows: 1fr 4fr;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 20% 80%;
+  grid-template-columns: 1fr 6fr 1fr;
+  column-gap: 10px;
+  height: 70vh;
 }
 
 .port-container {
@@ -13,8 +15,21 @@
 
 .port-table {
   grid-column: 1;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .watch-div {
   grid-column: 2;
+  height: 90%;
+  overflow-y: auto;
+  margin-top: 5%;
 }
+
+::-webkit-scrollbar {
+  width: 0px
+  }
+
+  h1 {
+    grid-column: 2;
+  }

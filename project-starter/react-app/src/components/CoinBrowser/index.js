@@ -52,7 +52,7 @@ export default function CoinBrowser() {
     });
     console.log('does this work.....? fuck it.')
     const classes = useStyles();
-    
+
     String.prototype.capitalize = function () {
       return this.charAt(0).toUpperCase() + this.slice(1);
     };
@@ -69,7 +69,7 @@ export default function CoinBrowser() {
     };
 
 
-        
+
     const rows = coinBrowser?.map(coin => {
         const name = Object.keys(coin)
         return createData(
@@ -82,8 +82,8 @@ export default function CoinBrowser() {
         );
     })
     // usd: 54816, usd_24h_change: 0.2844488253537837, usd_24h_vol: 46893571860.279526, usd_market_cap: 1024712665930.4342}
-  
-  
+
+
   return (
     <div className="coinBrowser-body">
       <div className="table-container">
