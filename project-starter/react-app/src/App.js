@@ -12,6 +12,7 @@ import WatchList from "./components/WatchList"
 import CoinDetail from "./components/CoinDetail"
 import SearchList from "./components/SearchList"
 import CoinBrowser from "./components/CoinBrowser"
+import Footer from "./components/Footer"
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
 // import { authenticate } from "./services/auth";
@@ -36,6 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* <NavBar /> */}
+      {/* <Footer /> */}
       <Switch>
         <Route path="/" exact={true}>
           <Splash />
@@ -43,33 +45,22 @@ function App() {
         <ProtectedRoute path="/portfolio">
           <NavBar />
           <Portfolio />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path="/searchList">
           <NavBar />
           <SearchList />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path="/coinBrowser">
           <NavBar />
           <CoinBrowser />
+          <Footer />
         </ProtectedRoute>
-        {/* <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route> */}
-        {/* <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
-        </ProtectedRoute> */}
         <ProtectedRoute path="/coindetail/:name">
           <NavBar />
           <CoinDetail />
+          <Footer />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
