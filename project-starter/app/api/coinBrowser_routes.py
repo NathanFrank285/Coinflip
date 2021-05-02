@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import db, Coin
 from flask_login import login_required
 from pycoingecko import CoinGeckoAPI
+import time
 
 cg = CoinGeckoAPI()
 coinBrowser_routes = Blueprint('coinBrowser', __name__)

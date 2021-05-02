@@ -118,4 +118,7 @@ def index(ticker):
     data = cg.get_coin_by_id(ticker)
     inWatchlist = inUsersWatchlist(id, coinExist.id)
     # return {'coin': data, 'prices': historic_prices}
+    coinsList = cg.get_coins_list()
+    print(coinsList)
+
     return {'coin': data, 'prices24hr': historic_prices24, 'prices7days': historic_prices7, 'prices30': historic_prices30, 'prices300': historic_prices300, 'inWatchlist': inWatchlist}

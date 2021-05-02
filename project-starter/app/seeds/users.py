@@ -1,8 +1,11 @@
 # from werkzeug.security import generate_password_hash
 from app.models import db, User, Coin, Portfolio, Watchlist, Trade
-
+from pycoingecko import CoinGeckoAPI
+cg = CoinGeckoAPI()
 
 # Adds a demo user, you can add other users here if you want
+
+
 def seed_users():
 
     demo = User(username='Demo', email='demo@aa.io',
@@ -27,9 +30,20 @@ def seed_coins():
     ripple = Coin(name='Ripple', ticker='ripple')
     usdCoin = Coin(name='USD Coin', ticker='usd-coin')
 
-    coins = [bitcoin, ethereum, dogecoin, basicAttentionToken, litecoin, cardano, polkadot, bitcoinCash, stellar, tether, monero, ripple, usdCoin]
+    coins = [bitcoin, ethereum, dogecoin, basicAttentionToken, litecoin,
+             cardano, polkadot, bitcoinCash, stellar, tether, monero, ripple, usdCoin]
     for coin in coins:
         db.session.add(coin)
+    # coinsList = cg.get_coins_list()
+    # counter = 13
+    # nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    # for coin in coinsList:
+    #     if coin['name'] and coin['id'] and counter < 50:
+    #         newCoin = Coin(name=coin['name'], ticker=coin['id'])
+    #     db.session.add(newCoin)
+    #     counter += 1
+
+    # print(coins)
     db.session.commit()
 
 
@@ -48,8 +62,15 @@ def seed_watchlist():
     demo5 = Watchlist(userId=1, coinId=5)
     demo6 = Watchlist(userId=1, coinId=6)
     demo7 = Watchlist(userId=1, coinId=7)
+    demo8 = Watchlist(userId=1, coinId=8)
+    demo9 = Watchlist(userId=1, coinId=9)
+    demo10 = Watchlist(userId=1, coinId=10)
+    demo11 = Watchlist(userId=1, coinId=11)
+    demo12 = Watchlist(userId=1, coinId=12)
+    demo13 = Watchlist(userId=1, coinId=13)
 
-    demos = [demo1, demo2, demo3, demo4, demo5, demo6, demo7]
+    demos = [demo1, demo2, demo3, demo4, demo5, demo6,
+             demo7, demo8, demo9, demo10, demo11, demo12, demo13]
     db.session.add_all(demos)
     db.session.commit()
 
