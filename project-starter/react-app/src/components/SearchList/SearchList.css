@@ -1,7 +1,8 @@
 .searchlist-body {
     display: flex;
     /* justify-content: center; */
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
     width: 900px;
     height: 900px;
     overflow: hidden;
