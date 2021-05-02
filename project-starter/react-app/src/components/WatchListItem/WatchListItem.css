@@ -19,6 +19,21 @@
   box-sizing: border-box;
   margin: 4px 0px;
 }
+.watch-link {
+  text-decoration: none;
+  font-size: 2vh;
+  color: #fdf6f6;
+  font-family: inherit;
+}
+
+.watch-link:hover {
+  text-decoration: underline;
+  font-size: 2.1vh;
+}
+
+.watch-link:visited {
+  color:  #fdf6f6;
+}
 
 .watchlist-box {
   border-bottom: 1px solid white;
@@ -28,4 +43,12 @@
   /* margin: 4px; */
   /* margin-left: 50px; */
   width: 100%;
+}
+
+.red{
+  color: red;
+}
+
+.green {
+  color: green;
 }
