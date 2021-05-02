@@ -11,7 +11,7 @@ const Splash = () => {
   const [email, setEmail] = useState('demo@aa.io')
   const [password, setPassword] = useState('password')
 
-  const loginDemoUser = async() =>{
+  const loginDemoUser = async () => {
     return await dispatch(login(email, password))
   }
 

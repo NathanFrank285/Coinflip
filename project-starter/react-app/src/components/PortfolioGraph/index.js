@@ -48,6 +48,7 @@ export default function PortfolioGraph() {
       fontFamily: "inherit",
       fontSize: 30,
       fontWeight: 600,
+
     },
     dataName: {
       fontFamily: "inherit",
@@ -109,7 +110,7 @@ export default function PortfolioGraph() {
         coin.coinData.usd,
         coin.Quantity * coin.coinData.usd,
         (coin.coinData.usd / coin.AveragePrice - 1) * 100,
-        (((coin.Quantity * coin.coinData.usd)/totalPortfolio)*100),
+        (((coin.Quantity * coin.coinData.usd) / totalPortfolio) * 100),
         coin.Ticker
       );
     });
@@ -118,82 +119,85 @@ export default function PortfolioGraph() {
   if (rows) {
     table = (
       // <div className="portfolio-body">
-        // <div className="table-container">
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell className={classes.header}>Name</TableCell>
-                  <TableCell className={classes.header} align="right">
-                    Price
+      // <div className="table-container">
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.header}>Portfolio:</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className={classes.header}>Name</TableCell>
+              <TableCell className={classes.header} align="right">
+                Price
                   </TableCell>
-                  <TableCell className={classes.header} align="right">
-                    Balance
+              <TableCell className={classes.header} align="right">
+                Balance
                   </TableCell>
-                  <TableCell className={classes.header} align="right">
-                    Performance
+              <TableCell className={classes.header} align="right">
+                Performance
                   </TableCell>
-                  <TableCell className={classes.header} align="right">
-                    Allocation
+              <TableCell className={classes.header} align="right">
+                Allocation
                   </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows?.map((row) => (
-                  <TableRow key={row?.name}>
-                    <TableCell component="th" scope="row">
-                      <NavLink
-                        className={"browser-link"}
-                        to={`/coinDetail/${row.ticker}`}
-                      >
-                        {row.name}
-                      </NavLink>
-                    </TableCell>
-                    <TableCell align="right" className={classes.dataPoints}>
-                      {row.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      })}
-                    </TableCell>
-                    <TableCell align="right" className={classes.dataPoints}>
-                      {row.balance.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      })}
-                    </TableCell>
-                    {row?.performance >= 0 ? (
-                      <TableCell
-                        align="right"
-                        className={`${classes.dataPoints} ${classes.positive}`}
-                      >
-                        {row?.performance.toFixed(2) + "%"}
-                      </TableCell>
-                    ) : (
-                      <TableCell
-                        align="right"
-                        className={`${classes.dataPoints} ${classes.negative}`}
-                      >
-                        {row?.performance.toFixed(2) + "%"}
-                      </TableCell>
-                    )}
-                    <TableCell align="right" className={classes.dataPoints}>
-                      {formatCash(row?.allocation.toFixed(2)) + "%"}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        // </div>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows?.map((row) => (
+              <TableRow key={row?.name}>
+                <TableCell component="th" scope="row">
+                  <NavLink
+                    className={"browser-link"}
+                    to={`/coinDetail/${row.ticker}`}
+                  >
+                    {row.name}
+                  </NavLink>
+                </TableCell>
+                <TableCell align="right" className={classes.dataPoints}>
+                  {row.price.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </TableCell>
+                <TableCell align="right" className={classes.dataPoints}>
+                  {row.balance.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </TableCell>
+                {row?.performance >= 0 ? (
+                  <TableCell
+                    align="right"
+                    className={`${classes.dataPoints} ${classes.positive}`}
+                  >
+                    {row?.performance.toFixed(2) + "%"}
+                  </TableCell>
+                ) : (
+                  <TableCell
+                    align="right"
+                    className={`${classes.dataPoints} ${classes.negative}`}
+                  >
+                    {row?.performance.toFixed(2) + "%"}
+                  </TableCell>
+                )}
+                <TableCell align="right" className={classes.dataPoints}>
+                  {formatCash(row?.allocation.toFixed(2)) + "%"}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      // </div>
       // </div>
     );
   } else {
     table = <div></div>;
   }
 
-  return(
-        <div>
-          {/* <div className="graphDiv">
+  return (
+    <div>
+      {/* <div className="graphDiv">
             <LineChart
             width={730}
             height={400}
@@ -212,7 +216,7 @@ export default function PortfolioGraph() {
               <button onClick={() => (graphStatusSetter('300'))}>300 days</button>
             </div>
           </div> */}
-          {table}
-        </div>
-       )
+      {table}
+    </div>
+  )
 }
