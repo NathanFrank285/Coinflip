@@ -31,14 +31,14 @@ let content = watchlist?.map(item => {
 
 return (
     <div className="watchlistContainer">
-        <ul className="watchlistUlContainer">
+        <div className="watchlistUlContainer">
         {coins?.map((coin)=>{
             return (
-                <li className="watchlist-Li"  key={coin[0]}><WatchListItem coin={coin} /></li>
+                <div className="watchlist-Li"  key={coin[0]}><WatchListItem coin={coin} /></div>
             )
         })}
 
-        </ul>
+        </div>
     </div>
 )
 }

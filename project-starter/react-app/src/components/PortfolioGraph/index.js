@@ -11,15 +11,15 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-} from "recharts";
+// import {
+//   LineChart,
+//   Line,
+//   CartesianGrid,
+//   XAxis,
+//   YAxis,
+//   Tooltip,
+//   Legend,
+// } from "recharts";
 import "./PortfolioGraph.css";
 
 
@@ -39,8 +39,29 @@ export default function PortfolioGraph() {
 
   const useStyles = makeStyles({
     table: {
-      minWidth: 650,
-      maxWidth: 1200,
+      minWidth: 800,
+      maxWidth: "auto",
+      backgroundColor: "#e1fcf9",
+      fontFamily: "inherit",
+    },
+    header: {
+      fontFamily: "inherit",
+      fontSize: 30,
+      fontWeight: 600,
+    },
+    dataName: {
+      fontFamily: "inherit",
+      fontSize: 26,
+    },
+    dataPoints: {
+      fontFamily: "inherit",
+      fontSize: 22,
+    },
+    positive: {
+      color: "green",
+    },
+    negative: {
+      color: "red",
     },
   });
 
@@ -96,23 +117,23 @@ export default function PortfolioGraph() {
 
   if (rows) {
     table = (
-      <div className="portfolio-body">
-        <div className="table-container">
+      // <div className="portfolio-body">
+        // <div className="table-container">
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell className="browser-head">Name</TableCell>
-                  <TableCell className="browser-head" align="right">
+                  <TableCell className={classes.header}>Name</TableCell>
+                  <TableCell className={classes.header} align="right">
                     Price
                   </TableCell>
-                  <TableCell className="browser-head" align="right">
+                  <TableCell className={classes.header} align="right">
                     Balance
                   </TableCell>
-                  <TableCell className="browser-head" align="right">
+                  <TableCell className={classes.header} align="right">
                     Performance
                   </TableCell>
-                  <TableCell className="browser-head" align="right">
+                  <TableCell className={classes.header} align="right">
                     Allocation
                   </TableCell>
                 </TableRow>
@@ -122,28 +143,40 @@ export default function PortfolioGraph() {
                   <TableRow key={row?.name}>
                     <TableCell component="th" scope="row">
                       <NavLink
-                        className="browser-link"
+                        className={"browser-link"}
                         to={`/coinDetail/${row.ticker}`}
                       >
                         {row.name}
                       </NavLink>
                     </TableCell>
-                    <TableCell align="right" className="browser-data">
+                    <TableCell align="right" className={classes.dataPoints}>
                       {row.price.toLocaleString("en-US", {
                         style: "currency",
                         currency: "USD",
                       })}
                     </TableCell>
-                    <TableCell align="right" className="browser-data">
+                    <TableCell align="right" className={classes.dataPoints}>
                       {row.balance.toLocaleString("en-US", {
                         style: "currency",
                         currency: "USD",
                       })}
                     </TableCell>
-                    <TableCell align="right" className="browser-data">
-                      {row?.performance.toFixed(2) + "%"}
-                    </TableCell>
-                    <TableCell align="right" className="browser-data">
+                    {row?.performance >= 0 ? (
+                      <TableCell
+                        align="right"
+                        className={`${classes.dataPoints} ${classes.positive}`}
+                      >
+                        {row?.performance.toFixed(2) + "%"}
+                      </TableCell>
+                    ) : (
+                      <TableCell
+                        align="right"
+                        className={`${classes.dataPoints} ${classes.negative}`}
+                      >
+                        {row?.performance.toFixed(2) + "%"}
+                      </TableCell>
+                    )}
+                    <TableCell align="right" className={classes.dataPoints}>
                       {formatCash(row?.allocation.toFixed(2)) + "%"}
                     </TableCell>
                   </TableRow>
@@ -151,8 +184,8 @@ export default function PortfolioGraph() {
               </TableBody>
             </Table>
           </TableContainer>
-        </div>
-      </div>
+        // </div>
+      // </div>
     );
   } else {
     table = <div></div>;

@@ -1,8 +1,8 @@
 .port-page {
   display: grid;
   grid-template-rows: 20% 80%;
-  grid-template-columns: 1fr 6fr 1fr;
-  column-gap: 10px;
+  grid-template-columns: 5vw 90vw;
+  /* column-gap: 10px; */
   height: 70vh;
 }
 
@@ -10,26 +10,44 @@
   display: grid;
   grid-row: 2;
   grid-column: 2;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 4.5fr 1.5fr;
+  height: 100%;
 }
 
 .port-table {
   grid-column: 1;
   overflow-y: scroll;
-  height: 100%;
+  /* height: 100%; */
+  width: 100%;
 }
 
 .watch-div {
   grid-column: 2;
-  height: 90%;
+  height: 100%;
+  width: 100%;
   overflow-y: auto;
-  margin-top: 5%;
+  border: 3px solid snow;
+  border-radius: 4px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* margin-top: 5%; */
+}
+
+.watchlist-title {
+  font-size: 5vh;
+  box-sizing: border-box;
+  margin: 1vh
 }
 
 ::-webkit-scrollbar {
   width: 0px
   }
 
-  h1 {
+.port-balance {
     grid-column: 2;
+    font-size: 7vh;
+    font-family: inherit;
   }

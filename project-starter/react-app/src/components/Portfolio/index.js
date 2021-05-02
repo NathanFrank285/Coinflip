@@ -24,12 +24,13 @@ const Portfolio = () => {
   }
     return (
         <div className="port-page">
-            <h1>Total Balance: {total}</h1>
+            <h1 className='port-balance'>Total Balance: {total}</h1>
             <div className="port-container">
                 <div className="port-table">
                     <PortfolioGraph />
                 </div>
                 <div className="watch-div">
+                    <div className='watchlist-title'>WATCHLIST</div>
                     <WatchList />
                 </div>
             </div>

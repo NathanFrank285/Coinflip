@@ -26,24 +26,24 @@ dispatch(deleteFromWatchlist(e.target.id));
 
     return (
       <div className="watchlist-box">
-        <ul>
-          <li className="watchlistLi">{`${coin[0].capitalize()}: ${coin[2].toLocaleString(
+        <div>
+          <div className="watchlistLi">{`${coin[0].capitalize()}: ${coin[2].toLocaleString(
             "en-US",
             {
               style: "currency",
               currency: "USD",
             }
-          )}`}</li>
-          <li className="watchlistLi">
+          )}`}</div>
+          <div className="watchlistLi">
             Market Cap:{" $"}
             {formatCash(coin[5])}
-          </li>
-          <li className="watchlistLi">24 hour change: {coin[3].toFixed(2)}%</li>
-          <li className="watchlistLi">
+          </div>
+          <div className="watchlistLi">24 hour change: {coin[3].toFixed(2)}%</div>
+          <div className="watchlistLi">
             24 hour volume:{" $"}
             {formatCash(coin[4])}
-          </li>
-        </ul>
+          </div>
+        </div>
         <button
           className="deleteFromWatchlist"
           id={coin[0]}
