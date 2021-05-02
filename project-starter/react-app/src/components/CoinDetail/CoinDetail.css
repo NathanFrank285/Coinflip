@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin-top: 15px;
     display: grid;
-    grid-template-rows: 200px 400px 210px 1fr;
+    grid-template-rows: 20vh 50vh 25vh 1fr;
     grid-template-columns: 15% 70% 15%;
     grid-template-areas: 
         'left header right'
@@ -14,33 +14,28 @@
 
 
 .header{
-    /* border: 1px solid white; */
     box-sizing: border-box;
     padding: 20px;
     grid-area: header;
     display: grid;
-    grid-template-columns:  20% 20% 15% 25%;
-    grid-template-areas: ' side name image button';
+    grid-template-columns:  20% 60% 20%;
+    grid-template-areas: ' image name button';
 }
 .header-info-container {
     grid-area: name;
     display: flex;
     flex-direction: column;
 }
-/* .header-info-container div {
-    flex-basis: auto;
-} */
+
 .detail-coin-name {
-    font-size: 40px;
+    font-size: 7vh;
     font-weight: 600;
-    flex-shrink: 2;
-    
 }
 .detail-coin-symbol {
-    font-size: 30px;
+    font-size: 4vh;
     font-weight: 300;
     box-sizing: border-box;
-    flex-shrink: 1;
+    
 }
 .detail-coin-image-container {
     grid-area: image;
@@ -56,17 +51,18 @@
 }
 .detail-watchlist-button {
     font-size: 20px;
-    background-color: #a5e9e1;
+    /* background-color: #a5e9e1; */
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
     color: #1b1a17;
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
     padding: 4px;
-    box-shadow: 2px 2px 0px 0px #1b1a17; 
+    box-shadow: 2px 2px 0px 0px #a5e9e1 
 }
 .detail-watchlist-button:hover {
-    box-shadow: 2px 2px 0px 0px white;
-    font-size: 22px;
+    box-shadow: 2px 2px 2px 1px #a5e9e1;
+    /* font-size: 21px; */
 }
 
 
@@ -96,28 +92,26 @@
 }
 .graph-buttons {
     font-size: 20px;
-    background-color: #a5e9e1;
+    /* background-color: #a5e9e1; */
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
     color: #1b1a17;
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
     margin: 8px;
     padding: 4px;
-    box-shadow: 2px 2px 0px 0px #1b1a17;
+    box-shadow: 2px 2px 0px 0px #a5e9e1;
 }
 .graph-buttons:hover {
-    box-shadow: 2px 2px 0px 0px white;
-    font-size: 22px;
+    box-shadow: 2px 2px 2px 1px #a5e9e1;
+    font-size: 21px;
 }
 
 
 .market-detail{
-    /* border: 1px solid white; */
+    
     grid-area: detail;
-    font-size: 30px;
-    /* box-sizing: border-box;
-    padding: 8px;
-    padding-left: 300px; */
+    font-size: 3.9vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,7 +121,7 @@
     border: 1px solid white;
     border-radius: 4px;
     grid-area: description;
-    font-size: 18px;
+    font-size: 2.8vh;
     box-sizing: border-box;
     padding: 8px;
 }
@@ -136,4 +130,42 @@
     font-family: inherit;
     font-weight: 600;
     text-decoration: none;
+}
+
+.description a:hover {
+    text-decoration: underline;
+    font-size: 2.9vh;
+}
+
+
+
+
+
+.portfolio-add-label {
+    font-size: 4vh;
+}
+.portfolio-add-input {
+    font-size: 3vh;
+    height: 2.5vh;
+}
+.portfolio-add-input:focus {
+    outline: 0;
+}
+.portfolio-add-container {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.portfolio-add-container div {
+    box-sizing: border-box;
+    margin-top: 2vh;
+}
+
+.red {
+    color: red
+}
+
+.green {
+    color: green
 }

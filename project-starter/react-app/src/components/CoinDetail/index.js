@@ -83,6 +83,7 @@ const CoinDetail = () => {
     setInPortfolio(true)
     setPortfolioClicked(false)
     dispatch(addToPortfolio(data))
+    history.push('/portfolio')
   }
   const removeFromPortfolio = (e) => {
     dispatch(removeFromPortfolioThunk(name))
@@ -116,7 +117,7 @@ const CoinDetail = () => {
   return (
     <div className="price-detail-container">
       <div className="header">
-        <div className='header-info-container'>
+        <div className="header-info-container">
           <div className="detail-coin-name">{details?.name}</div>
           <div className="detail-coin-symbol">
             {details?.symbol.toUpperCase()}
@@ -146,58 +147,74 @@ const CoinDetail = () => {
         </div>
       </div>
       <div className="graph-div">
-        <div className='detail-graph'>
-          <ResponsiveContainer
-            width='100%'
-            height={400}
-          >
+        <div className="detail-graph">
+          <ResponsiveContainer width="100%" height={400}>
             <LineChart
-
               data={graphStatus ? graphStatus : chartData24Hr}
               margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
             >
               <YAxis domain={["auto", "auto"]} />
-              <XAxis type='category' dataKey='date' domain={['auto', 'auto']} />
+              <XAxis type="category" dataKey="date" domain={["auto", "auto"]} />
               <Tooltip />
 
-              <Line type="linear" dot={false} dataKey="price" stroke="#8884d8" />
+              <Line
+                type="linear"
+                dot={false}
+                dataKey="price"
+                stroke="#8884d8"
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
-        {portfolioClicked ? <form onSubmit={addToPortfolioSubmit}>
-
-          <label for='quantity'>Quantity in coins</label>
-          <input onChange={(e) => setQuantity(e.target.value)} name='quantity' type='number' step='0.0000000001'></input>
-          <button type='submit'>Add to Portfolio</button>
-        </form> :
+        {portfolioClicked ? (
+          <form onSubmit={addToPortfolioSubmit}>
+            <div className='portfolio-add-container'>
+              <div>
+                <label className='portfolio-add-label' for="quantity">Quantity in coins</label>
+              </div>
+              <div>
+                <input
+                onChange={(e) => setQuantity(e.target.value)}
+                name="quantity"
+                type="number"
+                step="0.0000000001"
+                className='portfolio-add-input'
+              ></input>
+              </div>
+              <div>
+                <button type="submit" className='graph-buttons'>Add to Portfolio</button>
+              </div>
+            </div>
+          </form>
+        ) : (
           <div className="graph-buttons-container">
             <button
               className="graph-buttons"
               onClick={() => graphStatusSetter("24")}
             >
               24Hr
-        </button>
+            </button>
             <button
               className="graph-buttons"
               onClick={() => graphStatusSetter("7")}
             >
               7 Days
-        </button>
+            </button>
             <button
               className="graph-buttons"
               onClick={() => graphStatusSetter("30")}
             >
               30 days
-        </button>
-            <button
+            </button>
+            {/* <button
               className="graph-buttons"
               onClick={() => graphStatusSetter("300")}
             >
               300 days
-        </button>
+        </button> */}
             {portfolioButtonStuff}
           </div>
-        }
+        )}
       </div>
       <div className="market-detail">
         <div>
@@ -213,10 +230,19 @@ const CoinDetail = () => {
         <div>
           Market Cap : {formatCash(details?.market_data?.market_cap.usd)}
         </div>
-        <div>
+        {details?.market_data?.price_change_percentage_24h >= 0 ? (
+           <div>
           24Hr Change:{" "}
-          {details?.market_data?.price_change_percentage_24h.toFixed(2)}%
+          <span className='green'>{details?.market_data?.price_change_percentage_24h.toFixed(2)}%</span>
+          
         </div>
+        ) : (
+           <div>
+          24Hr Change:{" "}
+          <span className='red'>{details?.market_data?.price_change_percentage_24h.toFixed(2)}%</span>
+          
+        </div>
+        )}
         <div>
           Total Volume: {formatCash(details?.market_data?.total_volume.usd)}
         </div>
