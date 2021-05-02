@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, } from 'react'
 import { useDispatch } from 'react-redux'
 import {deleteFromWatchlist} from '../../store/watchlist'
+import { NavLink, Link } from 'react-router-dom'
 import './WatchListItem.css'
 
 
@@ -24,21 +25,27 @@ const removeFromWatchlist = (e) => {
 dispatch(deleteFromWatchlist(e.target.id));
 }
 
+
+
     return (
       <div className="watchlist-box">
         <div>
-          <div className="watchlistLi">{`${coin[0].capitalize()}: ${coin[2].toLocaleString(
+          <div className="watchlistLi"><NavLink className="watch-link" to={`/coinDetail/${coin[0]}`}>{coin[0].capitalize()}</NavLink>: {coin[2].toLocaleString(
             "en-US",
             {
               style: "currency",
               currency: "USD",
             }
-          )}`}</div>
+          )}</div>
           <div className="watchlistLi">
             Market Cap:{" $"}
             {formatCash(coin[5])}
           </div>
-          <div className="watchlistLi">24 hour change: {coin[3].toFixed(2)}%</div>
+          {coin[3] >= 0 ? (
+            <div className="watchlistLi">24 hour change: <span className="green">{coin[3].toFixed(2)}%</span></div>
+          ) : (
+            <div className="watchlistLi">24 hour change: <span className="red">{coin[3].toFixed(2)}%</span></div>
+          )}
           <div className="watchlistLi">
             24 hour volume:{" $"}
             {formatCash(coin[4])}
