@@ -23,7 +23,7 @@ const SearchList = () => {
     } else {
         searchListData =
             <>
-                <div className="bad-search">No Coins Returned Matching That Search.</div>
+                <div className="bad-search">No coins returned matching that search.</div>
 
             </>
     }
