@@ -5,12 +5,12 @@ import './SearchList.css'
 
 
 const SearchList = () => {
+    let searchListData;
     const searchList = useSelector(state => Object.values(state?.search))
-    console.log('list', searchList[0])
-    const renderSearch = searchList[0]?.map(coin => {
-        console.log("THIS!!!!:", coin)
-        return (
-            <div className='searchlist-item'  >
+    // console.log('list', searchList[0])
+    if (searchList[0]?.length) {
+        searchListData = searchList[0]?.map(coin => {
+            return (<div className='searchlist-item' key={coin.name}  >
                 <NavLink className='searchlist-link' to={`/coinDetail/${coin.ticker}`}>
                     <img className='search-image' src={coin.image}></img>
                     <div>{coin.name}</div>
@@ -18,12 +18,23 @@ const SearchList = () => {
                     <div>{coin.priceChange}</div>
                 </NavLink>
             </div>
-        )
-    })
+            )
+        })
+    } else {
+        searchListData =
+            <>
+                <div className="bad-search">No Coins Returned Matching That Search.</div>
+
+            </>
+    }
+
+    // console.log("THIS!!!!:", coin)
+
+
 
     return (
         <div className='searchlist-body'>
-            {renderSearch}
+            {searchListData}
         </div>
     )
 }
