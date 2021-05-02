@@ -1,0 +1,38 @@
+.footer-container {
+    width: 100%;
+    background-color: #fdf6f6 ;
+    color: black;
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.footer-name {
+    font-size: 2.5vh;
+    font-weight: 600;
+}
+
+.footer-links {
+    text-decoration: none;
+    color: black;
+    font-size: 2.2vh;
+}
+.footer-links:visited {
+    color: black;
+}
+.footer-links:hover {
+    text-decoration: underline;
+    font-size: 2.3vh;
+}
