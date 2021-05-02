@@ -1,7 +1,8 @@
 .searchlist-body {
     display: flex;
     /* justify-content: center; */
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
     width: 900px;
     height: 900px;
     overflow: hidden;
@@ -67,5 +68,6 @@
     color: #1b1a17;
 } */
 .bad-search {
-    font-size: 30px;
+    font-size: 50px;
+
 }
