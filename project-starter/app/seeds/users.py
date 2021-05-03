@@ -48,9 +48,19 @@ def seed_coins():
 
 
 def seed_portfolio():
-    demo = Portfolio(userId=1, coinId=1, quantity=5, averagePrice=50000)
+    demo1 = Portfolio(userId=1, coinId=1, quantity=5, averagePrice=50000)
+    demo2 = Portfolio(userId=1, coinId=2, quantity=4, averagePrice=2950)
+    demo3 = Portfolio(userId=1, coinId=3, quantity=1000, averagePrice=0.39)
+    demo4 = Portfolio(userId=1, coinId=4, quantity=500, averagePrice=1.25)
+    demo5 = Portfolio(userId=1, coinId=5, quantity=1.123432, averagePrice=269)
+    demo6 = Portfolio(userId=1, coinId=6, quantity=5000, averagePrice=1.33)
 
-    db.session.add(demo)
+    db.session.add(demo1)
+    db.session.add(demo2)
+    db.session.add(demo3)
+    db.session.add(demo4)
+    db.session.add(demo5)
+    db.session.add(demo6)
     db.session.commit()
 
 
@@ -65,12 +75,9 @@ def seed_watchlist():
     demo8 = Watchlist(userId=1, coinId=8)
     demo9 = Watchlist(userId=1, coinId=9)
     demo10 = Watchlist(userId=1, coinId=10)
-    demo11 = Watchlist(userId=1, coinId=11)
-    demo12 = Watchlist(userId=1, coinId=12)
-    demo13 = Watchlist(userId=1, coinId=13)
 
     demos = [demo1, demo2, demo3, demo4, demo5, demo6,
-             demo7, demo8, demo9, demo10, demo11, demo12, demo13]
+             demo7, demo8, demo9, demo10]
     db.session.add_all(demos)
     db.session.commit()
 
