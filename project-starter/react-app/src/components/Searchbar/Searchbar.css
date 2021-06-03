@@ -3,8 +3,9 @@
     flex-direction: column;
     align-items: center;
 }
+
 .search-button {
-    font-size: 3vh;
+    font-size: 2.5vh;
     /* background-color: #282846; */
     background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
     color: black;
@@ -15,7 +16,8 @@
     margin: 1vh;
     box-shadow: 2px 2px 0px 0px #1b1a17;
     height: 4vh;
-    width: 7vw;
+    width: auto;
+    cursor: pointer;
 }
 
 .search-button:hover {
@@ -33,4 +35,10 @@
 
 .search-input:focus {
     outline: 0;
+}
+@media screen and (max-width: 600px) {
+  .search-button {
+    display: none;
+
+  }
 }

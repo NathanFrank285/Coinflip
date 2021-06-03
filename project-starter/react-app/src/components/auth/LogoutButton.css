@@ -17,11 +17,12 @@
 } */
 
 .logout-image {
-    height: 10vh;
-    width: 8vw;
+    height: 7vmin;
+    width: auto;
 }
 
 .logout-image:hover {
-    height: 11vh;
-    width: 9vw;
+    height: 7vmin;
+    width: auto;
+    cursor: pointer;
 }
