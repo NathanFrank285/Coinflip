@@ -44,6 +44,7 @@
 .nav-link {
     text-decoration: none;
     font-size: 4vmin;
+
     font-weight: 300;
     color: #1b1a17;
     cursor: pointer;
@@ -93,5 +94,13 @@
   .nav-logo:hover {
     height: 13vmin;
     width: auto;
+}
+.nav-link {
+    text-decoration: none;
+    font-size: 2vh;
+
+    font-weight: 300;
+    color: #1b1a17;
+    cursor: pointer;
 }
 }

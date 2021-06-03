@@ -7,7 +7,7 @@
 }
 
 .search-button {
-    font-size: 2.5vh;
+    font-size: 2vh;
     /* background-color: #282846; */
     background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
     color: black;
