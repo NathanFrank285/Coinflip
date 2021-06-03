@@ -28,7 +28,7 @@ const SearchBar = () => {
                 <input
                   value={keyword}
                   className='search-input'
-                  placeholder="Search by Name or Ticker"
+                  placeholder="Search coins"
                   onChange={(e) => setKeyword(e.target.value)}>
 
                 </input>
@@ -38,7 +38,7 @@ const SearchBar = () => {
               </div>
             </div>
         </form>
-      
+
     )
   }
 

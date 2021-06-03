@@ -20,7 +20,7 @@ const NavBar = () => {
         <div className='nav-link-container'>
           <NavLink to="/coinBrowser" className="nav-link" exact={true} activeClassName="active">Coin Browser</NavLink>
         </div>
-        <div>
+        <div className="logout-container">
           <LogoutButton />
         </div>
       </div>

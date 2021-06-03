@@ -18,8 +18,10 @@
 
 .nav-logo-container {
     height: 12vh;
-    width: 10vw;
+    width: auto;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
     /* margin: 1vh; */
 }
 
@@ -50,4 +52,46 @@
     /* text-decoration: underline; */
     /* font-size: 6vh; */
     color: #a5e9e1;
+}
+
+@media screen and (max-width: 550px) {
+  .nav-flex-container {
+    height: 50%;
+    width: auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "logo search logout"
+    "logo coinBrowser logout";
+  }
+  .nav-logo-container{
+      grid-area: logo;
+        display: flex;
+    }
+    .search-container{
+      align-items: center;
+      justify-content: center;
+      grid-area: search;
+    }
+    .nav-link-container{
+        grid-area: coinBrowser;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  }
+  .logout-container{
+      grid-area: logout;
+      display: flex;
+      /* align-items: flex-start; */
+      justify-content: flex-end;
+  }
+  .search-button {
+    display: none;
+
+  }
+  .nav-logo:hover {
+    height: 13vmin;
+    width: auto;
+}
 }

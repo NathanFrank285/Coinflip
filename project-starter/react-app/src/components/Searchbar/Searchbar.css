@@ -1,4 +1,6 @@
 .search-container {
+    height: 100%;
+    min-width: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,8 +28,8 @@
 }
 
 .search-input {
-    font-size: 3vh;
-    width: 25vw;
+    font-size: 2vh;
+    min-width: 120px;
     box-sizing: border-box;
     text-align: center;
     border-radius: 4px;
@@ -35,10 +37,4 @@
 
 .search-input:focus {
     outline: 0;
-}
-@media screen and (max-width: 600px) {
-  .search-button {
-    display: none;
-
-  }
 }
