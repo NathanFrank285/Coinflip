@@ -23,7 +23,8 @@ const CoinDetail = () => {
   const chartData300 = useSelector(state => state?.coinDetail?.prices300)
   const chartData7days = useSelector(state => state?.coinDetail?.prices7days)
   const badSearch = useSelector(state => state?.coinDetail?.search)
-  const [portfolioClicked, setPortfolioClicked] = useState('')
+  const [portfolioBuyClicked, setPortfolioBuyClicked] = useState('')
+  const [portfolioSellClicked, setPortfolioSellClicked] = useState('')
   const [watchlistStatus, setWatchlistStatus] = useState("");
   const [graphStatus, setGraphStatus] = useState('');
   const [quantity, setQuantity] = useState(0)
@@ -38,10 +39,8 @@ const CoinDetail = () => {
     if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
   };
 
-
   useEffect(() => {
     dispatch(getCoinDetailThunk(name));
-    console.log(watchlistStatus)
   }, [watchlistStatus]);
 
 
@@ -81,112 +80,199 @@ const CoinDetail = () => {
       averagePrice: details?.market_data?.current_price?.usd
     }
     setInPortfolio(true)
-    setPortfolioClicked(false)
+    setPortfolioBuyClicked(false)
     dispatch(addToPortfolio(data))
     history.push('/portfolio')
   }
   const removeFromPortfolio = (e) => {
-    dispatch(removeFromPortfolioThunk(name))
-    setInPortfolio(false)
+    e.preventDefault();
+    console.log(details.id, quantity)
+    const data = {
+      coinId: details.id,
+      quantity: quantity,
+    };
+    // if (quantity === portfolio[`${name}`].Quantity) {
+    //   setInPortfolio(false)
+    // }
+    setPortfolioSellClicked(false);
+    dispatch(removeFromPortfolioThunk(data));
   }
   useEffect(() => {
     dispatch(getPortfolioThunk());
   }, [portfolio?.length]);
+
   let portfolioButtonStuff;
   if (portfolio) {
     portfolioButtonStuff = (
       <>
-        {!inPortfolio && !portfolio[`${name}`] ?
-          <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
-          :
+        {!inPortfolio && !portfolio[`${name}`] ? (
+          <button
+            onClick={() => setPortfolioBuyClicked(true)}
+            className="graph-buttons"
+          >
+            Buy
+          </button>
+        ) : (
           <>
-            <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add More to Portfolio </button>
-            <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+            <button
+              onClick={() => setPortfolioBuyClicked(true)}
+              className="graph-buttons"
+            >
+              Buy
+            </button>
+            <button
+              onClick={() => setPortfolioSellClicked(true)}
+              className="graph-buttons"
+            >
+              Sell
+            </button>
           </>
-        }
-
+        )}
       </>
-
-    )
+    );
   }
   else {
     portfolioButtonStuff = <div></div>
   }
 
 
-  return (
-    <div className="price-detail-container">
-      <div className="header">
-        <div className="header-info-container">
-          <div className="detail-coin-name">{details?.name}</div>
-          <div className="detail-coin-symbol">
-            {details?.symbol.toUpperCase()}
+  let tradeForm;
+  if (portfolioBuyClicked){
+    tradeForm = (
+      <div className="tradeForm">
+        <form onSubmit={addToPortfolioSubmit}>
+          <div className="portfolio-add-container">
+            <div>
+              <label className="portfolio-add-label" for="quantity">
+                Quantity in coins
+              </label>
+            </div>
+            <input
+              onChange={(e) => setQuantity(e.target.value)}
+              name="quantity"
+              type="number"
+              step="0.0000000001"
+              className="portfolio-add-input"
+            ></input>
+
+            <div className="buySellButtons">
+              <button type="submit" className="graph-buttons">
+                Buy
+              </button>
+              <button
+                onClick={() => setPortfolioBuyClicked(false)}
+                className="graph-buttons"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
+  if (portfolioSellClicked){
+    tradeForm = (
+      <div className="tradeForm">
+        <form onSubmit={removeFromPortfolio}>
+          <div className="portfolio-add-container">
+            <div>
+              <label className="portfolio-add-label" for="quantity">
+                Quantity in coins
+              </label>
+            </div>
+
+            <input
+              onChange={(e) => setQuantity(e.target.value)}
+              name="quantity"
+              type="number"
+              step="0.0000000001"
+              className="portfolio-add-input"
+            ></input>
+
+            <div className="buySellButtons">
+              {quantity > portfolio[`${name}`].Quantity ? (
+                <button
+                  disabled={true}
+                  type="submit"
+                  className="graph-buttons disabled"
+                >
+                  Sell
+                </button>
+              ) : (
+                <button type="submit" className="graph-buttons">
+                  Sell
+                </button>
+              )}
+              <button
+                onClick={() => setPortfolioSellClicked(false)}
+                className="graph-buttons"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    );
+  }
+    return (
+      <div className="price-detail-container">
+        <div className="header">
+          <div className="header-info-container">
+            <div className="detail-coin-name">{details?.name}</div>
+            <div className="detail-coin-symbol">
+              {details?.symbol.toUpperCase()}
+            </div>
+          </div>
+          <div className="detail-coin-image-container">
+            <img className="detail-coin-image" src={details?.image.small} />
+          </div>
+          <div className="detail-button-container">
+            {inWatchlist == true && (
+              <button
+                onClick={removeFromWatchlist}
+                className="removeFromWatchList detail-watchlist-button"
+              >
+                Remove From Watch List
+              </button>
+            )}
+
+            {inWatchlist == false && (
+              <button
+                onClick={addTolist}
+                className="addToWatchList detail-watchlist-button"
+              >
+                Add to Watch List
+              </button>
+            )}
           </div>
         </div>
-        <div className="detail-coin-image-container">
-          <img className="detail-coin-image" src={details?.image.small} />
-        </div>
-        <div className="detail-button-container">
-          {inWatchlist == true && (
-            <button
-              onClick={removeFromWatchlist}
-              className="removeFromWatchList detail-watchlist-button"
-            >
-              Remove From Watch List
-            </button>
-          )}
+        <div className="graph-div">
+          <div className="detail-graph">
+            <ResponsiveContainer width="100%" height={400}>
+              <LineChart
+                data={graphStatus ? graphStatus : chartData24Hr}
+                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              >
+                <YAxis domain={["auto", "auto"]} />
+                <XAxis
+                  type="category"
+                  dataKey="date"
+                  domain={["auto", "auto"]}
+                />
+                <Tooltip />
 
-          {inWatchlist == false && (
-            <button
-              onClick={addTolist}
-              className="addToWatchList detail-watchlist-button"
-            >
-              Add to Watch List
-            </button>
-          )}
-        </div>
-      </div>
-      <div className="graph-div">
-        <div className="detail-graph">
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart
-              data={graphStatus ? graphStatus : chartData24Hr}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-              <YAxis domain={["auto", "auto"]} />
-              <XAxis type="category" dataKey="date" domain={["auto", "auto"]} />
-              <Tooltip />
-
-              <Line
-                type="linear"
-                dot={false}
-                dataKey="price"
-                stroke="#8884d8"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        {portfolioClicked ? (
-          <form onSubmit={addToPortfolioSubmit}>
-            <div className='portfolio-add-container'>
-              <div>
-                <label className='portfolio-add-label' for="quantity">Quantity in coins</label>
-              </div>
-              <div>
-                <input
-                onChange={(e) => setQuantity(e.target.value)}
-                name="quantity"
-                type="number"
-                step="0.0000000001"
-                className='portfolio-add-input'
-              ></input>
-              </div>
-              <div>
-                <button type="submit" className='graph-buttons'>Add to Portfolio</button>
-              </div>
-            </div>
-          </form>
-        ) : (
+                <Line
+                  type="linear"
+                  dot={false}
+                  dataKey="price"
+                  stroke="#8884d8"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
           <div className="graph-buttons-container">
             <button
               className="graph-buttons"
@@ -206,52 +292,58 @@ const CoinDetail = () => {
             >
               30 days
             </button>
-            {/* <button
-              className="graph-buttons"
-              onClick={() => graphStatusSetter("300")}
-            >
-              300 days
-        </button> */}
-            {portfolioButtonStuff}
+
           </div>
-        )}
+
+        </div>
+        <div className="market-detail">
+          {portfolioBuyClicked || portfolioSellClicked ? null : (
+            <div className="buySell-container">{portfolioButtonStuff}</div>
+          )}
+          {portfolioBuyClicked ? tradeForm : null}
+          {portfolioSellClicked ? tradeForm : null}
+          <div className="market-detail-container">
+            <div>
+              Current Price:{" "}
+              {details?.market_data?.current_price.usd.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </div>
+            <div>
+              Total Supply:{" "}
+              {formatCash(details?.market_data?.circulating_supply)}
+            </div>
+            <div>
+              Market Cap : {formatCash(details?.market_data?.market_cap.usd)}
+            </div>
+            {details?.market_data?.price_change_percentage_24h >= 0 ? (
+              <div>
+                24Hr Change:{" "}
+                <span className="green">
+                  {details?.market_data?.price_change_percentage_24h.toFixed(2)}
+                  %
+                </span>
+              </div>
+            ) : (
+              <div>
+                24Hr Change:{" "}
+                <span className="red">
+                  {details?.market_data?.price_change_percentage_24h.toFixed(2)}
+                  %
+                </span>
+              </div>
+            )}
+            <div>
+              Total Volume: {formatCash(details?.market_data?.total_volume.usd)}
+            </div>
+          </div>
+        </div>
+        <div className="description">
+          {ReactHtmlParser(details?.description.de)}
+        </div>
       </div>
-      <div className="market-detail">
-        <div>
-          Current Price:{" "}
-          {details?.market_data?.current_price.usd.toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-          })}
-        </div>
-        <div>
-          Total Supply: {formatCash(details?.market_data?.circulating_supply)}
-        </div>
-        <div>
-          Market Cap : {formatCash(details?.market_data?.market_cap.usd)}
-        </div>
-        {details?.market_data?.price_change_percentage_24h >= 0 ? (
-           <div>
-          24Hr Change:{" "}
-          <span className='green'>{details?.market_data?.price_change_percentage_24h.toFixed(2)}%</span>
-          
-        </div>
-        ) : (
-           <div>
-          24Hr Change:{" "}
-          <span className='red'>{details?.market_data?.price_change_percentage_24h.toFixed(2)}%</span>
-          
-        </div>
-        )}
-        <div>
-          Total Volume: {formatCash(details?.market_data?.total_volume.usd)}
-        </div>
-      </div>
-      <div className="description">
-        {ReactHtmlParser(details?.description.de)}
-      </div>
-    </div>
-  );
+    );
 
 }
 
