@@ -28,22 +28,24 @@
 
 
 .nav-logo {
-    height: 12vmin;
+    height: 75px;
     width: auto;
 }
 
-.nav-logo:hover {
+/* .nav-logo:hover {
     height: 13vh;
     width: auto;
-}
+} */
 
 
 .nav-link-container {
     box-sizing: border-box;
+    min-height: 35px;
+    width: auto;
 }
 .nav-link {
     text-decoration: none;
-    font-size: 4vmin;
+    font-size: 30px;
 
     font-weight: 300;
     color: #1b1a17;
@@ -54,6 +56,8 @@
     /* font-size: 6vh; */
     color: #a5e9e1;
 }
+
+
 
 @media screen and (max-width: 550px) {
   .nav-flex-container {
@@ -70,6 +74,10 @@
       grid-area: logo;
         display: flex;
     }
+    .nav-logo {
+    height: 65px;
+    width: auto;
+}
     .search-container{
       align-items: center;
       justify-content: center;
@@ -80,27 +88,39 @@
         display: flex;
         align-items: center;
         justify-content: center;
-  }
+        min-height: 35px;
+        width: auto;
+}
+
+
   .logout-container{
-      grid-area: logout;
-      display: flex;
-      /* align-items: flex-start; */
-      justify-content: flex-end;
-  }
-  .search-button {
+    grid-area: logout;
+    display: flex;
+    /* align-items: flex-start; */
+    justify-content: flex-end;
+    min-width: 56px;
+    min-height: 50px;
+    }
+
+            .search-button {
     display: none;
 
   }
-  .nav-logo:hover {
+  /* .nav-logo:hover {
     height: 13vmin;
     width: auto;
-}
+} */
 .nav-link {
     text-decoration: none;
-    font-size: 2vh;
+    font-size: 30px;
 
     font-weight: 300;
     color: #1b1a17;
     cursor: pointer;
+}
+.search {
+    display: flex;
+    justify-content: center;
+    /* width: 300px; */
 }
 }

@@ -17,12 +17,20 @@
 } */
 
 .logout-image {
-    height: 7vmin;
+    height: 57px;
     width: auto;
-}
-
-.logout-image:hover {
-    height: 7vmin;
     width: auto;
     cursor: pointer;
+}
+
+/* .logout-image:hover {
+    height: 7vmin;
+    width: auto;
+} */
+@media screen and (max-width: 550px) {
+
+        .logout-image{
+            min-width: 41px;
+            min-height: 43px;
+        }
 }

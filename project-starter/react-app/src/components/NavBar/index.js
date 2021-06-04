@@ -14,7 +14,7 @@ const NavBar = () => {
             <img className='nav-logo' src={YellowLogo} alt='logo' />
           </NavLink>
         </div>
-        <div>
+        <div className="search">
           <SearchBar />
         </div>
         <div className='nav-link-container'>
