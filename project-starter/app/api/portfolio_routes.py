@@ -105,16 +105,30 @@ def addToPortfolio(ticker):
         return {}
 
 
-@portfolio_routes.route('/delete/<ticker>')
+@portfolio_routes.route('/delete/<ticker>', methods=['DELETE'])
 @login_required
 def delete_portfolio(ticker):
     id = current_user.id
+    deleteQuantity = int(request.get_json()['quantity'])
     coinId = Coin.query.filter(Coin.ticker == ticker).first().to_dict()['id']
     portfolioEntry = Portfolio.query.filter(
         and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first()
-    db.session.delete(portfolioEntry)
-    db.session.commit()
-    return {}
+
+    print(deleteQuantity, "----------------TRADE")
+    print(portfolioEntry.quantity, "----------------TRADE")
+
+    if (deleteQuantity == portfolioEntry.quantity ):
+        db.session.delete(portfolioEntry)
+        db.session.commit()
+        return {}
+    elif (deleteQuantity < portfolioEntry.quantity):
+        print(portfolioEntry.quantity, "----------------pre")
+        portfolioEntry.quantity = portfolioEntry.quantity - deleteQuantity
+        print(portfolioEntry.quantity, "----------------post")
+        db.session.commit()
+        return {}
+    else:
+        return{'error': "You can't sell more than you own"}
 
     # db.session.delete(coin)
     # db.session.commit()

@@ -86,13 +86,16 @@ const CoinDetail = () => {
   }
   const removeFromPortfolio = (e) => {
     e.preventDefault();
-    console.log(quantity, "I am the remove from portfolio log ------");
+    console.log(details.id, quantity)
     const data = {
       coinId: details.id,
       quantity: quantity,
     };
-    dispatch(removeFromPortfolioThunk(name))
-    setInPortfolio(false)
+    // if (quantity === portfolio[`${name}`].Quantity) {
+    //   setInPortfolio(false)
+    // }
+    setPortfolioSellClicked(false);
+    dispatch(removeFromPortfolioThunk(data));
   }
   useEffect(() => {
     dispatch(getPortfolioThunk());
