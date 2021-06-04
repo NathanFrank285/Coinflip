@@ -120,11 +120,11 @@
 .buySell-container{
 display: flex;
 flex-direction: column;
-
+width:50%;
 }
 
 .market-detail-container{
-
+width:50%;
 }
 .description {
     border: 1px solid white;
@@ -168,6 +168,9 @@ flex-direction: column;
 .portfolio-add-container div {
     box-sizing: border-box;
     margin-top: 2vh;
+}
+.tradeForm{
+    width:50%
 }
 
 .red {

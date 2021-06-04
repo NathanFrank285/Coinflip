@@ -38,8 +38,6 @@ const CoinDetail = () => {
     if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
     if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
   };
-  console.log(portfolioBuyClicked);
-  console.log(portfolioSellClicked);
 
   useEffect(() => {
     dispatch(getCoinDetailThunk(name));
@@ -88,7 +86,7 @@ const CoinDetail = () => {
   }
   const removeFromPortfolio = (e) => {
     e.preventDefault();
-    console.log("I am the remove from portfolio log ------");
+    console.log(quantity, "I am the remove from portfolio log ------");
     const data = {
       coinId: details.id,
       quantity: quantity,
@@ -103,7 +101,7 @@ const CoinDetail = () => {
   let portfolioButtonStuff;
   if (portfolio) {
     portfolioButtonStuff = (
-      <div className="">
+      <>
         {!inPortfolio && !portfolio[`${name}`] ? (
           <button
             onClick={() => setPortfolioBuyClicked(true)}
@@ -127,7 +125,7 @@ const CoinDetail = () => {
             </button>
           </>
         )}
-      </div>
+      </>
     );
   }
   else {
@@ -138,7 +136,7 @@ const CoinDetail = () => {
   let tradeForm;
   if (portfolioBuyClicked){
     tradeForm = (
-      <div className="buyForm">
+      <div className="tradeForm">
         <form onSubmit={addToPortfolioSubmit}>
           <div className="portfolio-add-container">
             <div>
@@ -173,7 +171,7 @@ const CoinDetail = () => {
 
   if (portfolioSellClicked){
     tradeForm = (
-      <div className="sellForm">
+      <div className="tradeForm">
         <form onSubmit={removeFromPortfolio}>
           <div className="portfolio-add-container">
             <div>
