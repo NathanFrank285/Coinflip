@@ -11,8 +11,6 @@
         'left description right'
 }
 
-
-
 .header{
     box-sizing: border-box;
     padding: 20px;
@@ -61,7 +59,7 @@
     box-shadow: 2px 2px 0px 0px #a5e9e1 
 }
 .detail-watchlist-button:hover {
-    box-shadow: 2px 2px 2px 1px #a5e9e1;
+    box-shadow: 2px 2px 0px 1px #a5e9e1;
     /* font-size: 21px; */
 }
 
@@ -104,7 +102,6 @@
 }
 .graph-buttons:hover {
     box-shadow: 2px 2px 2px 1px #a5e9e1;
-    font-size: 21px;
 }
 
 
@@ -134,11 +131,7 @@
 
 .description a:hover {
     text-decoration: underline;
-    font-size: 2.9vh;
 }
-
-
-
 
 
 .portfolio-add-label {
