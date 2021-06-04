@@ -112,9 +112,19 @@
     grid-area: detail;
     font-size: 3.9vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
+}
+
+.buySell-container{
+display: flex;
+flex-direction: column;
+
+}
+
+.market-detail-container{
+
 }
 .description {
     border: 1px solid white;
