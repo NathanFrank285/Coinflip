@@ -23,7 +23,8 @@ const CoinDetail = () => {
   const chartData300 = useSelector(state => state?.coinDetail?.prices300)
   const chartData7days = useSelector(state => state?.coinDetail?.prices7days)
   const badSearch = useSelector(state => state?.coinDetail?.search)
-  const [portfolioClicked, setPortfolioClicked] = useState('')
+  const [portfolioBuyClicked, setPortfolioBuyClicked] = useState('')
+  const [portfolioSellClicked, setPortfolioSellClicked] = useState('')
   const [watchlistStatus, setWatchlistStatus] = useState("");
   const [graphStatus, setGraphStatus] = useState('');
   const [quantity, setQuantity] = useState(0)
@@ -81,11 +82,16 @@ const CoinDetail = () => {
       averagePrice: details?.market_data?.current_price?.usd
     }
     setInPortfolio(true)
-    setPortfolioClicked(false)
+    setPortfolioBuyClicked(false)
     dispatch(addToPortfolio(data))
     history.push('/portfolio')
   }
   const removeFromPortfolio = (e) => {
+    e.preventDefault();
+    const data = {
+      coinId: details.id,
+      quantity: quantity,
+    };
     dispatch(removeFromPortfolioThunk(name))
     setInPortfolio(false)
   }
@@ -97,11 +103,11 @@ const CoinDetail = () => {
     portfolioButtonStuff = (
       <>
         {!inPortfolio && !portfolio[`${name}`] ?
-          <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add to Portfolio </button>
+          <button onClick={() => setPortfolioBuyClicked(true)} className='graph-buttons'>Buy</button>
           :
           <>
-            <button onClick={() => setPortfolioClicked(true)} className='graph-buttons'>Add More to Portfolio </button>
-            <button onClick={removeFromPortfolio} className='graph-buttons'>Remove from Portfolio </button>
+            <button onClick={() => setPortfolioBuyClicked(true)} className='graph-buttons'>Buy</button>
+            <button onClick={removeFromPortfolio} className='graph-buttons'>Sell</button>
           </>
         }
 
@@ -166,13 +172,13 @@ const CoinDetail = () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
-        {portfolioClicked ? (
+        {portfolioBuyClicked ? (
           <form onSubmit={addToPortfolioSubmit}>
             <div className='portfolio-add-container'>
               <div>
                 <label className='portfolio-add-label' for="quantity">Quantity in coins</label>
               </div>
-              <div>
+
                 <input
                 onChange={(e) => setQuantity(e.target.value)}
                 name="quantity"
@@ -180,9 +186,10 @@ const CoinDetail = () => {
                 step="0.0000000001"
                 className='portfolio-add-input'
               ></input>
-              </div>
-              <div>
-                <button type="submit" className='graph-buttons'>Add to Portfolio</button>
+
+              <div className="buySellButtons">
+                <button type="submit" className='graph-buttons'>Buy</button>
+                <button onClick={() => setPortfolioBuyClicked(false)} className='graph-buttons'>Cancel</button>
               </div>
             </div>
           </form>
@@ -234,13 +241,13 @@ const CoinDetail = () => {
            <div>
           24Hr Change:{" "}
           <span className='green'>{details?.market_data?.price_change_percentage_24h.toFixed(2)}%</span>
-          
+
         </div>
         ) : (
            <div>
           24Hr Change:{" "}
           <span className='red'>{details?.market_data?.price_change_percentage_24h.toFixed(2)}%</span>
-          
+
         </div>
         )}
         <div>
