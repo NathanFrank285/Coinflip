@@ -192,9 +192,19 @@ const CoinDetail = () => {
             ></input>
 
             <div className="buySellButtons">
-              <button type="submit" className="graph-buttons">
-                Sell
-              </button>
+              {quantity > portfolio[`${name}`].Quantity ? (
+                <button
+                  disabled={true}
+                  type="submit"
+                  className="graph-buttons disabled"
+                >
+                  Sell
+                </button>
+              ) : (
+                <button type="submit" className="graph-buttons">
+                  Sell
+                </button>
+              )}
               <button
                 onClick={() => setPortfolioSellClicked(false)}
                 className="graph-buttons"
