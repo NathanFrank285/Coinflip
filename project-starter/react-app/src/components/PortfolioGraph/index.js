@@ -72,8 +72,8 @@ export default function PortfolioGraph() {
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
 
-  function createData(name, price, balance, performance, allocation, ticker) {
-    return { name, price, balance, performance, allocation, ticker };
+  function createData(name, price, balance, performance, allocation, ticker, quantity) {
+    return { name, price, balance, performance, allocation, ticker, quantity };
   }
 
   // const graphStatusSetter = (time) => {
@@ -111,7 +111,8 @@ export default function PortfolioGraph() {
         coin.Quantity * coin.coinData.usd,
         (coin.coinData.usd / coin.AveragePrice - 1) * 100,
         (((coin.Quantity * coin.coinData.usd) / totalPortfolio) * 100),
-        coin.Ticker
+        coin.Ticker,
+        coin.Quantity
       );
     });
   }
@@ -139,6 +140,9 @@ export default function PortfolioGraph() {
                   </TableCell>
               <TableCell className={classes.header} align="right">
                 Allocation
+                  </TableCell>
+              <TableCell className={classes.header} align="right">
+                Quantity
                   </TableCell>
             </TableRow>
           </TableHead>
@@ -182,6 +186,9 @@ export default function PortfolioGraph() {
                 )}
                 <TableCell align="right" className={classes.dataPoints}>
                   {formatCash(row?.allocation.toFixed(2)) + "%"}
+                </TableCell>
+                <TableCell align="right" className={classes.dataPoints}>
+                  {row?.quantity}
                 </TableCell>
               </TableRow>
             ))}

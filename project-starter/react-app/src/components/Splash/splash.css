@@ -4,13 +4,14 @@
 } */
 .splash-body {
     display: grid;
-    grid-template-rows: 225px 225px 550px;
+    grid-template-rows: 1fr 1fr 2fr;
+    /* grid-template-rows: 225px 225px 550px; */
     grid-template-areas:
         'head'
         'title'
         'forms';
     background-color: #1b1a17;
-    height: 105%;
+    height: 85vh;
     width: 105%;
 }
 
@@ -61,6 +62,7 @@
     justify-content: center;
     grid-area: forms;
     margin-top: 20px;
+    /* height: 55vh; */
 }
 
 .splash-login {
