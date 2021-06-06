@@ -41,6 +41,7 @@ function App() {
       <Switch>
         <Route path="/" exact={true}>
           <Splash />
+          <Footer />
         </Route>
         <ProtectedRoute path="/portfolio">
           <NavBar />

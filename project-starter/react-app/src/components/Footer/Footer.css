@@ -2,14 +2,16 @@
     width: 100%;
     background-color: #fdf6f6 ;
     color: black;
+    /* position: fixed; */
     position: relative;
     bottom: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 10vh;
+    height: 13vh;
     box-sizing: border-box;
-    margin-top: 10px;
+    /* margin-top: 2vh; */
+    /* padding-bottom: 1vh; */
 }
 
 .footer-info {

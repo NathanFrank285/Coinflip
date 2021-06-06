@@ -1,7 +1,8 @@
 .nav-container {
     background-color: #fdf6f6;
-    height: 15vmax;
-    max-height: 135px;
+    /* height: 15vmax;
+    max-height: 135px; */
+    height: 10vh;
     box-sizing: border-box;
     /* padding: 1vh; */
     border-radius: 2px;
@@ -14,6 +15,7 @@
     align-items: center;
     box-sizing: border-box;
     padding: 1.5vh;
+    height: 10vh;
 }
 
 .nav-logo-container {
