@@ -2,7 +2,7 @@
     background-color: #fdf6f6;
     /* height: 15vmax;
     max-height: 135px; */
-    height: 10vh;
+    height: fit-content;
     box-sizing: border-box;
     /* padding: 1vh; */
     border-radius: 2px;
@@ -15,7 +15,7 @@
     align-items: center;
     box-sizing: border-box;
     padding: 1.5vh;
-    height: 10vh;
+    min-height: 10vh;
 }
 
 .nav-logo-container {
@@ -63,7 +63,7 @@
 
 @media screen and (max-width: 550px) {
   .nav-flex-container {
-    height: 50%;
+    height: 100%;
     width: auto;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -77,7 +77,7 @@
         display: flex;
     }
     .nav-logo {
-    height: 65px;
+    height: 75px;
     width: auto;
 }
     .search-container{
