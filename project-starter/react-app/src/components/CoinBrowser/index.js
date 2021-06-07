@@ -25,22 +25,22 @@ export default function CoinBrowser() {
 
     const useStyles = makeStyles({
       table: {
-        minWidth: 'auto',
-        maxWidth: 'auto',
+        minWidth: "auto",
+        maxWidth: "auto",
         backgroundColor: "#e1fcf9",
-        fontFamily: 'inherit'
+        fontFamily: "inherit",
       },
       header: {
-        fontFamily: 'inherit',
+        fontFamily: "inherit",
         fontSize: 30,
         fontWeight: 600,
       },
       dataName: {
-        fontFamily: 'inherit',
+        fontFamily: "inherit",
         fontSize: 26,
       },
       dataPoints: {
-        fontFamily: 'inherit',
+        fontFamily: "inherit",
         fontSize: 22,
       },
       positive: {
@@ -50,7 +50,6 @@ export default function CoinBrowser() {
         color: "red",
       },
     });
-    console.log('does this work.....? fuck it.')
     const classes = useStyles();
 
     String.prototype.capitalize = function () {
@@ -88,9 +87,12 @@ export default function CoinBrowser() {
     <div className="coinBrowser-body">
       <div className="table-container">
         <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
+          <Table
+            className={classes.table}
+            aria-label="sticky table"
+          >
             <TableHead>
-              <TableRow>
+              <TableRow >
                 <TableCell className={classes.header}>Name</TableCell>
                 <TableCell className={classes.header} align="right">
                   Price
