@@ -22,6 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('ticker', sa.String(), nullable=False),
+    sa.Column('symbol', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('portfolios',

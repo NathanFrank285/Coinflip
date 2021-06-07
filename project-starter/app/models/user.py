@@ -71,13 +71,15 @@ class Coin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
     ticker = db.Column(db.String(), nullable=False)
+    symbol = db.Column(db.String(), nullable=True)
     portfolioInfo = db.relationship("Portfolio", back_populates="coinInfo")
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "ticker": self.ticker
+            "ticker": self.ticker,
+            "symbol": self.symbol
         }
 
 
