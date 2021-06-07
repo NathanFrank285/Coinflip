@@ -15,20 +15,21 @@ def seed_users():
 
 
 def seed_coins():
-    bitcoin = Coin(name='Bitcoin', ticker='bitcoin')
-    ethereum = Coin(name='Ethereum', ticker='ethereum')
-    dogecoin = Coin(name='Dogecoin', ticker='dogecoin')
+    bitcoin = Coin(name='Bitcoin', ticker='bitcoin', symbol='BTC')
+    ethereum = Coin(name='Ethereum', ticker='ethereum', symbol='ETH')
+    dogecoin = Coin(name='Dogecoin', ticker='dogecoin', symbol='DOGE')
     basicAttentionToken = Coin(
-        name='Basic Attention Token', ticker='basic-attention-token')
-    litecoin = Coin(name='Litecoin', ticker='litecoin')
-    cardano = Coin(name='Cardano', ticker='cardano')
-    polkadot = Coin(name='Polkadot', ticker='polkadot')
-    bitcoinCash = Coin(name='Bitcoin Cash', ticker='bitcoin-cash')
-    stellar = Coin(name='Stellar', ticker='stellar')
-    tether = Coin(name='Tether', ticker='tether')
-    monero = Coin(name='Monero', ticker='monero')
-    ripple = Coin(name='Ripple', ticker='ripple')
-    usdCoin = Coin(name='USD Coin', ticker='usd-coin')
+        name='Basic Attention Token', ticker='basic-attention-token', symbol='BAT')
+    litecoin = Coin(name='Litecoin', ticker='litecoin', symbol='LTC')
+    cardano = Coin(name='Cardano', ticker='cardano', symbol='ADA')
+    polkadot = Coin(name='Polkadot', ticker='polkadot', symbol='DOT1')
+    bitcoinCash = Coin(name='Bitcoin Cash',
+                       ticker='bitcoin-cash', symbol='BCH')
+    stellar = Coin(name='Stellar', ticker='stellar', symbol='XLM')
+    tether = Coin(name='Tether', ticker='tether', symbol='USDT')
+    monero = Coin(name='Monero', ticker='monero', symbol='XMR')
+    ripple = Coin(name='Ripple', ticker='ripple', symbol='XRP')
+    usdCoin = Coin(name='USD Coin', ticker='usd-coin', symbol='USD')
 
     coins = [bitcoin, ethereum, dogecoin, basicAttentionToken, litecoin,
              cardano, polkadot, bitcoinCash, stellar, tether, monero, ripple, usdCoin]
