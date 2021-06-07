@@ -8,7 +8,7 @@ import './portfolio.css'
 
 const Portfolio = () => {
     const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
-    const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioTotalUsd);
+    const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioBalance);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getPortfolioThunk());

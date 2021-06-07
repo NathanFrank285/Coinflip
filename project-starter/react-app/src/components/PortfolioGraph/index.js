@@ -25,7 +25,7 @@ import "./PortfolioGraph.css";
 
 export default function PortfolioGraph() {
   const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
-  const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioTotalUsd)
+  const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioBalance)
   // const chartData24Hr = useSelector(state => state?.coinDetail?.prices24hr)
   // const chartData30 = useSelector(state => state?.coinDetail?.prices30)
   // const chartData300 = useSelector(state => state?.coinDetail?.prices300)

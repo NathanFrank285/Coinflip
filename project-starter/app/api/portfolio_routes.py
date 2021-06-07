@@ -31,7 +31,6 @@ def getPortfolio():
         }
         portfolioSum = portfolioSum + \
             (row.quantity*data[f"{row.coinInfo.ticker}"]['usd'])
-    print(tickers)
 
     def getHistory24(ticker):
         return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=1)
@@ -62,7 +61,7 @@ def getPortfolio():
     # for price in history300['prices']:
     #     historic_prices300.append({'price': price[1]})
 
-    return {'Portfolio': portfolio, 'PortfolioTotalUsd': portfolioSum}
+    return {'Portfolio': portfolio, 'PortfolioBalance': portfolioSum}
 
 
 @portfolio_routes.route('/<ticker>', methods=['POST'])
@@ -89,7 +88,6 @@ def addToPortfolio(ticker):
             owned_sum / (already_owned.quantity + int(request.get_json()['quantity'])))
 
         already_owned.averagePrice = round(new_average_price, 2)
-        print(already_owned)
         db.session.commit()
         return {}
     else:
@@ -114,17 +112,13 @@ def delete_portfolio(ticker):
     portfolioEntry = Portfolio.query.filter(
         and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first()
 
-    print(deleteQuantity, "----------------TRADE")
-    print(portfolioEntry.quantity, "----------------TRADE")
 
     if (deleteQuantity == portfolioEntry.quantity ):
         db.session.delete(portfolioEntry)
         db.session.commit()
         return {}
     elif (deleteQuantity < portfolioEntry.quantity):
-        print(portfolioEntry.quantity, "----------------pre")
         portfolioEntry.quantity = portfolioEntry.quantity - deleteQuantity
-        print(portfolioEntry.quantity, "----------------post")
         db.session.commit()
         return {}
     else:
