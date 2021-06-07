@@ -173,6 +173,11 @@ width:50%;
     box-sizing: border-box;
     margin-top: 2vh;
 }
+.sellError{
+    color: red;
+    font-size: 2vh;
+
+}
 .tradeForm{
     width:50%
 }
