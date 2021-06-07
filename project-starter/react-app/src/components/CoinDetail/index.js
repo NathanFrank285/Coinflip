@@ -133,6 +133,11 @@ const CoinDetail = () => {
     portfolioButtonStuff = <div></div>;
   }
 
+  const cancelledBuy = () => {
+    setPortfolioBuyClicked(false)
+    setQuantity(0)
+  }
+
   let tradeForm;
   if (portfolioBuyClicked) {
     tradeForm = (
@@ -176,7 +181,7 @@ const CoinDetail = () => {
                 </button>
               )}
               <button
-                onClick={() => setPortfolioBuyClicked(false)}
+                onClick={() => cancelledBuy()}
                 className="graph-buttons"
               >
                 Cancel
@@ -187,6 +192,11 @@ const CoinDetail = () => {
       </div>
     );
   }
+
+  const cancelledSell = () => {
+    setPortfolioSellClicked(false)
+    setQuantity(0)
+  };
 
   if (portfolioSellClicked) {
     tradeForm = (
@@ -230,10 +240,7 @@ const CoinDetail = () => {
                   Sell
                 </button>
               )}
-              <button
-                onClick={() => setPortfolioSellClicked(false)}
-                className="graph-buttons"
-              >
+              <button onClick={() => cancelledSell()} className="graph-buttons">
                 Cancel
               </button>
             </div>
