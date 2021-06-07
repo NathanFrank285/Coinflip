@@ -44,8 +44,11 @@
 .detail-button-container {
     grid-area: button;
     box-sizing: border-box;
-    position: relative;
-    top: 80px;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 .detail-watchlist-button {
     font-size: 20px;
