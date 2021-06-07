@@ -107,7 +107,7 @@ const CoinDetail = () => {
         {!inPortfolio && !portfolio[`${name}`] ? (
           <button
             onClick={() => setPortfolioBuyClicked(true)}
-            className="graph-buttons"
+            className="trade-buttons"
           >
             Buy
           </button>
@@ -115,13 +115,13 @@ const CoinDetail = () => {
           <>
             <button
               onClick={() => setPortfolioBuyClicked(true)}
-              className="graph-buttons"
+              className="trade-buttons"
             >
               Buy
             </button>
             <button
               onClick={() => setPortfolioSellClicked(true)}
-              className="graph-buttons"
+              className="trade-buttons"
             >
               Sell
             </button>
@@ -171,7 +171,7 @@ const CoinDetail = () => {
                 <button
                   disabled={true}
                   type="submit"
-                  className="graph-buttons disabled"
+                  className="trade-buttons disabled"
                 >
                   Buy
                 </button>
@@ -283,10 +283,12 @@ const CoinDetail = () => {
       </div>
       <div className="graph-div">
         <div className="detail-graph">
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="100%" height='100%' >
             <LineChart
               data={graphStatus ? graphStatus : chartData24Hr}
               margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              width='100%'
+              aspect={4.0/3.0}
             >
               <YAxis domain={["auto", "auto"]} />
               <XAxis type="category" dataKey="date" domain={["auto", "auto"]} />
@@ -329,7 +331,7 @@ const CoinDetail = () => {
         {portfolioBuyClicked ? tradeForm : null}
         {portfolioSellClicked ? tradeForm : null}
         <div className="market-detail-container">
-          <div>
+          <div >
             Current Price:{" "}
             {details?.market_data?.current_price.usd.toLocaleString("en-US", {
               style: "currency",
