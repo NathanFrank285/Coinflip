@@ -1,7 +1,7 @@
 .port-page {
   display: grid;
   grid-template-rows: 20% 80%;
-  grid-template-columns: 5vw 90vw;
+  grid-template-columns: 5vw 1fr 5vw;
   height: 77vh;
 }
 
@@ -22,7 +22,6 @@
 .watch-div {
   grid-column: 2;
   height: 99%;
-  width: 100%;
   overflow-y: auto;
   border: 3px solid snow;
   border-radius: 4px;
@@ -42,8 +41,42 @@
   width: 0px
   }
 
+.balanceDeposits-container {
+ display: flex;
+ flex-direction: row;
+ grid-column: 2/3;
+ width: 100%;
+ /* justify-content: space-around; */
+
+}
+
+.balances {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+}
+
+.USD-balance{
+  grid-column: 2;
+  font-size: 5vmin;
+  font-family: inherit;
+
+}
+
 .port-balance {
     grid-column: 2;
-    font-size: 7vh;
+    font-size: 5vmin;
     font-family: inherit;
   }
+
+.despositWithdrawals-container{
+  width: 25%;
+  display: flex;
+  flex-direction:column;
+  align-content: flex-end;
+  justify-content: center;
+
+  }
+  

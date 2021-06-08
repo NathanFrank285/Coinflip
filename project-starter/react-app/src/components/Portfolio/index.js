@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPortfolioThunk } from "../../store/portfolio";
 import './portfolio.css'
+import DepositsWithdrawals from "../DepositsWithdrawals";
+
 
 const Portfolio = () => {
     const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
@@ -23,20 +25,29 @@ const Portfolio = () => {
         })
     }
     return (
-        <div className="port-page">
-            <h1 className='port-balance'>Total Balance: {total}</h1>
+      <div className="port-page">
+        <div className="balanceDeposits-container">
+            <div className="balances">
+                <div className="port-balance">Total Balance: {total}</div>
+                <div className="USD-balance">USD Balance: XXX </div>
 
-            <div className="port-container">
-                <div className="port-table">
-                    <PortfolioGraph />
-                </div>
-                <div className="watch-div">
-                    <div className='watchlist-title'>WATCHLIST</div>
-                    <WatchList />
-                </div>
+            </div>
+            <div className="despositWithdrawals-container">
+                <DepositsWithdrawals/>
             </div>
         </div>
-    )
+
+        <div className="port-container">
+          <div className="port-table">
+            <PortfolioGraph />
+          </div>
+          <div className="watch-div">
+            <div className="watchlist-title">WATCHLIST</div>
+            <WatchList />
+          </div>
+        </div>
+      </div>
+    );
 }
 
 export default Portfolio
