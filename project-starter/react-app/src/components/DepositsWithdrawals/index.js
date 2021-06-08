@@ -1,6 +1,8 @@
 import React, {useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
 import './DepositsWithdrawals.css'
+import { getDollarAmountThunk, newTransferThunk } from '../../store/accountUSD';
 
 const customStyles = {
   content: {
@@ -19,9 +21,10 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 function DepositsWithdrawals() {
-  let subtitle;
+  const dispatch = useDispatch()
   const [modalIsOpen, setIsOpen] = useState(false);
   const [transferQuantity, setTransferQuantity] = useState('');
+  const [transferType, setTransferType] = useState('');
 
 function openModal() {
   setIsOpen(true);
@@ -33,10 +36,15 @@ function closeModal() {
 
 const depositOrWithdrawal = (e) => {
   e.preventDefault();
-  console.log('made it into the function')
+  const data = {
+    transferQuantity,
+    transferType,
+  }
+
+  dispatch(newTransferThunk(data))
   setIsOpen(false);
+
 }
-console.log(transferQuantity)
 return (
   <div>
     <button className="despositWithdrawals" onClick={openModal}>
@@ -53,8 +61,8 @@ return (
       <label className="currentUSD">Current USD Balance: XXX</label>
       <form className="modalForm" onSubmit={(e) => depositOrWithdrawal(e)}>
         <label className="formLabel">Deposit or Withdrawal:</label>
-        <select className="formLabel">
-          <option value="" disabled selected>
+        <select defaultValue="" onChange={(e)=>setTransferType(e.target.value)} className="formLabel">
+          <option value="" disabled>
             Please select
           </option>
           <option value="deposit">Deposit</option>

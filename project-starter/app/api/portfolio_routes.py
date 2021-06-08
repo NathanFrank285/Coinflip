@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import db, Coin, Portfolio
+from app.models import db, Coin, Portfolio, User
 from pycoingecko import CoinGeckoAPI
 from sqlalchemy import and_
 
@@ -12,10 +12,11 @@ portfolio_routes = Blueprint('portfolio', __name__)
 @login_required
 def getPortfolio():
     userId = current_user.id
+    userUSDBalance = User.query.get(userId).us_dollar
     portfolioData = Portfolio.query.join(Coin).filter(
         Portfolio.userId == userId).all()
     portfolio = {}
-    portfolioSum = 0
+    portfolioSum = userUSDBalance
     tickers = []
     for row in portfolioData:
         data = cg.get_price(ids=f'{row.coinInfo.ticker}', vs_currencies='usd', include_market_cap='true',
@@ -59,7 +60,7 @@ def addToPortfolio(ticker):
     if already_owned_bool:
         already_owned = Portfolio.query.filter(
             and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first()
-        
+
         already_owned.quantity = already_owned.quantity + \
             int(request.get_json()['quantity'])
         current_average = already_owned.quantity * \
