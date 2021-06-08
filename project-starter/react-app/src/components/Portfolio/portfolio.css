@@ -2,7 +2,6 @@
   display: grid;
   grid-template-rows: 20% 80%;
   grid-template-columns: 5vw 90vw;
-  /* column-gap: 10px; */
   height: 77vh;
 }
 
@@ -17,7 +16,6 @@
 .port-table {
   grid-column: 1;
   overflow-y: scroll;
-  /* height: 100%; */
   width: 100%;
 }
 
@@ -32,8 +30,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* margin-top: 5%; */
 }
 
 .watchlist-title {

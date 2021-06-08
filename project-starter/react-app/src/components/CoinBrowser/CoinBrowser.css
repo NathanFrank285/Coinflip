@@ -4,8 +4,6 @@
     justify-content: center;
     box-sizing: border-box;
     margin-top: 40px;
-    /* background-image: url('../../images/TransparentLogo.png'); */
-
 }
 
 .table-container {
@@ -32,8 +30,3 @@
 .browser-link:visited {
     color: #1b1a17
 }
-
-/* .browser-data {
-    font-size: 20px !important;
-}
-} */

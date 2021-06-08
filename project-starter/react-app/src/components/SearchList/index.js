@@ -7,7 +7,6 @@ import './SearchList.css'
 const SearchList = () => {
     let searchListData;
     const searchList = useSelector(state => Object.values(state?.search))
-    // console.log('list', searchList[0])
     if (searchList[0]?.length) {
         searchListData = searchList[0]?.map(coin => {
             return (<div className='searchlist-item' key={coin.name}  >
@@ -27,11 +26,6 @@ const SearchList = () => {
 
             </>
     }
-
-    // console.log("THIS!!!!:", coin)
-
-
-
     return (
         <div className='searchlist-body'>
             {searchListData}

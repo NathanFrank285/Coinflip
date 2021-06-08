@@ -8,13 +8,6 @@ const getCoinDetail = (details) => {
   };
 };
 
-// const editWatchlistItem = (inWatchlist) => {
-//     return {
-//         type: EDIT_WATCHLIST_ITEM,
-//         payload: inWatchlist
-//     }
-// }
-
 export const getCoinDetailThunk = (name) => async (dispatch) => {
   const data = await fetch(`/api/coindetail/${name}`);
   const details = await data.json();
