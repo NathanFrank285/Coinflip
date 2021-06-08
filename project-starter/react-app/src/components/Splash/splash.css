@@ -7,7 +7,7 @@
         'title'
         'forms';
     background-color: #1b1a17;
-    height: 85vh;
+    height: 77vh;
     width: 105%;
 }
 
@@ -54,6 +54,19 @@
     margin-top: 20px;
 }
 
+.blurb{
+    display: flex;
+    grid-area: forms;
+    font-size: 25px;
+    justify-content: center;
+    height: 20vh;
+    width: 40vw;
+    justify-self: center;
+    text-align: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
 .splash-login {
     box-sizing: border-box;
     margin: 15px;
@@ -81,12 +94,15 @@
 
 .demo-btn {
     font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     margin: 4px;
     background-color: #388186;
     border: none;
     border-radius: 4px;
     box-shadow: 2px 2px 2px 2px #1b1a17;
+    text-decoration: none;
+    color: black;
 }
 
 .demo-label {

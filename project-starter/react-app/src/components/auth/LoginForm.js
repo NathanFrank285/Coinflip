@@ -32,40 +32,42 @@ const LoginForm = () => {
   }
 
   return (
-    <form className='splash-form' onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
-        <div className='login-label'>
+    <div className="form-container">
+      <form className='splash-form login' onSubmit={onLogin}>
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
         </div>
-        <input
-          className='login-input'
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <div className='login-label'>
+        <div>
+          <div className='login-label'>
+          </div>
+          <input
+            className='login-input'
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+          />
         </div>
-        <input
-          className='login-input'
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <div className='btn-div'>
-          <button className='login-btn' type="submit">Login</button>
+        <div>
+          <div className='login-label'>
+          </div>
+          <input
+            className='login-input'
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+          />
+          <div className='btn-div'>
+            <button className='login-btn' type="submit">Login</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 
