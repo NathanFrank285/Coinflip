@@ -1,6 +1,6 @@
 .nav-container {
     background-color: #fdf6f6;
-    height: 10vh;
+    height: fit-content;
     box-sizing: border-box;
     border-radius: 2px;
     min-width: 100%;
@@ -16,7 +16,7 @@
 }
 
 .nav-logo-container {
-    height: 12vh;
+    height: fit-content;
     width: auto;
     box-sizing: border-box;
     display: flex;
