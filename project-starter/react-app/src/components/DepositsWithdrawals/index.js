@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Modal from "react-modal";
+import './DepositsWithdrawals.css'
 
 const customStyles = {
   content: {
@@ -11,6 +12,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
+
 Modal.setAppElement("#root");
 function DepositsWithdrawals() {
   let subtitle;
@@ -20,11 +22,8 @@ function openModal() {
   setIsOpen(true);
 }
 
-function afterOpenModal() {
-  subtitle.style.color = "#f00";
-}
-
 function closeModal() {
+  setIsOpen(false);
 }
 
 const depositOrWithdrawal = (e) => {
@@ -40,20 +39,21 @@ return (
     </button>
     <Modal
       isOpen={modalIsOpen}
-      onAfterOpen={afterOpenModal}
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-      <button onClick={closeModal}>close</button>
-      <div>I am a modal</div>
+      <h1 className="modalTitle">Would you like to Deposit or Withdrawal USD?</h1>
       <form onSubmit={(e)=>depositOrWithdrawal(e)}>
-        <input />
-        <button>tab navigation</button>
-        <button>stays</button>
-        <button>inside</button>
-        <button type='submit'>the modal</button>
+        <label className="formLabel">Quantity</label>
+        <input type='number'/>
+        <select >
+          <option value='deposit'>Deposit</option>
+          <option value='withdrawal'>Withdrawal</option>
+        </select>
+
+        <button type='submit'>Confirm</button>
+      <button onClick={closeModal}>close</button>
       </form>
     </Modal>
   </div>
