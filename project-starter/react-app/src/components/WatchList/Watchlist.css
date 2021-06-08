@@ -1,13 +1,10 @@
 .watchlistContainer{
-  
   min-width: auto;
   margin-left: 10px;
   border-radius: 4px;
-  
 }
 
 .watchlistUlContainer{
   display: flex;
   flex-direction: column;
-
 }

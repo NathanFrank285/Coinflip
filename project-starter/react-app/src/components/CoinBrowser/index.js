@@ -80,7 +80,6 @@ export default function CoinBrowser() {
           name
         );
     })
-    // usd: 54816, usd_24h_change: 0.2844488253537837, usd_24h_vol: 46893571860.279526, usd_market_cap: 1024712665930.4342}
 
 
   return (
@@ -137,9 +136,7 @@ export default function CoinBrowser() {
                       {row?.change.toFixed(2) + "%"}
                     </TableCell>
                   )}
-                  {/* <TableCell align="right" className="browser-data">
-                    {row?.change.toFixed(2) + "%"}
-                  </TableCell> */}
+                  
                   <TableCell align="right" className={classes.dataPoints}>
                     {formatCash(row?.volume)}
                   </TableCell>

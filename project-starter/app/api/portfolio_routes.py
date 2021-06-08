@@ -44,22 +44,6 @@ def getPortfolio():
     def getHistory300(ticker):
         return cg.get_coin_market_chart_by_id(ticker, vs_currency='usd', days=300)
 
-    # historic_prices24 = []
-    # historic_prices7 = []
-    # historic_prices30 = []
-    # historic_prices300 = []
-    # history24hr = getHistory24(ticker)
-    # history7 = getHistory7(ticker)
-    # history30 = getHistory30(ticker)
-    # history300 = getHistory300(ticker)
-    # for price in history24hr['prices']:
-    #     historic_prices24.append({'price': price[1]})
-    # for price in history7['prices']:
-    #     historic_prices7.append({'price': price[1]})
-    # for price in history30['prices']:
-    #     historic_prices30.append({'price': price[1]})
-    # for price in history300['prices']:
-    #     historic_prices300.append({'price': price[1]})
 
     return {'Portfolio': portfolio, 'PortfolioBalance': portfolioSum}
 
@@ -75,8 +59,7 @@ def addToPortfolio(ticker):
     if already_owned_bool:
         already_owned = Portfolio.query.filter(
             and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first()
-        # print('quote version', already_owned['quantity'])
-        # print('dot version', already_owned.quantity)
+        
         already_owned.quantity = already_owned.quantity + \
             int(request.get_json()['quantity'])
         current_average = already_owned.quantity * \
@@ -91,8 +74,6 @@ def addToPortfolio(ticker):
         db.session.commit()
         return {}
     else:
-
-        print(request.get_json()['quantity'])
         new_portfolio_item = Portfolio()
         new_portfolio_item.userId = id
         new_portfolio_item.coinId = coinId

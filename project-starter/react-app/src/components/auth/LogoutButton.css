@@ -1,20 +1,3 @@
-/* .logout-button {
-    font-size: 3.5vh;
-    background-color: #282846;
-    color: #fdf6f6;
-    border: none;
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding: 4px;
-    box-shadow: 2px 2px 0px 0px #1b1a17;
-    height: 5vh;
-    width: 8vw;
-}
-
-.logout-button:hover {
-    box-shadow: 2px 2px 0px 2px #1b1a17;
-
-} */
 
 .logout-image {
     height: 57px;
@@ -23,10 +6,7 @@
     cursor: pointer;
 }
 
-/* .logout-image:hover {
-    height: 7vmin;
-    width: auto;
-} */
+
 @media screen and (max-width: 550px) {
 
         .logout-image{

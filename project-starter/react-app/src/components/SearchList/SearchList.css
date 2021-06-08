@@ -1,8 +1,6 @@
 .searchlist-body {
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
-    /* flex-wrap: wrap; */
     width: 900px;
     height: 73vh;
     overflow: hidden;
@@ -11,8 +9,6 @@
     margin-top: 40px;
     margin-left: 33vw;
     background-color: transparent;
-    /* background-image: url('../../images/TransparentLogo.png'); */
-    /* background-image: url('../../images/DarkLogo.png'); */
 }
 .search-image {
     margin-left: 20px;
@@ -26,7 +22,6 @@
     margin: 20px;
     padding: 8px;
     padding-top: 14px;
-    /* background-image: url('../../images/DarkLogo.png'); */
     width: 500px;
     height: 200px;
     background-color: #1b1a17;
@@ -34,28 +29,11 @@
     border: 1px solid white;
 }
 
-/* .searchlist-item::after {
-  content: "";
-  background-image: url('../../images/DarkLogo.png');
-  background-attachment:fixed;
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-  height: 100%
-} */
-
 .searchlist-item:hover{
-    /* background-image: url('../../images/DarkLogo.png'); */
     background-color: #fdf6f6;
     color: #388186;
     border-radius: 4px;
     border : 1px solid white;
-
-    /* background-blend-mode : lighten; */
 }
 
 .searchlist-link {
@@ -64,10 +42,6 @@
     font-size: 30px;
 }
 
-/* .searchlist-link:hover {
-    color: #1b1a17;
-} */
 .bad-search {
     font-size: 50px;
-
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import WatchListItem from '../WatchListItem'
-import { Link } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getWatchListThunk } from '../../store/watchlist'
@@ -14,8 +13,6 @@ const WatchList = () => {
 
 let coins = [];
 let content = watchlist?.map(item => {
-    // return Object.entries(item)
-    // console.log(item)
     let key = Object.keys(item)
     let values = Object.values(item)
     coins.push([
@@ -26,7 +23,6 @@ let content = watchlist?.map(item => {
       values[0].usd_24h_vol,
       values[0].usd_market_cap,
     ]);
-
 })
 
 return (

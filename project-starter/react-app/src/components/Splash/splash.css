@@ -1,11 +1,7 @@
-/* body{
-    background-color: #1b1a17 !important;
-    background-image: none;
-} */
+
 .splash-body {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr;
-    /* grid-template-rows: 225px 225px 550px; */
     grid-template-areas:
         'head'
         'title'
@@ -24,22 +20,18 @@
 
 .splash-title {
     font-size: 100px;
-    /* grid-area: title; */
     display: flex;
     justify-content: center;
     font-weight: 600;
 }
 
 .splash-subtitle {
-    /* grid-area: title; */
     display: flex;
     justify-content: center;
     font-size: 50px;
 }
 .splash-logo {
-
     grid-area: head title;
-    /* z-index: -1; */
     box-sizing: border-box;
     position: absolute;
     margin-left: 3vw;
@@ -47,9 +39,7 @@
 
 }
 .splash-logo-2 {
-
     grid-area: head title;
-    /* z-index: -1; */
     box-sizing: border-box;
     position: absolute;
     margin-left: 77vw;
@@ -62,7 +52,6 @@
     justify-content: center;
     grid-area: forms;
     margin-top: 20px;
-    /* height: 55vh; */
 }
 
 .splash-login {
