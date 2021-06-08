@@ -1,4 +1,4 @@
-import React from 'react'; from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux'
 import {deleteFromWatchlist} from '../../store/watchlist'
 import { NavLink} from 'react-router-dom'
