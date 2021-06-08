@@ -10,13 +10,18 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    border: "1px solid #388186",
+    backgroundColor: '#fdf6f6',
+    height: 'fit-content'
   },
 };
 
 Modal.setAppElement("#root");
+
 function DepositsWithdrawals() {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [transferQuantity, setTransferQuantity] = useState('');
 
 function openModal() {
   setIsOpen(true);
@@ -31,7 +36,7 @@ const depositOrWithdrawal = (e) => {
   console.log('made it into the function')
   setIsOpen(false);
 }
-
+console.log(transferQuantity)
 return (
   <div>
     <button className="despositWithdrawals" onClick={openModal}>
@@ -40,20 +45,38 @@ return (
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      style={customStyles}
+      // style={customStyles}
+      className="modal-container"
       contentLabel="Example Modal"
     >
-      <h1 className="modalTitle">Would you like to Deposit or Withdrawal USD?</h1>
-      <form onSubmit={(e)=>depositOrWithdrawal(e)}>
-        <label className="formLabel">Quantity</label>
-        <input type='number'/>
-        <select >
-          <option value='deposit'>Deposit</option>
-          <option value='withdrawal'>Withdrawal</option>
+      <h1 className="modalTitle">Would you like to Deposit or Withdraw USD?</h1>
+      <label className="currentUSD">Current USD Balance: XXX</label>
+      <form className="modalForm" onSubmit={(e) => depositOrWithdrawal(e)}>
+        <label className="formLabel">Deposit or Withdrawal:</label>
+        <select className="formLabel">
+          <option value="" disabled selected>
+            Please select
+          </option>
+          <option value="deposit">Deposit</option>
+          <option value="withdrawal">Withdrawal</option>
         </select>
 
-        <button type='submit'>Confirm</button>
-      <button onClick={closeModal}>close</button>
+        <label className="formLabel">Quantity:</label>
+        <input
+        className='formLabel'
+        type="number"
+        value={transferQuantity}
+        onChange={(e)=>setTransferQuantity(e.target.value)}
+        />
+
+        <div className="modalFormButton-container">
+          <button className="modalButton" type="submit">
+            Confirm
+          </button>
+          <button className="modalButton" onClick={closeModal}>
+            Cancel
+          </button>
+        </div>
       </form>
     </Modal>
   </div>

@@ -29,7 +29,7 @@ const Portfolio = () => {
         <div className="balanceDeposits-container">
             <div className="balances">
                 <div className="port-balance">Total Balance: {total}</div>
-                <div className="USD-balance">USD Balance: 200 </div>
+                <div className="USD-balance">USD Balance: XXX </div>
 
             </div>
             <div className="despositWithdrawals-container">
