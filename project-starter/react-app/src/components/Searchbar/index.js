@@ -34,9 +34,6 @@ const SearchBar = () => {
             src={searchButton}
           ></img>
         </div>
-        {/* <div>
-                <button className='search-button' onClick={(e) => submit(e)} type="submit">Search</button>
-              </div> */}
       </form>
     );
   }

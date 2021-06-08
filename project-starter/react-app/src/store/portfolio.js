@@ -5,15 +5,16 @@ const getPortfolio = (portfolio) => {
     portfolio,
   };
 };
+
 export const getPortfolioThunk = () => async (dispatch) => {
   let portfolioDetails = await fetch("/api/portfolio");
   let portfolio = await portfolioDetails.json();
-  console.log("========================", portfolio);
   if (portfolio) {
     dispatch(getPortfolio(portfolio));
     return;
   }
 };
+
 export const addToPortfolio = (data) => async (dispatch) => {
   const response = await fetch(`/api/portfolio/${data.coinId}`, {
     method: "POST",
@@ -22,12 +23,9 @@ export const addToPortfolio = (data) => async (dispatch) => {
     },
     body: JSON.stringify(data)
   })
-  console.log(response)
-
-
 }
-export const removeFromPortfolioThunk = (data) => async (dispatch) => {
 
+export const removeFromPortfolioThunk = (data) => async (dispatch) => {
   const response = await fetch(`/api/portfolio/delete/${data.coinId}`, {
     method: "DELETE",
     headers: {

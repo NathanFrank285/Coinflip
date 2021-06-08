@@ -1,8 +1,7 @@
-import React from 'react';
-import { useEffect, } from 'react'
+import React from 'react'; from 'react'
 import { useDispatch } from 'react-redux'
 import {deleteFromWatchlist} from '../../store/watchlist'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import './WatchListItem.css'
 
 
@@ -24,9 +23,6 @@ const removeFromWatchlist = (e) => {
 
 dispatch(deleteFromWatchlist(e.target.id));
 }
-
-
-
     return (
       <div className="watchlist-box">
         <div>

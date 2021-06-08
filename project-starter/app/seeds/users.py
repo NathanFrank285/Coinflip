@@ -35,16 +35,7 @@ def seed_coins():
              cardano, polkadot, bitcoinCash, stellar, tether, monero, ripple, usdCoin]
     for coin in coins:
         db.session.add(coin)
-    # coinsList = cg.get_coins_list()
-    # counter = 13
-    # nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    # for coin in coinsList:
-    #     if coin['name'] and coin['id'] and counter < 50:
-    #         newCoin = Coin(name=coin['name'], ticker=coin['id'])
-    #     db.session.add(newCoin)
-    #     counter += 1
-
-    # print(coins)
+    
     db.session.commit()
 
 

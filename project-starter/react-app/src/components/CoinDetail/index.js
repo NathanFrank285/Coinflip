@@ -84,15 +84,12 @@ const CoinDetail = () => {
     history.push("/portfolio");
   };
   const removeFromPortfolio = (e) => {
-    e.preventDefault();
-    console.log(details.id, quantity);
+    e.preventDefault()
     const data = {
       coinId: details.id,
       quantity: quantity,
     };
-    // if (quantity === portfolio[`${name}`].Quantity) {
-    //   setInPortfolio(false)
-    // }
+   
     setPortfolioSellClicked(false);
     dispatch(removeFromPortfolioThunk(data));
   };

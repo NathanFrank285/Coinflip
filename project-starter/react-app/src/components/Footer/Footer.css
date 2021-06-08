@@ -2,7 +2,6 @@
     width: 100%;
     background-color: #fdf6f6 ;
     color: black;
-    /* position: fixed; */
     position: relative;
     bottom: 0;
     display: flex;
@@ -10,14 +9,12 @@
     align-items: center;
     height: 13vh;
     box-sizing: border-box;
-    /* margin-top: 2vh; */
-    /* padding-bottom: 1vh; */
+    
 }
 
 .footer-info {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 

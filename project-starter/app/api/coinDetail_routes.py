@@ -52,9 +52,8 @@ def index(ticker):
         historic_prices7 = []
         historic_prices30 = []
         historic_prices300 = []
-        print(history24hr)
 
-        # dates = {'date': datetime.fromtimestamp(history24hr[0][0] / 1000)}
+        
         for price in history24hr['prices']:
             time = price[0] / 1000
             historic_prices24.append({'price': price[1]})
@@ -86,39 +85,21 @@ def index(ticker):
     history30 = getHistory30(ticker)
     history300 = getHistory300(ticker)
     middle24 = math.floor(len(history24hr['prices'])/2)
-    print('middle indy', middle24)
-    print('length', len(history24hr))
-
-    # dates = {'date': datetime.fromtimestamp(
-    #     history24hr['prices'][0][0] / 1000)}, {'date': datetime.fromtimestamp(
-    #         history24hr['prices'][middle24][0] / 1000)}, {
-    #             'date': datetime.fromtimestamp(
-    #                 history24hr['prices'][-1][0] / 1000)
-    # }
-    # for date in dates:
-    #     historic_prices24.append(date)
     for price in history24hr['prices']:
         historic_prices24.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
             price[0] / 1000).strftime('%x')})
-        # historic_prices24.append(
-        #     {'date':  datetime.fromtimestamp(price[0] / 1000)})
     for price in history7['prices']:
-        # historic_prices7.append({'price': price[1]})
         historic_prices7.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
             price[0] / 1000).strftime('%x')})
     for price in history30['prices']:
-        # historic_prices30.append({'price': price[1]})
         historic_prices30.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
             price[0] / 1000).strftime('%x')})
     for price in history300['prices']:
-        # historic_prices300.append({'price': price[1]})
         historic_prices300.append({'price': format(price[1], '.2f'), 'date': datetime.fromtimestamp(
             price[0] / 1000).strftime('%x')})
 
     data = cg.get_coin_by_id(ticker)
     inWatchlist = inUsersWatchlist(id, coinExist.id)
-    # return {'coin': data, 'prices': historic_prices}
     coinsList = cg.get_coins_list()
-    print(coinsList)
 
     return {'coin': data, 'prices24hr': historic_prices24, 'prices7days': historic_prices7, 'prices30': historic_prices30, 'prices300': historic_prices300, 'inWatchlist': inWatchlist}
