@@ -29,13 +29,13 @@ def seed_coins():
     tether = Coin(name='Tether', ticker='tether', symbol='USDT')
     monero = Coin(name='Monero', ticker='monero', symbol='XMR')
     ripple = Coin(name='Ripple', ticker='ripple', symbol='XRP')
-    usdCoin = Coin(name='USD Coin', ticker='usd-coin', symbol='USD')
+    usdCoin = Coin(name='USD Coin', ticker='usd-coin', symbol='USDC')
 
     coins = [bitcoin, ethereum, dogecoin, basicAttentionToken, litecoin,
              cardano, polkadot, bitcoinCash, stellar, tether, monero, ripple, usdCoin]
     for coin in coins:
         db.session.add(coin)
-    
+
     db.session.commit()
 
 
