@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import LoginForm from "../auth/LoginForm"
-import SignUpForm from "../auth/SignUpForm"
+import SplashNav from "../SplashNav"
 import DarkLogo from "../../images/DarkLogo.png"
 import { useDispatch } from "react-redux"
 import { login } from "../../store/session"
+import { NavLink, useHistory } from 'react-router-dom'
 import "./splash.css"
 
 const Splash = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('demo@aa.io')
-  const [password, setPassword] = useState('password')
+  const history = useHistory();
+  // const [email, setEmail] = useState('demo@aa.io')
+  // const [password, setPassword] = useState('password')
 
-  const loginDemoUser = async () => {
-    return await dispatch(login(email, password))
-  }
+  // const loginDemoUser = async () => {
+  //   await dispatch(login(email, password))
+  //   history.push("/portfolio")
+  // }
 
   return (
     <div className="splash-body">
@@ -23,7 +25,19 @@ const Splash = () => {
         <div className="splash-title"> Welcome to Coinflip </div>
         <div className="splash-subtitle">A CryptoTracker</div>
       </div>
-      <div className="splash-forms">
+      <div className="blurb">
+        <div>
+          Track, invest, and learn about different cryptocurrencies!
+        </div>
+        <div>
+          Coinflip allows you to add cryptocurrencies to your personal
+          portfolio, view the current price of a coin as well as view a
+          graph with the price history of the coin, add coins you're
+          interested in to a watchlist, and learn about some background
+          information on each coin.
+        </div>
+      </div>
+      {/* <div className="splash-forms">
         <div className="splash-login">
           <div>
             {" "}
@@ -40,7 +54,7 @@ const Splash = () => {
           {" "}
           <SignUpForm />{" "}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
