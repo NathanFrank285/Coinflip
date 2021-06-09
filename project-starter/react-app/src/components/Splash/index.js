@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import SplashNav from "../SplashNav"
+import React from "react";
 import DarkLogo from "../../images/DarkLogo.png"
-import { useDispatch } from "react-redux"
-import { login } from "../../store/session"
-import { NavLink, useHistory } from 'react-router-dom'
 import "./splash.css"
 
 const Splash = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   // const [email, setEmail] = useState('demo@aa.io')
   // const [password, setPassword] = useState('password')
 

@@ -11,18 +11,30 @@ const WatchList = () => {
       dispatch(getWatchListThunk());
     }, [watchlist?.length]);
 
-let coins = [];
-let content = watchlist?.map(item => {
+// let coins = [];
+// let content = watchlist?.map(item => {
+//     let key = Object.keys(item)
+//     let values = Object.values(item)
+//     coins.push([
+//       key[0],
+//       values[0].last_updated_at,
+//       values[0].usd,
+//       values[0].usd_24h_change,
+//       values[0].usd_24h_vol,
+//       values[0].usd_market_cap,
+//     ]);
+// })
+let coins = watchlist?.map(item => {
     let key = Object.keys(item)
     let values = Object.values(item)
-    coins.push([
+    return[
       key[0],
       values[0].last_updated_at,
       values[0].usd,
       values[0].usd_24h_change,
       values[0].usd_24h_vol,
       values[0].usd_market_cap,
-    ]);
+    ];
 })
 
 return (

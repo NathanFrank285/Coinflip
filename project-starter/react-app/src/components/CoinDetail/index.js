@@ -89,7 +89,7 @@ const CoinDetail = () => {
       coinId: details.id,
       quantity: quantity,
     };
-   
+
     setPortfolioSellClicked(false);
     dispatch(removeFromPortfolioThunk(data));
   };
@@ -256,10 +256,10 @@ const CoinDetail = () => {
           </div>
         </div>
         <div className="detail-coin-image-container">
-          <img className="detail-coin-image" src={details?.image.small} />
+          <img className="detail-coin-image" alt="detail" src={details?.image.small} />
         </div>
         <div className="detail-button-container">
-          {inWatchlist == true && (
+          {inWatchlist === true && (
             <button
               onClick={removeFromWatchlist}
               className="removeFromWatchList detail-watchlist-button"
@@ -268,7 +268,7 @@ const CoinDetail = () => {
             </button>
           )}
 
-          {inWatchlist == false && (
+          {inWatchlist === false && (
             <button
               onClick={addTolist}
               className="addToWatchList detail-watchlist-button"

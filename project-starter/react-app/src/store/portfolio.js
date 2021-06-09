@@ -23,6 +23,7 @@ export const addToPortfolio = (data) => async (dispatch) => {
     },
     body: JSON.stringify(data)
   })
+  return response
 }
 
 export const removeFromPortfolioThunk = (data) => async (dispatch) => {
@@ -34,6 +35,7 @@ export const removeFromPortfolioThunk = (data) => async (dispatch) => {
     body: JSON.stringify(data),
   });
   let res = await response.json();
+  return res
 }
 const initialState = {};
 export default function portfolio(state = initialState, action) {
