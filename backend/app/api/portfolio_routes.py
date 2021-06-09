@@ -57,6 +57,12 @@ def addToPortfolio(ticker):
     already_owned_bool = Portfolio.query.filter(
         and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first() is not None
 
+    #? remove usd from portfolio
+    usdValue = (int(request.get_json()['quantity']) * float(request.get_json()['averagePrice']))
+    user = User.query.get(id)
+    user.us_dollar = user.us_dollar - usdValue
+
+    # ? add the crypto dollar amount to portfolio
     if already_owned_bool:
         already_owned = Portfolio.query.filter(
             and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first()
@@ -94,15 +100,20 @@ def delete_portfolio(ticker):
     portfolioEntry = Portfolio.query.filter(
         and_(Portfolio.coinId == coinId, Portfolio.userId == id)).first()
 
+    # ? add the amount we are selling back into USD
+    usdValue = (int(request.get_json()['quantity'])
+                * float(request.get_json()['averagePrice']))
+    user = User.query.get(id)
+    user.us_dollar = user.us_dollar + usdValue
 
     if (deleteQuantity == portfolioEntry.quantity ):
         db.session.delete(portfolioEntry)
         db.session.commit()
-        return {}
+        return {'success': f'Confirmed, you sold {int(request.get_json()["quantity"])} {ticker}'}
     elif (deleteQuantity < portfolioEntry.quantity):
         portfolioEntry.quantity = portfolioEntry.quantity - deleteQuantity
         db.session.commit()
-        return {}
+        return {'success': f'Confirmed, you sold {int(request.get_json()["quantity"])} {ticker}'}
     else:
         return{'error': "You can't sell more than you own"}
 
