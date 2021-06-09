@@ -61,7 +61,6 @@ def addToPortfolio(ticker):
     usdValue = (int(request.get_json()['quantity']) * float(request.get_json()['averagePrice']))
     user = User.query.get(id)
     user.us_dollar = user.us_dollar - usdValue
-    # db.session.commit()
 
     # ? add the crypto dollar amount to portfolio
     if already_owned_bool:
