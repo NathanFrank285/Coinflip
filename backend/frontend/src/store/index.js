@@ -6,6 +6,8 @@ import search from './search'
 import coinDetail from './coinDetail'
 import coinBrowser from './coinBrowser'
 import portfolio from './portfolio'
+import USDBalance from './accountUSD';
+
 
 
 const rootReducer = combineReducers({
@@ -14,7 +16,8 @@ const rootReducer = combineReducers({
     search,
     coinDetail,
     coinBrowser,
-    portfolio
+    portfolio,
+    USDBalance
 });
 
 let enhancer;
