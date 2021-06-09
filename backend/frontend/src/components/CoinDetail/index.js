@@ -31,6 +31,8 @@ const CoinDetail = () => {
   const [graphStatus, setGraphStatus] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [inPortfolio, setInPortfolio] = useState("");
+  const [tradeAlert, setTradeAlert] = useState(false)
+  const [tradeResponse, setTradeResponse] = useState('')
 
   const formatCash = (n) => {
     if (n < 1e3) return n;
@@ -74,7 +76,8 @@ useEffect(() => {
       setGraphStatus(chartData300);
     }
   };
-  const addToPortfolioSubmit = (e) => {
+
+  const addToPortfolioSubmit = async (e) => {
     e.preventDefault();
     const data = {
       coinId: details.id,
@@ -83,9 +86,15 @@ useEffect(() => {
     };
     setInPortfolio(true);
     setPortfolioBuyClicked(false);
-    dispatch(addToPortfolio(data));
+    let response = await dispatch(addToPortfolio(data));
+    setTradeResponse(Object.values(response)[0]);
+    setTradeAlert(true)
+    setTimeout(() => {
+      setTradeAlert(false)
+      setTradeResponse('');
+    },5000)
   };
-  const removeFromPortfolio = (e) => {
+  const removeFromPortfolio = async (e) => {
     e.preventDefault()
     const data = {
       coinId: details.id,
@@ -94,7 +103,13 @@ useEffect(() => {
     };
 
     setPortfolioSellClicked(false);
-    dispatch(removeFromPortfolioThunk(data));
+    let response = await dispatch(removeFromPortfolioThunk(data));
+    setTradeResponse(Object.values(response)[0]);
+    setTradeAlert(true);
+    setTimeout(() => {
+      setTradeAlert(false);
+      setTradeResponse('');
+    }, 5000);
   };
   useEffect(() => {
     dispatch(getPortfolioThunk());
@@ -113,6 +128,7 @@ useEffect(() => {
           </button>
         ) : (
           <>
+            {tradeAlert && <div className="tradeAlert">{tradeResponse}</div>}
             <button
               onClick={() => setPortfolioBuyClicked(true)}
               className="trade-buttons"
@@ -255,7 +271,11 @@ useEffect(() => {
           </div>
         </div>
         <div className="detail-coin-image-container">
-          <img className="detail-coin-image" alt="detail" src={details?.image.small} />
+          <img
+            className="detail-coin-image"
+            alt="detail"
+            src={details?.image.small}
+          />
         </div>
         <div className="detail-button-container">
           {inWatchlist === true && (
@@ -279,12 +299,12 @@ useEffect(() => {
       </div>
       <div className="graph-div">
         <div className="detail-graph">
-          <ResponsiveContainer width="100%" height='100%' >
+          <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={graphStatus ? graphStatus : chartData24Hr}
               margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-              width='100%'
-              aspect={4.0/3.0}
+              width="100%"
+              aspect={4.0 / 3.0}
             >
               <YAxis domain={["auto", "auto"]} />
               <XAxis type="category" dataKey="date" domain={["auto", "auto"]} />
@@ -322,12 +342,18 @@ useEffect(() => {
       </div>
       <div className="market-detail">
         {portfolioBuyClicked || portfolioSellClicked ? null : (
-          <div className="buySell-container">{portfolioButtonStuff}</div>
+          <div className="buySell-container">{portfolioButtonStuff}
+          </div>
         )}
+        {/* {tradeAlert && (
+          <div className="tradeAlert">
+            {tradeResponse}
+          </div>
+        )} */}
         {portfolioBuyClicked ? tradeForm : null}
         {portfolioSellClicked ? tradeForm : null}
         <div className="market-detail-container">
-          <div >
+          <div>
             Current Price:{" "}
             {details?.market_data?.current_price.usd.toLocaleString("en-US", {
               style: "currency",

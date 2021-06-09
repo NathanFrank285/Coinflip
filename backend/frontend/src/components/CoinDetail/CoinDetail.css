@@ -147,6 +147,12 @@ flex-direction: column;
 align-items: center;
 }
 
+.tradeAlert{
+    color: red;
+    font-size: 2vmin;
+    padding-bottom: 10px;
+}
+
 .description {
     border: 1px solid white;
     border-radius: 4px;

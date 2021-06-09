@@ -79,7 +79,7 @@ def addToPortfolio(ticker):
 
         already_owned.averagePrice = round(new_average_price, 2)
         db.session.commit()
-        return {}
+        return {'success': f'Confirmed, you bought {int(request.get_json()["quantity"])} {ticker}'}
     else:
         new_portfolio_item = Portfolio()
         new_portfolio_item.userId = id
@@ -88,7 +88,7 @@ def addToPortfolio(ticker):
         new_portfolio_item.averagePrice = request.get_json()['averagePrice']
         db.session.add(new_portfolio_item)
         db.session.commit()
-        return {}
+        return {'success': f'Confirmed, you bought {int(request.get_json()["quantity"])} {ticker}'}
 
 
 @portfolio_routes.route('/delete/<ticker>', methods=['DELETE'])

@@ -29,10 +29,13 @@ function DepositsWithdrawals() {
 
 function openModal() {
   setIsOpen(true);
+
 }
 
 function closeModal() {
   setIsOpen(false);
+  setTransferQuantity("");
+  setTransferType("");
 }
 
 const depositOrWithdrawal = (e) => {
