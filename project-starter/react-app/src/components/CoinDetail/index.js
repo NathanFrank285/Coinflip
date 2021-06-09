@@ -19,9 +19,6 @@ const CoinDetail = () => {
   const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
   const portfolioUSD = useSelector(state => state?.portfolio?.PortfolioBalance)
   const USDBalance = useSelector((state) => state?.USDBalance?.balance);
-  if (USDBalance) {
-    console.log(USDBalance);
-  }
   const inWatchlist = useSelector((state) => state?.coinDetail?.inWatchlist);
   const chartData24Hr = useSelector((state) => state?.coinDetail?.prices24hr);
   const chartData30 = useSelector((state) => state?.coinDetail?.prices30);
