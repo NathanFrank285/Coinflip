@@ -94,6 +94,7 @@ useEffect(() => {
     const data = {
       coinId: details.id,
       quantity: quantity,
+      averagePrice: details?.market_data?.current_price?.usd,
     };
 
     setPortfolioSellClicked(false);
