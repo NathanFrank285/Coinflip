@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCoinDetailThunk } from "../../store/coinDetail";
+import { getDollarAmountThunk } from '../../store/accountUSD';
 import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 import './CoinDetail.css'
@@ -17,7 +18,10 @@ const CoinDetail = () => {
   const details = useSelector((state) => state?.coinDetail?.coin);
   const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
   const portfolioUSD = useSelector(state => state?.portfolio?.PortfolioBalance)
-
+  const USDBalance = useSelector((state) => state?.USDBalance?.balance);
+  if (USDBalance) {
+    console.log(USDBalance);
+  }
   const inWatchlist = useSelector((state) => state?.coinDetail?.inWatchlist);
   const chartData24Hr = useSelector((state) => state?.coinDetail?.prices24hr);
   const chartData30 = useSelector((state) => state?.coinDetail?.prices30);
@@ -38,7 +42,9 @@ const CoinDetail = () => {
     if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
     if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
   };
-
+useEffect(() => {
+  dispatch(getDollarAmountThunk());
+}, []);
   useEffect(() => {
     dispatch(getCoinDetailThunk(name));
   }, [watchlistStatus]);
@@ -89,7 +95,7 @@ const CoinDetail = () => {
       coinId: details.id,
       quantity: quantity,
     };
-   
+
     setPortfolioSellClicked(false);
     dispatch(removeFromPortfolioThunk(data));
   };
@@ -141,8 +147,7 @@ const CoinDetail = () => {
       <div className="tradeForm">
         <form onSubmit={addToPortfolioSubmit}>
           <div className="portfolio-add-container">
-            {portfolioUSD <
-            quantity * details?.market_data?.current_price.usd ? (
+            {USDBalance < quantity * details?.market_data?.current_price.usd ? (
               <div className="sellError">
                 You do not have enough USD to make this purchase.
               </div>
@@ -163,7 +168,7 @@ const CoinDetail = () => {
             ></input>
 
             <div className="buySellButtons">
-              {portfolioUSD <
+              {USDBalance <
               quantity * details?.market_data?.current_price.usd ? (
                 <button
                   disabled={true}
@@ -177,10 +182,7 @@ const CoinDetail = () => {
                   Buy
                 </button>
               )}
-              <button
-                onClick={() => cancelledBuy()}
-                className="graph-buttons"
-              >
+              <button onClick={() => cancelledBuy()} className="graph-buttons">
                 Cancel
               </button>
             </div>
