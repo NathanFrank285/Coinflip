@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import User
+from app.models import db, User
 
 user_routes = Blueprint('users', __name__)
 
@@ -30,13 +30,17 @@ def balance():
 @login_required
 def transfer():
     id = current_user.id
-    user = User.query.get(id).to_dict()
-    transferQuantity = request.get_json()['transferQuantity']
+    user = User.query.get(id)
+    transferQuantity = int(request.get_json()['transferQuantity'])
     transferType = request.get_json()['transferType']
 
     if transferType == 'deposit':
+        print('---------------', user.us_dollar,'----------------')
         user.us_dollar = user.us_dollar + transferQuantity
+        print('---------------', user.us_dollar,'----------------')
+        db.session.commit()
     else:
-        user.us_dollar = user.us_dollar + transferQuantity
+        user.us_dollar = user.us_dollar - transferQuantity
+        db.session.commit()
 
-    return {'success': 'transfer succesful'}
+    return {'balance': user.us_dollar}

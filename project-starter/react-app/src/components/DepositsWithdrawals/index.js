@@ -25,6 +25,7 @@ function DepositsWithdrawals() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [transferQuantity, setTransferQuantity] = useState('');
   const [transferType, setTransferType] = useState('');
+  const USDBalance = useSelector((state) => state?.USDBalance?.balance);
 
 function openModal() {
   setIsOpen(true);
@@ -45,6 +46,14 @@ const depositOrWithdrawal = (e) => {
   setIsOpen(false);
 
 }
+
+ let USDTotal;
+ if (USDBalance) {
+   USDTotal = USDBalance.toLocaleString("en-US", {
+     style: "currency",
+     currency: "USD",
+   });
+ }
 return (
   <div>
     <button className="despositWithdrawals" onClick={openModal}>
@@ -58,10 +67,14 @@ return (
       contentLabel="Example Modal"
     >
       <h1 className="modalTitle">Would you like to Deposit or Withdraw USD?</h1>
-      <label className="currentUSD">Current USD Balance: XXX</label>
+      <label className="currentUSD">Current USD Balance: {USDTotal}</label>
       <form className="modalForm" onSubmit={(e) => depositOrWithdrawal(e)}>
         <label className="formLabel">Deposit or Withdrawal:</label>
-        <select defaultValue="" onChange={(e)=>setTransferType(e.target.value)} className="formLabel">
+        <select
+          defaultValue=""
+          onChange={(e) => setTransferType(e.target.value)}
+          className="formLabel"
+        >
           <option value="" disabled>
             Please select
           </option>
@@ -71,10 +84,10 @@ return (
 
         <label className="formLabel">Quantity:</label>
         <input
-        className='formLabel'
-        type="number"
-        value={transferQuantity}
-        onChange={(e)=>setTransferQuantity(e.target.value)}
+          className="formLabel"
+          type="number"
+          value={transferQuantity}
+          onChange={(e) => setTransferQuantity(e.target.value)}
         />
 
         <div className="modalFormButton-container">
