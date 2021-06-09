@@ -87,7 +87,6 @@ useEffect(() => {
     setInPortfolio(true);
     setPortfolioBuyClicked(false);
     dispatch(addToPortfolio(data));
-    history.push("/portfolio");
   };
   const removeFromPortfolio = (e) => {
     e.preventDefault()
