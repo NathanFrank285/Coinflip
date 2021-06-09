@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCoinDetailThunk } from "../../store/coinDetail";
 import { getDollarAmountThunk } from '../../store/accountUSD';
 import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+import ReactHtmlParser from 'react-html-parser'
 import './CoinDetail.css'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { addToPortfolio, getPortfolioThunk, removeFromPortfolioThunk } from '../../store/portfolio'
 
 
@@ -258,10 +258,10 @@ useEffect(() => {
           </div>
         </div>
         <div className="detail-coin-image-container">
-          <img className="detail-coin-image" src={details?.image.small} />
+          <img className="detail-coin-image" alt="detail" src={details?.image.small} />
         </div>
         <div className="detail-button-container">
-          {inWatchlist == true && (
+          {inWatchlist === true && (
             <button
               onClick={removeFromWatchlist}
               className="removeFromWatchList detail-watchlist-button"
@@ -270,7 +270,7 @@ useEffect(() => {
             </button>
           )}
 
-          {inWatchlist == false && (
+          {inWatchlist === false && (
             <button
               onClick={addTolist}
               className="addToWatchList detail-watchlist-button"

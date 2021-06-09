@@ -1,7 +1,7 @@
 import React from "react";
 import WatchList from '../WatchList'
 import PortfolioGraph from '../PortfolioGraph'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPortfolioThunk } from "../../store/portfolio";
 import './portfolio.css'

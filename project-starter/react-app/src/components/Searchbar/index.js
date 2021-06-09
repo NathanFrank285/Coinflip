@@ -32,6 +32,7 @@ const SearchBar = () => {
             className='searchButton'
             onClick={(e) => submit(e)}
             src={searchButton}
+            alt="search"
           ></img>
         </div>
       </form>
