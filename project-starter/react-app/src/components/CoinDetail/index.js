@@ -4,9 +4,9 @@ import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCoinDetailThunk } from "../../store/coinDetail";
 import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+import ReactHtmlParser from 'react-html-parser'
 import './CoinDetail.css'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { addToPortfolio, getPortfolioThunk, removeFromPortfolioThunk } from '../../store/portfolio'
 
 
