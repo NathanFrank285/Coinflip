@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask import Blueprint, request
+from flask_login import login_required, current_user
+from app.models import db, User
 
 user_routes = Blueprint('users', __name__)
 
@@ -17,3 +17,30 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/balance')
+@login_required
+def balance():
+    id = current_user.id
+    userDollarBalance = User.query.get(id).to_dict()['us_dollar']
+
+    return {'balance': userDollarBalance}
+
+@user_routes.route('/transfer', methods=['POST'])
+@login_required
+def transfer():
+    id = current_user.id
+    user = User.query.get(id)
+    transferQuantity = int(request.get_json()['transferQuantity'])
+    transferType = request.get_json()['transferType']
+
+    if transferType == 'deposit':
+        print('---------------', user.us_dollar,'----------------')
+        user.us_dollar = user.us_dollar + transferQuantity
+        print('---------------', user.us_dollar,'----------------')
+        db.session.commit()
+    else:
+        user.us_dollar = user.us_dollar - transferQuantity
+        db.session.commit()
+
+    return {'balance': user.us_dollar}
