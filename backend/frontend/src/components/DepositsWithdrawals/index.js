@@ -44,7 +44,8 @@ const depositOrWithdrawal = (e) => {
 
   dispatch(newTransferThunk(data))
   setIsOpen(false);
-
+  setTransferQuantity('')
+  setTransferType('')
 }
 
  let USDTotal;
@@ -54,6 +55,8 @@ const depositOrWithdrawal = (e) => {
      currency: "USD",
    });
  }
+ console.log(transferType === "withdrawal" && transferQuantity > USDBalance);
+ console.log(transferType);
 return (
   <div>
     <button className="despositWithdrawals" onClick={openModal}>
@@ -91,10 +94,16 @@ return (
         />
 
         <div className="modalFormButton-container">
-          <button className="modalButton" type="submit">
-            Confirm
-          </button>
-          <button className="modalButton" onClick={closeModal}>
+          {transferType === "withdrawal" && transferQuantity > USDBalance ? (
+            <button disabled={true} className="modalButton-disabled" type="submit">
+              Confirm
+            </button>
+          ) : (
+            <button className="modalButton-enabled" type="submit">
+              Confirm
+            </button>
+          )}
+          <button className="modalButton-enabled" onClick={closeModal}>
             Cancel
           </button>
         </div>
