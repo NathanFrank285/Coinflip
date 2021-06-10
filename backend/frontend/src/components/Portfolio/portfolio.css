@@ -60,7 +60,7 @@
 
 .USD-balance{
   grid-column: 2;
-  font-size: 5vmin;
+  font-size: 4vmin;
   font-family: inherit;
 
 }
@@ -79,4 +79,3 @@
   justify-content: center;
 
   }
-  

@@ -35,9 +35,7 @@ def transfer():
     transferType = request.get_json()['transferType']
 
     if transferType == 'deposit':
-        print('---------------', user.us_dollar,'----------------')
         user.us_dollar = user.us_dollar + transferQuantity
-        print('---------------', user.us_dollar,'----------------')
         db.session.commit()
     else:
         user.us_dollar = user.us_dollar - transferQuantity

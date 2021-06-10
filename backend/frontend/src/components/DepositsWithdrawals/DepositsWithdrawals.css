@@ -59,7 +59,7 @@ position: absolute;
   justify-content: center;
   margin: inherit;
 }
-.modalButton{
+.modalButton-enabled{
   font-size: 20px;
     color: black;
     background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
@@ -67,4 +67,14 @@ position: absolute;
     margin: inherit;
     padding:5px;
     border-radius: 4px;
+}
+.modalButton-disabled{
+  font-size: 20px;
+    color: black;
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
+    border: none;
+    margin: inherit;
+    padding:5px;
+    border-radius: 4px;
+    opacity: 50%;
 }

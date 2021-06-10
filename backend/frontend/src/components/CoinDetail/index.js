@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCoinDetailThunk } from "../../store/coinDetail";
+import { getDollarAmountThunk } from '../../store/accountUSD';
 import { deleteFromWatchlist, addToWatchlist } from "../../store/watchlist";
 import ReactHtmlParser from 'react-html-parser'
 import './CoinDetail.css'
@@ -17,7 +18,7 @@ const CoinDetail = () => {
   const details = useSelector((state) => state?.coinDetail?.coin);
   const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
   const portfolioUSD = useSelector(state => state?.portfolio?.PortfolioBalance)
-
+  const USDBalance = useSelector((state) => state?.USDBalance?.balance);
   const inWatchlist = useSelector((state) => state?.coinDetail?.inWatchlist);
   const chartData24Hr = useSelector((state) => state?.coinDetail?.prices24hr);
   const chartData30 = useSelector((state) => state?.coinDetail?.prices30);
@@ -30,6 +31,8 @@ const CoinDetail = () => {
   const [graphStatus, setGraphStatus] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [inPortfolio, setInPortfolio] = useState("");
+  const [tradeAlert, setTradeAlert] = useState(false)
+  const [tradeResponse, setTradeResponse] = useState('')
 
   const formatCash = (n) => {
     if (n < 1e3) return n;
@@ -38,7 +41,9 @@ const CoinDetail = () => {
     if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
     if (n >= 1e12) return +(n / 1e12).toFixed(2) + "T";
   };
-
+useEffect(() => {
+  dispatch(getDollarAmountThunk());
+}, []);
   useEffect(() => {
     dispatch(getCoinDetailThunk(name));
   }, [watchlistStatus]);
@@ -71,7 +76,8 @@ const CoinDetail = () => {
       setGraphStatus(chartData300);
     }
   };
-  const addToPortfolioSubmit = (e) => {
+
+  const addToPortfolioSubmit = async (e) => {
     e.preventDefault();
     const data = {
       coinId: details.id,
@@ -80,18 +86,30 @@ const CoinDetail = () => {
     };
     setInPortfolio(true);
     setPortfolioBuyClicked(false);
-    dispatch(addToPortfolio(data));
-    history.push("/portfolio");
+    let response = await dispatch(addToPortfolio(data));
+    setTradeResponse(Object.values(response)[0]);
+    setTradeAlert(true)
+    setTimeout(() => {
+      setTradeAlert(false)
+      setTradeResponse('');
+    },5000)
   };
-  const removeFromPortfolio = (e) => {
+  const removeFromPortfolio = async (e) => {
     e.preventDefault()
     const data = {
       coinId: details.id,
       quantity: quantity,
+      averagePrice: details?.market_data?.current_price?.usd,
     };
 
     setPortfolioSellClicked(false);
-    dispatch(removeFromPortfolioThunk(data));
+    let response = await dispatch(removeFromPortfolioThunk(data));
+    setTradeResponse(Object.values(response)[0]);
+    setTradeAlert(true);
+    setTimeout(() => {
+      setTradeAlert(false);
+      setTradeResponse('');
+    }, 5000);
   };
   useEffect(() => {
     dispatch(getPortfolioThunk());
@@ -110,6 +128,7 @@ const CoinDetail = () => {
           </button>
         ) : (
           <>
+            {tradeAlert && <div className="tradeAlert">{tradeResponse}</div>}
             <button
               onClick={() => setPortfolioBuyClicked(true)}
               className="trade-buttons"
@@ -141,8 +160,7 @@ const CoinDetail = () => {
       <div className="tradeForm">
         <form onSubmit={addToPortfolioSubmit}>
           <div className="portfolio-add-container">
-            {portfolioUSD <
-            quantity * details?.market_data?.current_price.usd ? (
+            {USDBalance < quantity * details?.market_data?.current_price.usd ? (
               <div className="sellError">
                 You do not have enough USD to make this purchase.
               </div>
@@ -163,7 +181,7 @@ const CoinDetail = () => {
             ></input>
 
             <div className="buySellButtons">
-              {portfolioUSD <
+              {USDBalance <
               quantity * details?.market_data?.current_price.usd ? (
                 <button
                   disabled={true}
@@ -177,10 +195,7 @@ const CoinDetail = () => {
                   Buy
                 </button>
               )}
-              <button
-                onClick={() => cancelledBuy()}
-                className="graph-buttons"
-              >
+              <button onClick={() => cancelledBuy()} className="graph-buttons">
                 Cancel
               </button>
             </div>
@@ -256,7 +271,11 @@ const CoinDetail = () => {
           </div>
         </div>
         <div className="detail-coin-image-container">
-          <img className="detail-coin-image" alt="detail" src={details?.image.small} />
+          <img
+            className="detail-coin-image"
+            alt="detail"
+            src={details?.image.small}
+          />
         </div>
         <div className="detail-button-container">
           {inWatchlist === true && (
@@ -280,12 +299,12 @@ const CoinDetail = () => {
       </div>
       <div className="graph-div">
         <div className="detail-graph">
-          <ResponsiveContainer width="100%" height='100%' >
+          <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={graphStatus ? graphStatus : chartData24Hr}
               margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-              width='100%'
-              aspect={4.0/3.0}
+              width="100%"
+              aspect={4.0 / 3.0}
             >
               <YAxis domain={["auto", "auto"]} />
               <XAxis type="category" dataKey="date" domain={["auto", "auto"]} />
@@ -323,12 +342,18 @@ const CoinDetail = () => {
       </div>
       <div className="market-detail">
         {portfolioBuyClicked || portfolioSellClicked ? null : (
-          <div className="buySell-container">{portfolioButtonStuff}</div>
+          <div className="buySell-container">{portfolioButtonStuff}
+          </div>
         )}
+        {/* {tradeAlert && (
+          <div className="tradeAlert">
+            {tradeResponse}
+          </div>
+        )} */}
         {portfolioBuyClicked ? tradeForm : null}
         {portfolioSellClicked ? tradeForm : null}
         <div className="market-detail-container">
-          <div >
+          <div>
             Current Price:{" "}
             {details?.market_data?.current_price.usd.toLocaleString("en-US", {
               style: "currency",
