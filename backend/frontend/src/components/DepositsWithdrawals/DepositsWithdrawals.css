@@ -1,5 +1,170 @@
-
+@media screen and (max-width: 650px) {
 .modal-container{
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #388186;
+  background-color: #fdf6f6;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.depositWithdrawals{
+  align-self: center;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: inherit;
+  margin-left: 15px;
+  font-size: 15px;
+  color: black;
+  background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
+  border: none;
+}
+
+.modalTitle{
+  color: black;
+}
+.currentUSD{
+  color: black;
+  font-family: arial;
+  font-size: 25px;
+  margin: inherit;
+
+}
+.formLabel{
+  color: black;
+  font-family: arial;
+  font-size: 20px;
+  margin: inherit;
+}
+
+.modalForm{
+  display: flex;
+  flex-direction: column;
+  margin: inherit;
+
+}
+
+.modalFormButton-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: inherit;
+}
+.modalButton-enabled{
+  font-size: 20px;
+    color: black;
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
+    border: none;
+    margin: inherit;
+    padding:5px;
+    border-radius: 4px;
+}
+.modalButton-disabled{
+  font-size: 20px;
+    color: black;
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
+    border: none;
+    margin: inherit;
+    padding:5px;
+    border-radius: 4px;
+    opacity: 50%;
+}
+}
+
+
+
+
+@media screen and (min-width: 651px) {
+.modal-container{
+position: absolute;
+
+  top: 25%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #388186;
+    background-color: #fdf6f6;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px;
+
+}
+
+.depositWithdrawals{
+    align-self: center;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: inherit;
+    margin-left: 15px;
+    font-size: 30px;
+    color: black;
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
+    border: none;
+  }
+
+.modalTitle{
+  color: black;
+}
+.currentUSD{
+  color: black;
+  font-family: arial;
+  font-size: 25px;
+  margin: inherit;
+
+}
+.formLabel{
+  color: black;
+  font-family: arial;
+  font-size: 20px;
+  margin: inherit;
+}
+
+.modalForm{
+  display: flex;
+  flex-direction: column;
+  margin: inherit;
+
+}
+
+.modalFormButton-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: inherit;
+}
+.modalButton-enabled{
+  font-size: 20px;
+    color: black;
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
+    border: none;
+    margin: inherit;
+    padding:5px;
+    border-radius: 4px;
+}
+.modalButton-disabled{
+  font-size: 20px;
+    color: black;
+    background-image: radial-gradient( white 15%, #a5e9e1 25%, #388186 60%);
+    border: none;
+    margin: inherit;
+    padding:5px;
+    border-radius: 4px;
+    opacity: 50%;
+}
+}
+
+
+/* .modal-container{
 position: absolute;
 
   top: 25%;
@@ -77,4 +242,4 @@ position: absolute;
     padding:5px;
     border-radius: 4px;
     opacity: 50%;
-}
+} */

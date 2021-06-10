@@ -55,6 +55,8 @@ height: 23vh;
     font-size: 28px;
     box-sizing: border-box;
     margin: 4px;
+    position: relative;
+    bottom: 14px;
     background-color: #388186;
     border: none;
     border-radius: 4px;

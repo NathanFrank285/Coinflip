@@ -1,4 +1,10 @@
 @media screen and (max-width: 650px) {
+    .coinBrowser-body {
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        margin-top: 40px;
+    }
     .browser-link {
         text-decoration: none;
         font-size: 14px;
@@ -15,7 +21,7 @@
     } 
 }
 
-@media screen and (min-width: 651px) and (max-width: 1200px) {
+@media screen and (min-width: 651px) and (max-width: 1000px) {
     .coinBrowser-body {
         display: flex;
         justify-content: center;
@@ -24,7 +30,7 @@
     }
 
     .table-container {
-        max-width: 50vw;
+        max-width: 80vw;
         height: 73vh;
         overflow-y: scroll;
     }
@@ -49,7 +55,7 @@
     }
 }
 
-@media screen and (min-width: 1201px){
+@media screen and (min-width: 1001px){
     .coinBrowser-body {
         display: flex;
         justify-content: center;
@@ -58,7 +64,7 @@
     }
 
     .table-container {
-        max-width: 50vw;
+        max-width: 75vw;
         height: 73vh;
         overflow-y: scroll;
     }

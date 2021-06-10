@@ -66,17 +66,18 @@
   grid-row: 2;
   grid-column: 1;
   height:100%;
-  width: 60%;
+  width: 40vw;
   overflow-y: auto;
   border: 3px solid snow;
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 15px;
-  margin-left: 110px;
+  margin-left: 29vw;
   }
 .watchlist-title {
-  font-size: 2vh;
+  font-size: 4vw;
   box-sizing: border-box;
+  margin-left: 50px;
   }
 }
 
@@ -84,7 +85,7 @@
 
 
 
-@media screen and (min-width: 651px) {
+@media screen and (min-width: 651px) and (max-width: 1200px ) {
 .port-page {
   display: grid;
   grid-template-rows: 20% 80%;
@@ -167,3 +168,84 @@
   }
 }
   
+@media screen and (min-width: 1201px) {
+.port-page {
+  display: grid;
+  grid-template-rows: 20% 80%;
+  grid-template-columns: 5vw 1fr 5vw;
+  height: 77vh;
+}
+
+.port-container {
+  display: grid;
+  grid-row: 2;
+  grid-column: 2;
+  grid-template-columns: 4.5fr 1.5fr;
+  height: 95%;
+}
+
+.port-table {
+  grid-column: 1;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.watch-div {
+  grid-column: 2;
+  height: 99%;
+  overflow-y: auto;
+  border: 3px solid snow;
+  border-radius: 4px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.watchlist-title {
+  font-size: 4vh;
+  box-sizing: border-box;
+  margin: 1vh
+}
+
+::-webkit-scrollbar {
+  width: 0px
+  }
+
+.balanceDeposits-container {
+ display: flex;
+ flex-direction: row;
+ grid-column: 2/3;
+ width: 100%;
+
+}
+
+.balances {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+}
+
+.USD-balance{
+  grid-column: 2;
+  font-size: 4vmin;
+  font-family: inherit;
+
+}
+
+.port-balance {
+    grid-column: 2;
+    font-size: 5vmin;
+    font-family: inherit;
+  }
+
+.despositWithdrawals-container{
+  width: 25%;
+  display: flex;
+  flex-direction:column;
+  align-content: flex-end;
+  justify-content: center;
+}
+}

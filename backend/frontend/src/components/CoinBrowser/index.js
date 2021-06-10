@@ -23,25 +23,49 @@ export default function CoinBrowser() {
         dispatch(getCoinBrowserThunk());
     }, [])
 
-    const useStyles = makeStyles({
+    const useStyles = makeStyles((theme) => ({
       table: {
-        minWidth: "auto",
+        minWidth: 'auto',
         maxWidth: "auto",
         backgroundColor: "#e1fcf9",
         fontFamily: "inherit",
+        [theme.breakpoints.down(650)]: {
+          minWidth: 400,
+          maxWidth: 500,
+        },
       },
       header: {
         fontFamily: "inherit",
         fontSize: 30,
         fontWeight: 600,
+        [theme.breakpoints.down(1200)]: {
+          fontSize: 22,
+          fontWeight: 600,
+        },
+        [theme.breakpoints.down(650)]: {
+          fontSize: 16,
+          fontWeight: 600,
+        },
       },
       dataName: {
         fontFamily: "inherit",
         fontSize: 26,
+        [theme.breakpoints.down(1200)]: {
+          fontSize: 18,
+        },
+        [theme.breakpoints.down(650)]: {
+          fontSize: 14,
+        },
       },
       dataPoints: {
         fontFamily: "inherit",
         fontSize: 22,
+        [theme.breakpoints.down(1200)]: {
+          fontSize: 18,
+        },
+        [theme.breakpoints.down(650)]: {
+          fontSize: 12,
+        },
       },
       positive: {
         color: "green",
@@ -49,7 +73,7 @@ export default function CoinBrowser() {
       negative: {
         color: "red",
       },
-    });
+    }));
     const classes = useStyles();
 
     String.prototype.capitalize = function () {

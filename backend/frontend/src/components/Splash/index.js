@@ -3,13 +3,6 @@ import DarkLogo from "../../images/DarkLogo.png"
 import "./splash.css"
 
 const Splash = () => {
-  // const [email, setEmail] = useState('demo@aa.io')
-  // const [password, setPassword] = useState('password')
-
-  // const loginDemoUser = async () => {
-  //   await dispatch(login(email, password))
-  //   history.push("/portfolio")
-  // }
 
   return (
     <div className="splash-body">
@@ -31,24 +24,6 @@ const Splash = () => {
           information on each coin.
         </div>
       </div>
-      {/* <div className="splash-forms">
-        <div className="splash-login">
-          <div>
-            {" "}
-            <LoginForm />{" "}
-          </div>
-          <div className="splash-demo">
-            <div className="demo-label">Demo User Login</div>
-            <button className="demo-btn" onClick={loginDemoUser}>
-              Demo
-            </button>
-          </div>
-        </div>
-        <div className="splash-signup">
-          {" "}
-          <SignUpForm />{" "}
-        </div>
-      </div> */}
     </div>
   );
 };
