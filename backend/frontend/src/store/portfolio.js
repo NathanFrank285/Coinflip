@@ -23,7 +23,8 @@ export const addToPortfolio = (data) => async (dispatch) => {
     },
     body: JSON.stringify(data)
   })
-  return response
+  const res = await response.json();
+  return res
 }
 
 export const removeFromPortfolioThunk = (data) => async (dispatch) => {

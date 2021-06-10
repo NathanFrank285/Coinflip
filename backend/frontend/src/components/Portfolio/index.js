@@ -18,10 +18,9 @@ const Portfolio = () => {
     useEffect(() => {
         dispatch(getPortfolioThunk());
         dispatch(getDollarAmountThunk())
-    }, []);
+    }, [(totalPortfolio+USDBalance)]);
 
     let total = 0
-
     if (portfolio) {
         total = totalPortfolio.toLocaleString("en-US", {
             style: "currency",
