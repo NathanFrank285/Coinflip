@@ -1,32 +1,84 @@
+@media screen and (max-width: 650px) {
+    .browser-link {
+        text-decoration: none;
+        font-size: 14px;
+        color: #1b1a17;
+        font-family: inherit;
+    }
 
-.coinBrowser-body {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    margin-top: 40px;
+    .browser-link:hover {
+        text-decoration: underline;
+    }
+
+    .browser-link:visited {
+        color: #1b1a17
+    } 
 }
 
-.table-container {
-    max-width: 50vw;
-    height: 73vh;
-    overflow-y: scroll;
+@media screen and (min-width: 651px) and (max-width: 1200px) {
+    .coinBrowser-body {
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        margin-top: 40px;
+    }
+
+    .table-container {
+        max-width: 50vw;
+        height: 73vh;
+        overflow-y: scroll;
+    }
+
+    .browser-head {
+        font-size: 35px !important;
+    }
+
+    .browser-link {
+        text-decoration: none;
+        font-size: 18px;
+        color: #1b1a17;
+        font-family: inherit;
+    }
+
+    .browser-link:hover {
+        text-decoration: underline;
+    }
+
+    .browser-link:visited {
+        color: #1b1a17
+    }
 }
 
-.browser-head {
-    font-size: 35px !important;
-}
+@media screen and (min-width: 1201px){
+    .coinBrowser-body {
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        margin-top: 40px;
+    }
 
-.browser-link {
-    text-decoration: none;
-    font-size: 26px;
-    color: #1b1a17;
-    font-family: inherit;
-}
+    .table-container {
+        max-width: 50vw;
+        height: 73vh;
+        overflow-y: scroll;
+    }
 
-.browser-link:hover {
-    text-decoration: underline;
-}
+    .browser-head {
+        font-size: 35px !important;
+    }
 
-.browser-link:visited {
-    color: #1b1a17
+    .browser-link {
+        text-decoration: none;
+        font-size: 25px;
+        color: #1b1a17;
+        font-family: inherit;
+    }
+
+    .browser-link:hover {
+        text-decoration: underline;
+    }
+
+    .browser-link:visited {
+        color: #1b1a17
+    }
 }

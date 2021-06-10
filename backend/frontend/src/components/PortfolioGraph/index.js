@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPortfolioThunk } from "../../store/portfolio";
@@ -13,36 +13,60 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import "./PortfolioGraph.css";
 
-
 export default function PortfolioGraph() {
   const portfolio = useSelector((state) => state?.portfolio?.Portfolio);
-  const totalPortfolio = useSelector(state => state?.portfolio?.PortfolioBalance)
+  const totalPortfolio = useSelector(
+    (state) => state?.portfolio?.PortfolioBalance
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPortfolioThunk());
   }, []);
 
-  const useStyles = makeStyles({
+  const useStyles = makeStyles((theme) => ({
     table: {
       minWidth: 800,
       maxWidth: "auto",
       backgroundColor: "#e1fcf9",
       fontFamily: "inherit",
+      [theme.breakpoints.down(650)]: {
+        minWidth: 400,
+        maxWidth: 500,
+      },
     },
     header: {
       fontFamily: "inherit",
       fontSize: 30,
       fontWeight: 600,
-
+      [theme.breakpoints.down(1200)]: {
+        fontSize: 22,
+        fontWeight: 600,
+      },
+      [theme.breakpoints.down(650)]: {
+        fontSize: 16,
+        fontWeight: 600,
+      },
     },
     dataName: {
       fontFamily: "inherit",
       fontSize: 26,
+      [theme.breakpoints.down(1200)]: {
+        fontSize: 18,
+      },
+      [theme.breakpoints.down(650)]: {
+        fontSize: 14,
+      },
     },
     dataPoints: {
       fontFamily: "inherit",
       fontSize: 22,
+      [theme.breakpoints.down(1200)]: {
+        fontSize: 18,
+      },
+      [theme.breakpoints.down(650)]: {
+        fontSize: 12,
+      },
     },
     positive: {
       color: "green",
@@ -50,7 +74,7 @@ export default function PortfolioGraph() {
     negative: {
       color: "red",
     },
-  });
+  }));
 
   const classes = useStyles();
 
@@ -58,10 +82,17 @@ export default function PortfolioGraph() {
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
 
-  function createData(name, price, balance, performance, allocation, ticker, quantity) {
+  function createData(
+    name,
+    price,
+    balance,
+    performance,
+    allocation,
+    ticker,
+    quantity
+  ) {
     return { name, price, balance, performance, allocation, ticker, quantity };
   }
-
 
   const formatCash = (n) => {
     if (n < 1e3) return n;
@@ -82,7 +113,7 @@ export default function PortfolioGraph() {
         coin.coinData.usd,
         coin.Quantity * coin.coinData.usd,
         (coin.coinData.usd / coin.AveragePrice - 1) * 100,
-        (((coin.Quantity * coin.coinData.usd) / totalPortfolio) * 100),
+        ((coin.Quantity * coin.coinData.usd) / totalPortfolio) * 100,
         coin.Ticker,
         coin.Quantity
       );
@@ -101,19 +132,19 @@ export default function PortfolioGraph() {
               <TableCell className={classes.header}>Name</TableCell>
               <TableCell className={classes.header} align="right">
                 Price
-                  </TableCell>
+              </TableCell>
               <TableCell className={classes.header} align="right">
                 Balance
-                  </TableCell>
+              </TableCell>
               <TableCell className={classes.header} align="right">
                 Performance
-                  </TableCell>
+              </TableCell>
               <TableCell className={classes.header} align="right">
                 Allocation
-                  </TableCell>
+              </TableCell>
               <TableCell className={classes.header} align="right">
                 Quantity
-                  </TableCell>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -170,9 +201,5 @@ export default function PortfolioGraph() {
     table = <div></div>;
   }
 
-  return (
-    <div>
-      {table}
-    </div>
-  )
+  return <div>{table}</div>;
 }
