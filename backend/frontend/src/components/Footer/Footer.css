@@ -1,3 +1,4 @@
+@media screen and (max-width: 900px) {
 .footer-container {
     width: 100%;
     background-color: #fdf6f6 ;
@@ -19,19 +20,62 @@
 }
 
 .footer-name {
-    font-size: 2.5vh;
+    font-size: 3vw;
     font-weight: 600;
 }
 
 .footer-links {
     text-decoration: none;
     color: black;
-    font-size: 2.2vh;
+    font-size: 2.5vw;
 }
 .footer-links:visited {
     color: black;
 }
 .footer-links:hover {
     text-decoration: underline;
-    font-size: 2.3vh;
+    /* font-size: 2.3vh; */
+}
+}
+
+@media screen and (min-width: 901px) {
+
+
+.footer-container {
+    width: 100%;
+    background-color: #fdf6f6 ;
+    color: black;
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 13vh;
+    box-sizing: border-box;
+    
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-name {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+.footer-links {
+    text-decoration: none;
+    color: black;
+    font-size: 1.7vw;
+}
+.footer-links:visited {
+    color: black;
+}
+.footer-links:hover {
+    text-decoration: underline;
+    /* font-size: 2.3vh; */
+}
 }

@@ -1,6 +1,14 @@
+@media screen and (max-width: 650px) {
+.table-container {
+    width: 500px;
+}
+}
+
+@media screen and (min-width: 651px) {
 .portfolio-body {
     width: 100%;
 }
 .table-container {
     width: 100%;
+}
 }

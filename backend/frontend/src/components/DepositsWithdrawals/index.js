@@ -48,7 +48,7 @@ const depositOrWithdrawal = (e) => {
  console.log(transferType);
 return (
   <div>
-    <button className="despositWithdrawals" onClick={openModal}>
+    <button className="depositWithdrawals" onClick={openModal}>
       Make a Deposit or Withdrawal
     </button>
     <Modal
