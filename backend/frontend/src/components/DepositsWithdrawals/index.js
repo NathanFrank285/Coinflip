@@ -2,21 +2,7 @@ import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
 import './DepositsWithdrawals.css'
-import { getDollarAmountThunk, newTransferThunk } from '../../store/accountUSD';
-
-const customStyles = {
-  content: {
-    top: "25%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    border: "1px solid #388186",
-    backgroundColor: '#fdf6f6',
-    height: 'fit-content'
-  },
-};
+import { newTransferThunk } from '../../store/accountUSD';
 
 Modal.setAppElement("#root");
 
