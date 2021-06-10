@@ -1,8 +1,8 @@
 # CoinFlip
-![Coin Detail](project-starter/images/Coinflip-app.png)
+![Coin Detail](backend/images/Coinflip-app.png)
 
 
-Coinflip is an app that allows a user to maintain a profile where they can watch coins using live API data. 
+Coinflip is an app that allows a user to maintain a profile where they can watch coins using live API data.
 
 - Deployed on Heroku: [CoinFlip](https://cryptocoinflip.herokuapp.com/)
 
@@ -49,14 +49,14 @@ Coinflip is an app that allows a user to maintain a profile where they can watch
    flask seed all
    ```
 
-6. To spin up the app, on the backend: 
+6. To spin up the app, on the backend:
 
    ```bash
    flask run
    ```
 
    And on the frontend:
-   
+
    ```bash
    npm start
    ```
@@ -65,10 +65,15 @@ Coinflip is an app that allows a user to maintain a profile where they can watch
 
 ## Features
 - Coin Detail page featuring a line graph displaying data over a day, a week, or a month. This data is pulled from the CoinGecko API. We also provide other details about the coin below the graph.
-![Coin Detail](project-starter/images/Coinflip-coin-detail-pic.png)
-- A Dashboard/Portolio where the user can view a table displaying data about the coins they "own" and see how much their portfolio would be worth in USD. 
-![Dashboard](project-starter/images/Coinflip-dashboard.png)
-- A watchlist where the user can keep track of coins they are interested in. 
-![Watchlist](project-starter/images/Coinflip-watchlist.png)
+![Coin Detail](backend/images/Coinflip-coin-detail-pic.png)
+- A Dashboard/Portolio where the user can view a table displaying data about the coins they "own" and see how much their portfolio would be worth in USD.
+![Dashboard](backend/images/Coinflip-dashboard.png)
+- A watchlist where the user can keep track of coins they are interested in.
+![Watchlist](backend/images/Coinflip-watchlist.png)
 - A search bar or a browsing page that enable the user to find coins of interest.
-![Coin Detail](project-starter/images/Coinflip-search.png)
+![Coin Detail](backend/images/Coinflip-search.png)
+
+## Notable code snippets
+
+![Search and Add to Database](backend/images/search_and_add_to_db.png)
+- We recognized that users might search for coins in the browser url by typing in a ticker name that might not be available in our database yet. We implemented logic that initially checks if that coin name exists in the api, but is not in our database. If that is true, we add the coin to our database, then redirect the user to that newly added coin's page.

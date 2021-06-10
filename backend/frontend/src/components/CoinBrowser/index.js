@@ -52,9 +52,6 @@ export default function CoinBrowser() {
     });
     const classes = useStyles();
 
-    String.prototype.capitalize = function () {
-      return this.charAt(0).toUpperCase() + this.slice(1);
-    };
     function createData(name, price, change, volume, marketCap, ticker) {
         return { name, price, change, volume, marketCap,ticker };
     }
@@ -136,7 +133,7 @@ export default function CoinBrowser() {
                       {row?.change.toFixed(2) + "%"}
                     </TableCell>
                   )}
-                  
+
                   <TableCell align="right" className={classes.dataPoints}>
                     {formatCash(row?.volume)}
                   </TableCell>
