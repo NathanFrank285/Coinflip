@@ -76,4 +76,4 @@ Coinflip is an app that allows a user to maintain a profile where they can watch
 ## Notable code snippets
 
 ![Search and Add to Database](backend/images/search_and_add_to_db.png)
-- We recognized that users might search for coins in the browser url by typing in a ticker name that might not be available in our database yet. We implemented logic that initially checks if that coin name exists in the api, but not in our database. If that is true, we add the coin to our database and then redirect the user to that newly added coin's page.
+- We recognized that users might search for coins in the browser url by typing in a ticker name that might not be available in our database yet. We implemented logic that initially checks if that coin name exists in the api, but is not in our database. If that is true, we add the coin to our database, then redirect the user to that newly added coin's page.
