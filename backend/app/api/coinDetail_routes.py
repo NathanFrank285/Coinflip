@@ -46,7 +46,9 @@ def index(ticker):
 
         newCoin = Coin()
         newCoin.ticker = ticker
-        newCoin.name = cg.get_coin_by_id(ticker)['name']
+        newCoinData = cg.get_coin_by_id(ticker)
+        newCoin.name = newCoinData['name']
+        newCoin.symbol = newCoinData['symbol']
         db.session.add(newCoin)
         db.session.commit()
         data = cg.get_coin_by_id(ticker)
