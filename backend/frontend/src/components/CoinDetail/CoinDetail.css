@@ -1,3 +1,12 @@
+@media screen and (max-width: 900px) {
+.detail-coin-image {
+    height: 120px;
+    display: none;
+}
+}
+@media screen and (min-width: 901px) {
+
+}
 .price-detail-container {
     box-sizing: border-box;
     margin: 15px 0px;

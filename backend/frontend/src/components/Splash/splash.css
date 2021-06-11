@@ -1,14 +1,82 @@
+@media screen and (max-width: 950px) {
+.splash-body {
+    display: grid;
+    grid-template-rows: .1fr 1fr 2fr;
+    grid-template-areas:
+        'head'
+        'title'
+        'blurb';
+    background-color: #1b1a17;
+    height: 79vh;
+    width: 100%;
+}
+.splash-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-area: title;
+}
 
+.splash-title {
+    font-size: 8vw;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.splash-subtitle {
+    display: flex;
+    justify-content: center;
+    font-size: 6vw;
+}
+
+.blurb{
+    display: flex;
+    grid-area: blurb;
+    font-size: 3vw;
+    justify-content: center;
+    height: 30vh;
+    width: 70vw;
+    justify-self: center;
+    text-align: center;
+    flex-direction: column;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.splash-logo {
+    display: none;
+    grid-area: logo;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 33.3vw;
+    /* margin-top: 3vh; */
+    height: 18vh;
+
+}
+.splash-logo-2 {
+    display: none;
+    grid-area: head title;
+    box-sizing: border-box;
+    position: absolute;
+    margin-left: 82vw;
+    margin-top: 3vh;
+    height: 20vh;
+}
+}
+
+@media screen and (min-width: 951px) {
 .splash-body {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr;
     grid-template-areas:
         'head'
         'title'
-        'forms';
+        'blurb';
     background-color: #1b1a17;
-    height: 77vh;
-    width: 105%;
+    height: 79vh;
+    width: 100%;
 }
 
 .splash-title-container {
@@ -16,6 +84,8 @@
     flex-direction: column;
     justify-content: center;
     grid-area: title;
+    box-sizing: border-box;
+    margin: 20px;
 }
 
 .splash-title {
@@ -36,15 +106,16 @@
     position: absolute;
     margin-left: 3vw;
     margin-top: 3vh;
+    height: 20vh;
 
 }
 .splash-logo-2 {
     grid-area: head title;
     box-sizing: border-box;
     position: absolute;
-    margin-left: 77vw;
+    margin-left: 82vw;
     margin-top: 3vh;
-
+    height: 20vh;
 }
 
 .splash-forms {
@@ -56,15 +127,17 @@
 
 .blurb{
     display: flex;
-    grid-area: forms;
+    grid-area: blurb;
     font-size: 25px;
     justify-content: center;
-    height: 20vh;
-    width: 40vw;
+    height: 26vh;
+    width: 60vw;
     justify-self: center;
     text-align: center;
     flex-direction: column;
     overflow-y: scroll;
+    box-sizing: border-box;
+    margin-top: 20px;
 }
 
 .splash-login {
@@ -76,43 +149,4 @@
     box-sizing: border-box;
     margin: 15px;
 }
-
-.splash-demo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    box-sizing: border-box;
-    margin: 10px;
-    border: 2px solid #fdf6f6;
-    padding: 10px;
-    border-radius: 4px;
-    background-color: #a5e9e1;
-    background-image: url('../../images/DarkLogo.png');
-    height: 122px;
-}
-
-.demo-btn {
-    font-size: 28px;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-    margin: 4px;
-    background-color: #388186;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 2px 2px 2px 2px #1b1a17;
-    text-decoration: none;
-    color: black;
-}
-
-.demo-label {
-    font-size: 42px;
-    font-weight: 600;
-    color: #1b1a17;
-    display: flex;
-    align-self: center;
-}
-
-.demo-btn:hover {
-    background-color: #fdf6f6;
 }

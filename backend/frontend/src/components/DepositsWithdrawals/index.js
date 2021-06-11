@@ -2,21 +2,7 @@ import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
 import './DepositsWithdrawals.css'
-import { getDollarAmountThunk, newTransferThunk } from '../../store/accountUSD';
-
-const customStyles = {
-  content: {
-    top: "25%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    border: "1px solid #388186",
-    backgroundColor: '#fdf6f6',
-    height: 'fit-content'
-  },
-};
+import { newTransferThunk } from '../../store/accountUSD';
 
 Modal.setAppElement("#root");
 
@@ -62,7 +48,7 @@ const depositOrWithdrawal = (e) => {
  console.log(transferType);
 return (
   <div>
-    <button className="despositWithdrawals" onClick={openModal}>
+    <button className="depositWithdrawals" onClick={openModal}>
       Make a Deposit or Withdrawal
     </button>
     <Modal
