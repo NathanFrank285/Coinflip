@@ -13,12 +13,16 @@ Coinflip is an app that allows a user to maintain a profile where they can watch
 - Flask-SQLAlchemy
 - PostgreSQL
 - CoinGecko API
-- Material-UI
-- Recharts
 - WTForms
+### React Components
+- [Material-UI](https://material-ui.com/components/tables/)
+- [Recharts](https://recharts.org/en-US)
 
 ## Index
-
+- [MVPs](https://github.com/NathanFrank285/Coinflip/wiki/MVPs)
+- [Database-Schema](https://github.com/NathanFrank285/Coinflip/wiki/Database-Schema)
+- [Routes](https://github.com/NathanFrank285/Coinflip/wiki/Routes)
+- [User-Stories](https://github.com/NathanFrank285/Coinflip/wiki/User-Stories)
 
 #### How to clone and spin up from the repo
 1. git clone https://github.com/NathanFrank285/Coinflip.git
